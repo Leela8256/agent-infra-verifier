@@ -336,6 +336,28 @@ class SharedServices:
                     else f"http_{response.status}",
                 )
                 stream = "text/event-stream" in response.headers.get("Content-Type", "")
+                if response.status != 200 and not stream:
+                    # HTTP clients can retry as soon as they see error headers.
+                    # Commit the failed attempt before making those headers visible.
+                    raw = response.read(64 * 1024 * 1024 + 1)
+                    if len(raw) > 64 * 1024 * 1024:
+                        raise ValueError("upstream response exceeds capture limit")
+                    try:
+                        self.usage(event, json.loads(raw))
+                    except ValueError:
+                        pass  # Preserve the HTTP error and unknown usage.
+                    self.finish(event)
+                    handler.send_response(response.status)
+                    handler.send_header("Content-Type", "application/json")
+                    handler.send_header("Content-Length", str(len(raw)))
+                    if response.headers.get("Retry-After"):
+                        handler.send_header(
+                            "Retry-After", response.headers["Retry-After"]
+                        )
+                    handler.end_headers()
+                    sent = True
+                    handler.wfile.write(raw)
+                    return
                 handler.send_response(response.status)
                 handler.send_header(
                     "Content-Type",

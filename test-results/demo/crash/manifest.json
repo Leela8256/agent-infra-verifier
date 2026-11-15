@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verifier_version": "0.2.0",
-  "run_id": "051347e7-c779-4d75-b102-de3772436d34",
+  "run_id": "602735d5-05d0-48a0-98c4-e5a2f021f7ff",
   "framework": "synthetic-fixture",
   "trial": 1,
   "command": [
@@ -9,14 +9,14 @@
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "crash"
   ],
-  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-083949/crash/workspace",
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-084257/crash/workspace",
   "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
   "launch_command": [
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "crash"
   ],
-  "started_at": "2026-11-15T16:39:51.768786+00:00",
+  "started_at": "2026-11-15T16:42:58.973328+00:00",
   "config": {
     "schema_version": 1,
     "profile": "local-pilot-v1-not-frozen",
@@ -33,7 +33,7 @@
     "require_telemetry": true
   },
   "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
-  "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
+  "comparison_key": "28b172810bf8430fe10cb6156e2ec94e3eb767a904e91a90abdc09d57d3caafc",
   "inputs": {
     "experiment.json": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
@@ -71,7 +71,7 @@
     "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
     "runner.py": "d39f335244b25b2cd24eff02a12a11e5c6554ecb03c394b6e20488bd5fc3eae9",
     "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
-    "services.py": "2bf8cb08aa438f29fe3bcda4521d1d8f3433a702e4f3765b7a17d7a28213df88",
+    "services.py": "483ef250c41bbe0541d904a8a2f8961f0caefc0b2f40f82da4d5058989224daf",
     "summary.py": "6ce11b4072b644ab7bbb5763559f639000fe02c3af2ffb24cf614b3b859e8673",
     "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e",
     "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"

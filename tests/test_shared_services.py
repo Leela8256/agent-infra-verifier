@@ -240,10 +240,19 @@ class ServiceBoundaryTests(unittest.TestCase):
 
     def test_model_retry_logged_at_proxy_with_unknown_error_cost(self):
         data = {"model": "test", "messages": []}
-        with self.assertRaises(urllib.error.HTTPError) as caught:
+        original_finish = self.service.finish
+
+        def slow_finish(*args, **kwargs):
+            time.sleep(0.05)
+            return original_finish(*args, **kwargs)
+
+        # A retry issued immediately on HTTP error must still link to that error,
+        # even when persisting its accounting takes longer than the client retry.
+        with patch.object(self.service, "finish", side_effect=slow_finish):
+            with self.assertRaises(urllib.error.HTTPError) as caught:
+                self.request("/v1/chat/completions", data)
+            caught.exception.close()
             self.request("/v1/chat/completions", data)
-        caught.exception.close()
-        self.request("/v1/chat/completions", data)
         # Shutdown drains the last handler before final totals.
         self.service.server.shutdown()
         deadline = time.monotonic() + 2

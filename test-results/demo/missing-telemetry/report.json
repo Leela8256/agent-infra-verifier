@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "run_id": "092aac2c-7ab1-4cf4-98ce-afcf60bb698c",
+  "run_id": "bb29aacc-077c-4593-9137-b49d24b96165",
   "framework": "synthetic-fixture",
   "trial": 1,
-  "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
+  "comparison_key": "28b172810bf8430fe10cb6156e2ec94e3eb767a904e91a90abdc09d57d3caafc",
   "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
   "experiment_declared": true,
   "runtime_status": "completed",
@@ -54,11 +54,11 @@
       "tokens_out": 0,
       "cost_usd": 0
     },
-    "wall_clock_s": 0.0585272500757128,
-    "cpu_time_s": 0.041224,
-    "peak_rss_mb": 9.171875,
-    "reaped_cpu_time_s": 0.041224,
-    "reaped_peak_rss_mb": 27.421875,
+    "wall_clock_s": 0.06361666694283485,
+    "cpu_time_s": 0.042244,
+    "peak_rss_mb": 9.671875,
+    "reaped_cpu_time_s": 0.042244,
+    "reaped_peak_rss_mb": 27.5625,
     "sample_count": 2,
     "hit_budget_cap": false,
     "orphaned_processes": 0,
@@ -67,7 +67,7 @@
     "search_pages_fetched": null,
     "all_search_pages_fetched": null,
     "search_total_pages": null,
-    "memory_observed_mb": 27.421875,
+    "memory_observed_mb": 27.5625,
     "said_done_but_failed": false
   },
   "quality": {
