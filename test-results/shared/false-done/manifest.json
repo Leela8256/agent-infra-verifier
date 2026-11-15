@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "verifier_version": "0.2.0",
+  "run_id": "d678f6c8-3b72-4035-8c60-8a3c9b714dca",
+  "framework": "shared-http-fixture",
+  "trial": 1,
+  "command": [
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/shared_agent.py",
+    "false-done"
+  ],
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/shared-20261115-083608/false-done/workspace",
+  "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
+  "launch_command": [
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/shared_agent.py",
+    "false-done"
+  ],
+  "started_at": "2026-11-15T16:36:09.781566+00:00",
+  "config": {
+    "schema_version": 1,
+    "profile": "local-pilot-v1-not-frozen",
+    "wall_clock_s": 5,
+    "cpu_time_s": null,
+    "memory_mb": null,
+    "model_calls": null,
+    "tool_calls": null,
+    "tokens_in": 5000,
+    "tokens_out": null,
+    "cost_usd": null,
+    "steps": null,
+    "sample_interval_s": 0.05,
+    "require_telemetry": true
+  },
+  "config_sha256": "fd78629dad37e6d41da3887b2a94cdc3eff3d7f2db5d42eb9a1aa8fe65b35839",
+  "comparison_key": "23e977c1c418980529c82ac9f3026dc6e0d0e9f6d954beeb7f32fe303f73a7db",
+  "inputs": {
+    "experiment.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
+      "sha256": "fe53a3f21d01e3ed2104f9413e36e7ea370f0746614fd4b2956332c6cf074d3a"
+    },
+    "feed.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/feed.json",
+      "sha256": "912e0d13c66f072b6ceb2da54a65231d1431a475f5cb69a304745e3baef3a491"
+    },
+    "banned_words.txt": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/banned_words.txt",
+      "sha256": "a0dad36632121ea28674d265c50c8d7467daa0afee87db122a434877f19d062c"
+    },
+    "verify.py": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/vendor/agent_blog_verifier/verify.py",
+      "sha256": "e209098f0029f751b360cf97eb71ac5695eee01faa089eff83ef8dadae1bae89"
+    },
+    "search_feed.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/feed.json",
+      "sha256": "912e0d13c66f072b6ceb2da54a65231d1431a475f5cb69a304745e3baef3a491"
+    }
+  },
+  "reference_time": "2026-11-15T00:00:00Z",
+  "machine": {
+    "system": "Darwin",
+    "release": "25.5.0",
+    "machine": "arm64",
+    "logical_cpus": 18
+  },
+  "backend": "local-sampled",
+  "trace_url": null,
+  "source_hashes": {
+    "__init__.py": "1876444e10a5f3823d51a6ab0f31deaa1328de8ce60eeab1eb1d8ccc3e399d3d",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "00e3b18a4ce1f5a77a21163cec11d380b17d828b492766d5803e42635b0d6bfb",
+    "config.py": "b083f0008a293f8278e34582f99cf1f546cbc901cca8e0e0c1f0898a6301ba37",
+    "findings.py": "4c44d4354fd3068ff6f52d30eb245ea69c900b88e73effc92db8124f3067eb68",
+    "quality.py": "4039ff9be23593a5f1ac90bc031e1695c4aee9bfabf96fc69d64349c62838be4",
+    "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
+    "runner.py": "d39f335244b25b2cd24eff02a12a11e5c6554ecb03c394b6e20488bd5fc3eae9",
+    "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
+    "services.py": "6600fa5981ff6b06e6be9d458a9d0f8ae45c13d04c28c043ee942d84576c8cd7",
+    "summary.py": "6ce11b4072b644ab7bbb5763559f639000fe02c3af2ffb24cf614b3b859e8673",
+    "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e",
+    "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"
+  },
+  "psutil_version": "7.2.2",
+  "declared_experiment": {
+    "model": "synthetic-no-provider",
+    "provider": "offline-fixture",
+    "temperature": 0,
+    "max_tokens": 8000,
+    "cache_policy": "disabled",
+    "fixture_only": true
+  },
+  "telemetry_source": "shared_services",
+  "model_upstream": "http://127.0.0.1:55306/v1",
+  "search_contract": "three-pages-first-valid-request-429-v1"
+}

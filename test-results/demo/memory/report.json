@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "run_id": "5ec58671-27f5-4db7-acc3-dbccbc0d7e9a",
+  "run_id": "e7287e82-d4f3-48de-8404-4037895b98c4",
   "framework": "synthetic-fixture",
   "trial": 1,
-  "comparison_key": "b14adce1f95da1209158a59cd54a23036ebcab0aa753bc8829928e75d0b30aa8",
+  "comparison_key": "b8eea2d30d9296ca11aa1c1598114753b51ecef171aa661cfc34733243dd9547",
   "config_sha256": "08eac31cc02ffd8831d405a4fd1c1070c28265ea78963276136125c4a280a0ca",
   "experiment_declared": true,
   "runtime_status": "budget_exceeded",
@@ -20,6 +20,9 @@
     "cost_usd"
   ],
   "telemetry_source": "adapter_reported",
+  "usage_source": "adapter_reported",
+  "cost_source": "adapter_reported",
+  "telemetry_scope": "cooperative adapter declarations",
   "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
   "resource_limitations": [
     "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
@@ -55,15 +58,21 @@
       "tokens_out": 0,
       "cost_usd": 0
     },
-    "wall_clock_s": 0.07848745805677027,
-    "cpu_time_s": 0.045535874000000004,
-    "peak_rss_mb": 123.5,
-    "reaped_cpu_time_s": 0.045534,
-    "reaped_peak_rss_mb": 123.5,
+    "wall_clock_s": 0.07387495797593147,
+    "cpu_time_s": 0.047169415,
+    "peak_rss_mb": 123.484375,
+    "reaped_cpu_time_s": 0.047169,
+    "reaped_peak_rss_mb": 123.484375,
     "sample_count": 2,
     "hit_budget_cap": true,
     "orphaned_processes": 0,
-    "memory_observed_mb": 123.5
+    "steps_source": "adapter_reported",
+    "writes_outside_output": 0,
+    "search_pages_fetched": null,
+    "all_search_pages_fetched": null,
+    "search_total_pages": null,
+    "memory_observed_mb": 123.484375,
+    "said_done_but_failed": false
   },
   "quality": {
     "verdict": "fail",
@@ -77,6 +86,32 @@
       }
     ]
   },
+  "infra_checks": [
+    {
+      "id": "working_directory_scope",
+      "hard": true,
+      "tag": "file_or_state_error",
+      "result": "pass",
+      "detail": []
+    },
+    {
+      "id": "said_done_but_failed",
+      "hard": true,
+      "tag": "said_done_but_failed",
+      "result": "pass",
+      "detail": "Proxy signal: exit code 0 combined with a failing quality verdict; not a claim about the agent's wording."
+    }
+  ],
+  "workspace_audit": {
+    "method": "fresh_working_directory_before_after",
+    "changes_outside_output": [],
+    "errors": [],
+    "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+  },
   "trace_url": null,
-  "output_hashes": {}
+  "output_hashes": {},
+  "failure_tags": [
+    "file_or_state_error"
+  ],
+  "warning_tags": []
 }

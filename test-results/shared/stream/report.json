@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "run_id": "4eb505bb-2d61-451a-80cc-a78ab0097694",
+  "framework": "shared-http-fixture",
+  "trial": 1,
+  "comparison_key": "23e977c1c418980529c82ac9f3026dc6e0d0e9f6d954beeb7f32fe303f73a7db",
+  "config_sha256": "fd78629dad37e6d41da3887b2a94cdc3eff3d7f2db5d42eb9a1aa8fe65b35839",
+  "experiment_declared": true,
+  "runtime_status": "completed",
+  "exit_code": 0,
+  "measurement_status": "complete",
+  "measurement_errors": [],
+  "telemetry_missing": [],
+  "telemetry_source": "shared_services",
+  "usage_source": "provider_usage_via_proxy",
+  "cost_source": "provider_response_usage.cost",
+  "telemetry_scope": "Requests routed through this run's services only; direct provider/tool bypass is not network-blocked.",
+  "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
+  "resource_limitations": [
+    "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
+    "CPU is max(sampled per-process CPU sum, wait4 CPU of reaped leader and its waited descendants); detached unobserved processes can be missed.",
+    "Limits are reactive watchdog stops, not kernel ceilings. Local mode is not a filesystem or network sandbox."
+  ],
+  "budget_status": "within_observed_limits",
+  "budget_violations": [],
+  "budget_stop_triggers": [],
+  "metrics": {
+    "tokens_in": 1200,
+    "tokens_out": 700,
+    "cost_usd": 0.004,
+    "llm_calls": 1,
+    "tool_calls": 4,
+    "steps": 1,
+    "retries": 1,
+    "errors": 1,
+    "errors_by_type": {
+      "http_429": 1
+    },
+    "tool_calls_by_name": {
+      "mock_search": 4
+    },
+    "llm_latency_s": [
+      0.00441654201131314
+    ],
+    "models_observed": [
+      "synthetic-no-provider"
+    ],
+    "llm_total_request_s": 0.00441654201131314,
+    "tool_total_request_s": 0.00016370904631912708,
+    "time_to_first_tool_call_s": 0.04629191698040813,
+    "retry_recovered": true,
+    "usage_known_subtotal": {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004
+    },
+    "wall_clock_s": 0.06270462495740503,
+    "cpu_time_s": 0.047848,
+    "peak_rss_mb": 9.640625,
+    "reaped_cpu_time_s": 0.047848,
+    "reaped_peak_rss_mb": 30.078125,
+    "sample_count": 2,
+    "hit_budget_cap": false,
+    "orphaned_processes": 0,
+    "steps_source": "proxy_model_request_attempts",
+    "writes_outside_output": 0,
+    "search_pages_fetched": [
+      1,
+      2,
+      3
+    ],
+    "all_search_pages_fetched": true,
+    "search_total_pages": 3,
+    "memory_observed_mb": 30.078125,
+    "said_done_but_failed": false
+  },
+  "quality": {
+    "verdict": "pass",
+    "checks": [
+      {
+        "id": "files_exist",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "blog.md=True meta.json=True"
+      },
+      {
+        "id": "meta_valid",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "keys=['topics', 'source_urls']"
+      },
+      {
+        "id": "word_count",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "644 words, want 600-800"
+      },
+      {
+        "id": "has_title",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "1 H1"
+      },
+      {
+        "id": "section_count",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "3 sections: ['Agent Harness', 'Agent Memory', 'Tool Calling']"
+      },
+      {
+        "id": "has_intro",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "40 intro words"
+      },
+      {
+        "id": "links_from_feed",
+        "hard": true,
+        "tag": "said_done_but_failed",
+        "result": "pass",
+        "detail": "0 off-feed: []"
+      },
+      {
+        "id": "has_sources",
+        "hard": false,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": ""
+      },
+      {
+        "id": "no_banned_words",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "[]"
+      },
+      {
+        "id": "no_stale_sources",
+        "hard": true,
+        "tag": "lost_context",
+        "result": "pass",
+        "detail": "cited 0 post(s) older than 7d"
+      },
+      {
+        "id": "no_urlless_source",
+        "hard": true,
+        "tag": "wrong_tool_or_args",
+        "result": "pass",
+        "detail": "1 feed posts lack a URL"
+      },
+      {
+        "id": "topics_match_feed",
+        "hard": true,
+        "tag": "wrong_tool_or_args",
+        "result": "pass",
+        "detail": "3/3: expected ['agent harness', 'agent memory', 'tool calling']"
+      },
+      {
+        "id": "no_duplicate_topic",
+        "hard": true,
+        "tag": "lost_context",
+        "result": "pass",
+        "detail": "meta topics=['agent harness', 'agent memory', 'tool calling']"
+      },
+      {
+        "id": "no_repeated_6gram",
+        "hard": false,
+        "tag": "looped_or_quit_early",
+        "result": "pass",
+        "detail": "0 repeated: []"
+      },
+      {
+        "id": "scope_respected",
+        "hard": false,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "extra files in /output: []"
+      }
+    ]
+  },
+  "infra_checks": [
+    {
+      "id": "working_directory_scope",
+      "hard": true,
+      "tag": "file_or_state_error",
+      "result": "pass",
+      "detail": []
+    },
+    {
+      "id": "said_done_but_failed",
+      "hard": true,
+      "tag": "said_done_but_failed",
+      "result": "pass",
+      "detail": "Proxy signal: exit code 0 combined with a failing quality verdict; not a claim about the agent's wording."
+    },
+    {
+      "id": "all_search_pages_fetched",
+      "hard": true,
+      "tag": "looped_or_quit_early",
+      "result": "pass",
+      "detail": {
+        "fetched": [
+          1,
+          2,
+          3
+        ],
+        "required": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "workspace_audit": {
+    "method": "fresh_working_directory_before_after",
+    "changes_outside_output": [],
+    "errors": [],
+    "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+  },
+  "trace_url": null,
+  "output_hashes": {
+    "blog.md": "845594a26897c97be4f664f711f996ff870ad388ddd4a4a057c7b0cc172e33bd",
+    "meta.json": "27e6ea36b1901207a0301748948df63f179ef95b7f7342280116f3f5de7dc945"
+  },
+  "failure_tags": [],
+  "warning_tags": []
+}

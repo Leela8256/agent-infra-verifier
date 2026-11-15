@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "run_id": "699b4f0c-aa0b-4765-a979-d98af443c61f",
+  "run_id": "8b38801a-5aff-4f70-a387-3107e0558d92",
   "framework": "synthetic-fixture",
   "trial": 1,
-  "comparison_key": "f091794aa98dc433d7492a4448546a9abd78a7b7fc3ba8a2c086ad02689a4f6f",
+  "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
   "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
   "experiment_declared": true,
   "runtime_status": "budget_exceeded",
@@ -20,6 +20,9 @@
     "cost_usd"
   ],
   "telemetry_source": "adapter_reported",
+  "usage_source": "adapter_reported",
+  "cost_source": "adapter_reported",
+  "telemetry_scope": "cooperative adapter declarations",
   "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
   "resource_limitations": [
     "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
@@ -47,29 +50,35 @@
       "search": 3
     },
     "llm_latency_s": [
-      0.03002916695550084
+      0.025027666008099914
     ],
     "models_observed": [
       "synthetic-no-provider"
     ],
-    "llm_total_request_s": 0.03002916695550084,
-    "tool_total_request_s": 0.04509558400604874,
-    "time_to_first_tool_call_s": 0.049438250018283725,
+    "llm_total_request_s": 0.025027666008099914,
+    "tool_total_request_s": 0.03628904197830707,
+    "time_to_first_tool_call_s": 0.04699308308772743,
     "retry_recovered": false,
     "usage_known_subtotal": {
       "tokens_in": 9000,
       "tokens_out": 700,
       "cost_usd": 0.004
     },
-    "wall_clock_s": 0.14557600009720773,
-    "cpu_time_s": 0.046534,
-    "peak_rss_mb": 31.34375,
-    "reaped_cpu_time_s": 0.046534,
-    "reaped_peak_rss_mb": 31.609375,
+    "wall_clock_s": 0.13433820800855756,
+    "cpu_time_s": 0.044545,
+    "peak_rss_mb": 31.265625,
+    "reaped_cpu_time_s": 0.044545,
+    "reaped_peak_rss_mb": 31.515625,
     "sample_count": 3,
     "hit_budget_cap": true,
     "orphaned_processes": 0,
-    "memory_observed_mb": 31.609375
+    "steps_source": "adapter_reported",
+    "writes_outside_output": 0,
+    "search_pages_fetched": null,
+    "all_search_pages_fetched": null,
+    "search_total_pages": null,
+    "memory_observed_mb": 31.515625,
+    "said_done_but_failed": false
   },
   "quality": {
     "verdict": "fail",
@@ -83,6 +92,32 @@
       }
     ]
   },
+  "infra_checks": [
+    {
+      "id": "working_directory_scope",
+      "hard": true,
+      "tag": "file_or_state_error",
+      "result": "pass",
+      "detail": []
+    },
+    {
+      "id": "said_done_but_failed",
+      "hard": true,
+      "tag": "said_done_but_failed",
+      "result": "pass",
+      "detail": "Proxy signal: exit code 0 combined with a failing quality verdict; not a claim about the agent's wording."
+    }
+  ],
+  "workspace_audit": {
+    "method": "fresh_working_directory_before_after",
+    "changes_outside_output": [],
+    "errors": [],
+    "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+  },
   "trace_url": null,
-  "output_hashes": {}
+  "output_hashes": {},
+  "failure_tags": [
+    "file_or_state_error"
+  ],
+  "warning_tags": []
 }

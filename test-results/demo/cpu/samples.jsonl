@@ -1,5 +1,5 @@
-{"elapsed_s": 0.0014668339863419533, "rss_mb": 10.15625, "cpu_time_s": 0.006811999, "processes": 1}
-{"elapsed_s": 0.06561212497763336, "rss_mb": 27.4375, "cpu_time_s": 0.063522708, "processes": 1}
-{"elapsed_s": 0.1268956670537591, "rss_mb": 27.4375, "cpu_time_s": 0.127688043, "processes": 1}
-{"elapsed_s": 0.18522987503092736, "rss_mb": 27.4375, "cpu_time_s": 0.18358396, "processes": 1}
-{"elapsed_s": 0.2512435420649126, "rss_mb": 27.4375, "cpu_time_s": 0.253625544, "processes": 1}
+{"elapsed_s": 0.001524832914583385, "rss_mb": 10.09375, "cpu_time_s": 0.006675083, "processes": 1}
+{"elapsed_s": 0.0632880829507485, "rss_mb": 27.484375, "cpu_time_s": 0.067431665, "processes": 1}
+{"elapsed_s": 0.12474787491373718, "rss_mb": 27.484375, "cpu_time_s": 0.127469707, "processes": 1}
+{"elapsed_s": 0.18586616695392877, "rss_mb": 27.484375, "cpu_time_s": 0.187511216, "processes": 1}
+{"elapsed_s": 0.24690020794514567, "rss_mb": 27.484375, "cpu_time_s": 0.247536127, "processes": 1}

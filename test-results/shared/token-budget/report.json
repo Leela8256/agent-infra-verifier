@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "run_id": "f9eb18c2-7bae-4cae-812f-4f0dd4c1d98b",
+  "framework": "shared-http-fixture",
+  "trial": 1,
+  "comparison_key": "6dec632fe75c1d3e333b99abf0db3937ec8123141f45ff589153e368373a5332",
+  "config_sha256": "687cfa359633ff39e8f80785dac461c017451f5ad91fd060ba9c23c82f96536a",
+  "experiment_declared": true,
+  "runtime_status": "budget_exceeded",
+  "exit_code": -9,
+  "measurement_status": "complete",
+  "measurement_errors": [],
+  "telemetry_missing": [],
+  "telemetry_source": "shared_services",
+  "usage_source": "provider_usage_via_proxy",
+  "cost_source": "provider_response_usage.cost",
+  "telemetry_scope": "Requests routed through this run's services only; direct provider/tool bypass is not network-blocked.",
+  "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
+  "resource_limitations": [
+    "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
+    "CPU is max(sampled per-process CPU sum, wait4 CPU of reaped leader and its waited descendants); detached unobserved processes can be missed.",
+    "Limits are reactive watchdog stops, not kernel ceilings. Local mode is not a filesystem or network sandbox."
+  ],
+  "budget_status": "exceeded",
+  "budget_violations": [
+    "tokens_in"
+  ],
+  "budget_stop_triggers": [
+    "tokens_in"
+  ],
+  "metrics": {
+    "tokens_in": 1200,
+    "tokens_out": 700,
+    "cost_usd": 0.004,
+    "llm_calls": 1,
+    "tool_calls": 4,
+    "steps": 1,
+    "retries": 1,
+    "errors": 1,
+    "errors_by_type": {
+      "http_429": 1
+    },
+    "tool_calls_by_name": {
+      "mock_search": 4
+    },
+    "llm_latency_s": [
+      0.004099791054613888
+    ],
+    "models_observed": [
+      "synthetic-no-provider"
+    ],
+    "llm_total_request_s": 0.004099791054613888,
+    "tool_total_request_s": 0.00013954192399978638,
+    "time_to_first_tool_call_s": 0.04609637497924268,
+    "retry_recovered": true,
+    "usage_known_subtotal": {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004
+    },
+    "wall_clock_s": 0.07181324996054173,
+    "cpu_time_s": 0.043002,
+    "peak_rss_mb": 29.984375,
+    "reaped_cpu_time_s": 0.043002,
+    "reaped_peak_rss_mb": 30.234375,
+    "sample_count": 2,
+    "hit_budget_cap": true,
+    "orphaned_processes": 0,
+    "steps_source": "proxy_model_request_attempts",
+    "writes_outside_output": 0,
+    "search_pages_fetched": [
+      1,
+      2,
+      3
+    ],
+    "all_search_pages_fetched": true,
+    "search_total_pages": 3,
+    "memory_observed_mb": 30.234375,
+    "said_done_but_failed": false
+  },
+  "quality": {
+    "verdict": "fail",
+    "checks": [
+      {
+        "id": "files_exist",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "fail",
+        "detail": "blog.md=False meta.json=False"
+      }
+    ]
+  },
+  "infra_checks": [
+    {
+      "id": "working_directory_scope",
+      "hard": true,
+      "tag": "file_or_state_error",
+      "result": "pass",
+      "detail": []
+    },
+    {
+      "id": "said_done_but_failed",
+      "hard": true,
+      "tag": "said_done_but_failed",
+      "result": "pass",
+      "detail": "Proxy signal: exit code 0 combined with a failing quality verdict; not a claim about the agent's wording."
+    },
+    {
+      "id": "all_search_pages_fetched",
+      "hard": true,
+      "tag": "looped_or_quit_early",
+      "result": "pass",
+      "detail": {
+        "fetched": [
+          1,
+          2,
+          3
+        ],
+        "required": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "workspace_audit": {
+    "method": "fresh_working_directory_before_after",
+    "changes_outside_output": [],
+    "errors": [],
+    "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+  },
+  "trace_url": null,
+  "output_hashes": {},
+  "failure_tags": [
+    "file_or_state_error"
+  ],
+  "warning_tags": []
+}

@@ -46,6 +46,7 @@ def main():
             directory,
             config,
             framework="synthetic-fixture",
+            telemetry_source="adapter_reported",
             feed=ROOT / "examples/feed.json",
             banned=ROOT / "examples/banned_words.txt",
             experiment=ROOT / "examples/experiment.json",

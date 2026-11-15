@@ -22,19 +22,19 @@ MB field names match upstream; units are MiB (1,048,576 bytes). Darwin wait4 RSS
 
 | Field | Meaning |
 |---|---|
-| tokens_in / tokens_out | Provider usage reported by adapter; null if any attempt's value or coverage is missing |
-| cost_usd | Reported billed/calculated cost, including retries; null if any amount is unknown |
+| tokens_in / tokens_out | Provider usage captured by the shared proxy; null if any attempt's value or coverage is missing |
+| cost_usd | Provider response usage.cost, including retries; null if any amount is unknown |
 | llm_calls / tool_calls | Attempt counts; tool_calls_by_name preserves the split |
 | retries | Attempts linked to a prior failed attempt with retry_of |
 | errors / errors_by_type | Failed attempts, including recovered errors |
 | llm_latency_s | Client-observed model request durations, not provider GPU compute |
 | llm_total_request_s / tool_total_request_s | Summed durations; may exceed wall time for concurrent calls |
-| time_to_first_tool_call_s | First reported tool start, relative to runner monotonic origin |
-| steps | Explicit semantic steps; define the same boundaries in every adapter |
+| time_to_first_tool_call_s | First server-observed search start, relative to runner monotonic origin |
+| steps | Shared mode: model request attempts including retries; steps_source records the definition |
 | retry_recovered | A failed tool call has a successful linked retry; not a claim of final task success |
 | usage_known_subtotal | Partial known amounts for interrupted traces; not complete totals |
 
-Cached input and reasoning output may be subsets of totals. Do not add them again. Supply billed cost or a calculation with frozen prices and non-overlapping categories. This implementation does not guess model prices or substitute visible-output tokenization for billed usage.
+Cached input and reasoning output may be subsets of totals. Do not add them again. The shared proxy uses provider usage.cost; it does not calculate alternative prices. This implementation does not guess model prices or substitute visible-output tokenization for billed usage.
 
 Identical duplicate event IDs are idempotent. Conflicting duplicates, malformed events, and reported model mismatch invalidate measurements.
 
@@ -50,7 +50,7 @@ Budget status:
 - unknown: insufficient measurement for a complete conclusion.
 
 Measurement status:
-- complete: collection succeeded and required coverage was declared.
+- complete: collection succeeded and routed requests have required usage (legacy mode uses coverage declarations).
 - incomplete: coverage or usage missing.
 - invalid: collector/supervisor error, invalid event, or model mismatch.
 
@@ -75,3 +75,22 @@ Record setup_minutes, dependencies added, lines to the working agent, and tracin
 - [Langfuse usage and costs](https://langfuse.com/docs/observability/features/token-and-cost-tracking)
 - [AI Agents That Matter](https://arxiv.org/abs/2407.01502)
 - [Infrastructure noise](https://www.anthropic.com/research/infrastructure-noise)
+
+## Sprint checks and CSV fields
+
+| Field | Source / meaning |
+|---|---|
+| usage_source / cost_source | Canonical proxy provenance; Langfuse is correlation only |
+| search_pages_fetched | Unique successfully served page numbers; CSV uses semicolons |
+| all_search_pages_fetched | True exactly when all three required pages were served |
+| writes_outside_output | Count of persistent changes within fresh cwd outside output; not a machine-wide audit |
+| said_done_but_failed | exit_code == 0 and quality verdict == fail |
+| failure_tags | Hard failed quality/infrastructure checks only |
+| warning_tags | Soft failed quality checks; excludes tags already present as hard |
+| steps_source | proxy_model_request_attempts or adapter_reported |
+
+The CSV also exports steps, errors, retry_recovered, hit_budget_cap, time_to_first_tool_call_s, and orphaned_processes. Retry counts are inferred at shared service boundaries: identical model request after failure, or same search page after failure. Other tool activity and changed-payload retries are not inferred. Provider costs on failed attempts can be unknown even when a later retry succeeds.
+
+Shared service coverage describes routed HTTP calls. Direct provider/tool bypass is not blocked. Langfuse values must not replace or be added to proxy totals. Shared and legacy sources, upstream URL, search fixture contract, and workspace-audit version are included in comparison keys.
+
+Provider schema reference: [OpenRouter usage accounting](https://github.com/OpenRouterTeam/docs/blob/main/cookbook/administration/usage-accounting.mdx) and [streaming](https://github.com/OpenRouterTeam/docs/blob/main/api_reference/streaming.mdx).

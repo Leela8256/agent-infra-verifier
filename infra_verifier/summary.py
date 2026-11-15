@@ -5,6 +5,8 @@ import json
 import statistics
 from pathlib import Path
 
+from .findings import failure_tags
+
 COLUMNS = [
     "framework",
     "trial",
@@ -20,8 +22,22 @@ COLUMNS = [
     "llm_calls",
     "tool_calls",
     "retries",
+    "steps",
+    "steps_source",
+    "errors",
+    "retry_recovered",
+    "hit_budget_cap",
+    "time_to_first_tool_call_s",
+    "orphaned_processes",
+    "said_done_but_failed",
+    "all_search_pages_fetched",
+    "search_pages_fetched",
+    "writes_outside_output",
     "peak_rss_mb",
     "failure_tags",
+    "warning_tags",
+    "usage_source",
+    "cost_source",
     "trace_url",
     "run_id",
     "comparison_key",
@@ -39,15 +55,17 @@ def summarize(report_paths):
     rows, groups = [], {}
     for report in reports:
         quality = report["quality"]
-        tags = sorted(
-            {c["tag"] for c in quality.get("checks", []) if c.get("result") == "fail"}
-        )
+        tags, warnings = failure_tags(report)
         rows.append(
             {
                 **report["metrics"],
                 **{k: report.get(k) for k in COLUMNS if k in report},
                 "quality_verdict": quality["verdict"],
                 "failure_tags": ";".join(tags),
+                "warning_tags": ";".join(warnings),
+                "search_pages_fetched": ";".join(
+                    map(str, report["metrics"].get("search_pages_fetched") or [])
+                ),
             }
         )
         groups.setdefault((report["comparison_key"], report["framework"]), []).append(
@@ -120,6 +138,8 @@ def summarize(report_paths):
 
 def write_csv(path, summary):
     with Path(path).open("w", newline="") as target:
-        writer = csv.DictWriter(target, fieldnames=COLUMNS, extrasaction="ignore")
+        writer = csv.DictWriter(
+            target, fieldnames=COLUMNS, extrasaction="ignore", lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(summary["rows"])

@@ -1,118 +1,104 @@
 # Agent infrastructure verifier
 
-Leela's infrastructure component for the GTM framework experiment. It runs a trusted local agent command, records resources and execution events, and optionally grades its blog with Mithilesh's unchanged verifier.
+Leela's infrastructure component for the GTM framework experiment. It runs a trusted local agent command, measures resources, and grades its blog with Mithilesh's unchanged verifier.
 
-**Implemented and tested:** local runner, watchdog budgets, telemetry receiver/SDK, quality integration, reproducibility records, and CSV/JSON summaries. CPU, elapsed time, and process memory come from real processes. The demonstration uses synthetic model/tool records and makes no paid API calls.
+**Sprint default: shared HTTP services.** Model usage comes from the supervisor's proxy; the frozen search service records its own attempts, planted 429, retries, and three-page coverage. Owners configure endpoints and credentials, without adding Recorder calls.
 
 ## Start here
 
-Requires macOS or Linux, Python 3.11+, and psutil. From this repository:
+Requires macOS or Linux, Python 3.11+, and psutil. From this checkout:
 
-~~~bash
+```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.lock
 .venv/bin/python -m pip install -e . --no-deps
 .venv/bin/python -m unittest discover -s tests -v
-.venv/bin/python tools/demo.py
-~~~
+.venv/bin/python tools/demo_shared.py
+```
 
-The demo creates a new directory under runs/ with 13 scenarios, summary.csv, summary.json, and evidence for every attempt. Deliberate failures are expected. See [test results](docs/TEST_RESULTS.md).
+The shared demo runs eight scenarios over real HTTP against a local fake provider. Token/cost values and blog prose are synthetic; it makes no paid API calls. The older adapter demonstration remains available through `tools/demo.py`. [Test evidence](docs/TEST_RESULTS.md).
 
-Run one structural fixture:
+## Run a sprint agent
 
-~~~bash
+Set the real `OPENROUTER_API_KEY` in the supervisor's environment using your usual secret handling. Then:
+
+```bash
 .venv/bin/python -m infra_verifier run \
-  --framework fixture --config configs/pilot.json \
-  --experiment examples/experiment.json \
-  --feed examples/feed.json --banned examples/banned_words.txt \
+  --framework your-framework --config configs/pilot.json \
+  --experiment /absolute/path/to/frozen-experiment.json \
+  --feed /absolute/path/to/frozen-feed.json \
+  --banned /absolute/path/to/banned_words.txt \
   --reference-time 2026-11-15T00:00:00Z \
-  -- .venv/bin/python examples/fixture_agent.py success
-~~~
+  -- /absolute/path/to/agent-entrypoint
+```
 
-## What it does
+The child receives these per-run settings:
 
-- Measures execution time, CPU-seconds, sampled process-tree RSS, and OS resource high-water statistics.
-- Captures input/output tokens, model calls, tool calls, errors, retries, request durations, steps, and reported cost.
-- Stops runs that exceed timeout, CPU, memory, token, call-count, step-count, or cost budgets.
-- Detects remaining subprocesses, incomplete/malformed telemetry, grading errors, and mismatched model identity.
-- Preserves the original quality verdict separately from infrastructure findings.
+| Setting | Use |
+|---|---|
+| `INFRA_MODEL_BASE_URL` | Model SDK base URL; proxy supports `/chat/completions` and `/responses`, including SSE streams |
+| `INFRA_PROXY_KEY` | Local bearer credential for model and search endpoints |
+| `INFRA_SEARCH_URL` | Shared frozen search endpoint; GET `?page=1` or POST `{"page":1}` |
+| `INFRA_RUN_ID` | Run identity for trace correlation; the proxy binds it server-side |
+| `OUTPUT_DIR` | Absolute artifact directory; also available as `./output` in the fresh cwd |
 
-[METRICS.md](METRICS.md) defines each parameter. [INTEGRATION.md](docs/INTEGRATION.md) explains actual-agent instrumentation.
+`OPENAI_BASE_URL`, `OPENROUTER_BASE_URL`, and their API-key variables are also set to the local proxy settings. Frameworks that ignore these variables must explicitly configure their SDK's base URL/key. Native Anthropic and other API formats are not supported by this proxy. Python, JavaScript, CLI, or other HTTP clients can use it. No framework-specific adapter is claimed as tested.
 
-## Compatibility with Mithilesh
+The real upstream key stays in the parent; the child receives a run-scoped proxy key. Other directly inherited provider credentials with common names are removed. This is a local trusted-process setup, not a security boundary against a malicious process running as your user.
 
-The vendored verify.py is byte-for-byte identical to [commit 6630669](https://github.com/mithileshgau/agent-blog-verifier/tree/6630669c083fcac811b04acdb6df644ff54a490c). Its MIT license and original documents are included. A test checks the original Git blob hash.
+By default the proxy forwards to OpenRouter. Set `--model-upstream` and `--model-key-env` for another compatible backend. A separate `--search-feed` is available when quality grading is not requested.
 
-We call its run() function in a separate process with an explicit reference time. This freezes date-relative grading without modifying its code. Grading happens after resource measurement.
+[Integration contract and curl example](docs/INTEGRATION.md) · [Parameter definitions](METRICS.md)
 
-His metrics.md says infrastructure measurements do not rewrite quality verdicts. We preserve that separation. No LLM rubric judge has been implemented or run.
+## Accounting and checks
 
-His current scope_respected check detects extra files inside output, not writes elsewhere. This runner also does not prove filesystem containment. Inherited date-boundary and URL-normalization behavior remains unchanged; settle it with Mithilesh before freezing the task.
+- **Canonical tokens/cost:** provider response usage captured by the proxy. No client-supplied usage and no Langfuse totals are merged into these fields. Missing values remain null.
+- **Search:** the first valid request gets HTTP 429. The same run's successful page responses are tracked as a set; repeating one page cannot satisfy all three pages.
+- **Resources:** elapsed time, CPU-seconds, sampled process-tree RSS, and OS high-water statistics.
+- **Budgets:** reactive watchdog stops for time, CPU, memory, tokens, calls, steps, and reported cost.
+- **Working directory:** every run starts in a fresh retained directory. A before/after audit flags persistent changes outside its `output` subtree, including symlink changes. It does not detect writes elsewhere on the machine or temporary writes deleted before exit.
+- **False completion:** `said_done_but_failed` means exit code 0 plus quality verdict fail. This is an exit-status proxy, not a language analysis of the agent's final message.
+- **Reports:** upstream quality verdict, infrastructure checks, measurement validity, and budgets stay separate. CSV `failure_tags` contains hard failures; `warning_tags` contains soft-only failures.
 
-## Actual agents
+`steps` in shared mode means model request attempts, including retries. It does not expose framework-internal reasoning steps. `steps_source` records this definition; legacy adapter runs stay in different comparison groups.
 
-Replace the fixture command with a framework entrypoint. Python adapters can use Recorder; other languages can POST the same event schema.
+Langfuse remains a trace viewer/correlation layer. Use `INFRA_RUN_ID` in traces and `--trace-url` to retain a known link. Live Langfuse export/import is not implemented. **The proxy is the token and cost source of truth for comparisons.**
 
-OUTPUT_DIR identifies the final-artifact directory. INFRA_RUN_ID correlates events and external traces. Write only blog.md and meta.json to OUTPUT_DIR for the blog checker.
+## Evidence and summaries
 
-Supply the real frozen feed, word list, reference time, and experiment JSON. That file declares model, provider, temperature, max_tokens, and cache_policy. Reported model identity is checked against it. Other SDK settings are declarations: the runner does not configure or independently inspect the provider SDK.
+Each fresh run directory includes `manifest.json`, `report.json`, `quality.json`, host-written `events.jsonl`, `samples.jsonl`, agent logs, frozen `inputs/`, `workspace-audit.json`, and `workspace/output/`. `output` at the run root is a convenience symlink. Existing run directories are refused.
 
-Use --trace-url to retain an existing Langfuse trace URL. **Live Langfuse upload/export is not implemented.** Existing tracing can continue alongside this collector using INFRA_RUN_ID.
-
-Do not put credentials in command arguments or experiment JSON: the manifest records them. Environment values are not copied into it. Agent stdout/stderr are captured as emitted.
-
-## Evidence
-
-~~~text
-manifest.json       configuration, hashes, command, machine and model settings
-report.json         metrics, quality, budgets, measurement validity
-quality.json        original checker result, when enabled
-events.jsonl        host-recorded adapter events
-samples.jsonl       resource samples
-stdout.log          agent stdout
-stderr.log          agent stderr
-inputs/             frozen grading inputs, checker and experiment config
-output/             agent artifacts
-~~~
-
-Existing run directories are refused.
-
-~~~bash
-.venv/bin/python -m infra_verifier summarize runs/demo-*/*/report.json \
+```bash
+.venv/bin/python -m infra_verifier summarize runs/shared-*/*/report.json \
   --json comparison.json --csv comparison.csv
-~~~
+```
 
-Different input/configuration/source/dependency/machine hashes stay in separate comparison groups. The demo deliberately uses different limits to test failures; it is not a framework leaderboard.
+CSV includes steps, errors, retry recovery, budget-stop status, time to first tool call, orphaned processes, page coverage, scope changes, false completion, and separate hard/soft tags. Input/configuration/source/dependency/machine/telemetry-source hashes keep incompatible runs in separate groups. The demos deliberately vary budgets; they are not a framework leaderboard.
 
-Cost per passing run includes failed-attempt costs. It stays null if any attempt has incomplete/unknown cost or no run passed. Three runs get median/range and sample token standard deviation, not a p95 estimate.
+Cost per quality-passing completed run includes failed-attempt costs. It is null if any attempt has incomplete cost or no run qualifies. Infrastructure checks are separately visible, even for quality-passing runs.
 
 | CLI code | Meaning |
 |---|---|
-| 0 | Completed; measurements acceptable under config; quality passes or was not requested; no observed breach |
-| 1 | Quality partial |
-| 2 | Agent failure, budget breach, orphaned processes, or quality failure |
+| 0 | Completed, measurements acceptable, quality passes or not requested, no hard infrastructure finding/budget breach |
+| 1 | Quality partial (soft failures) |
+| 2 | Agent failure, budget breach, hard infrastructure finding, or quality failure |
 | 3 | Configuration/launch/collector error, required telemetry incomplete, or grading error |
 
-Read the separate report fields; one exit code cannot capture every dimension.
+## Mithilesh's contribution and legacy mode
 
-## Limits of this version
+The vendored checker is byte-for-byte identical to [commit 6630669](https://github.com/mithileshgau/agent-blog-verifier/tree/6630669c083fcac811b04acdb6df644ff54a490c). Its MIT license and original documents are included. A test verifies the Git blob hash. It runs after resource collection with an explicit grading date. No LLM rubric judge is implemented.
 
-- Local mode runs as your user. It is for trusted/cooperative commands and is **not a security sandbox**.
-- Sampled tree RSS can double-count shared pages and miss peaks. wait4 high-water memory is separate and is not a simultaneous tree peak.
-- CPU combines sampled process counters and wait4. Unobserved short-lived or detached children can be missed.
-- Watchdog limits are reactive and can overshoot. Model/tool events arrive after an attempt; there are no pre-request cost reservations.
-- Telemetry is adapter-reported. The agent receives the receiver token, so this is not tamper-resistant or provider-attested accounting.
-- A finish event declares coverage; it cannot prove the absence of uninstrumented calls.
-- GPU/VRAM, provider-side compute, network/disk totals, and filesystem-write auditing are not implemented.
-- Docker's engine was unreachable. No container/cgroup backend was implemented or claimed as tested.
-- Fixture prose and usage are synthetic. These tests demonstrate instrumentation and structural grading, not actual LLM performance.
+The earlier cooperative Recorder interface is retained only via `--telemetry-source adapter_reported`. It is not the sprint default. It produces `adapter_reported` provenance and separate comparison groups. To run the original fixture:
 
-## Before the scored sprint
+```bash
+.venv/bin/python -m infra_verifier run --framework fixture \
+  --telemetry-source adapter_reported -- .venv/bin/python examples/fixture_agent.py success
+```
 
-1. Agree on real task inputs, exact rules, model settings, and budgets. Shipped limits are a pilot.
-2. Instrument every SDK/tool attempt, including retries, and reconcile a trace with provider usage.
-3. Preserve live Langfuse URLs.
-4. Add and test a Linux/container backend when hard ceilings and write containment are required. Keep its measurements separate from local results.
-5. Freeze the implementation and inputs; collect three runs per framework, preserving failures.
+## Remaining limits
 
-All six frameworks in Amitabh's latest list can invoke this runner. No framework-specific adapter or benchmark result is implied.
+Local mode is not a filesystem or network sandbox. The workspace audit is partial; direct provider/tool bypass is not blocked. Proxy coverage means requests routed through it, not proof of all activity. Host-recorded HTTP evidence removes self-reported usage from the sprint path, but same-user processes could still tamper with local files.
+
+RSS can double-count shared pages and miss peaks; detached or short-lived children can be missed. Watchdog stops can overshoot. The proxy counts completed attempts, and token/cost limits cannot reserve future spending. In-flight requests are drained for accounting after agent exit, with bounded wait; this drain is excluded from agent wall time.
+
+No container/cgroup backend, GPU/VRAM, disk/network totals, live Langfuse sync, or real six-framework benchmark is claimed. The real frozen feed, SDK endpoint configuration, and provider usage must be smoke-tested by each owner before scored runs. Keep the same model/settings, search feed, limits, and verifier version across all three trials per framework.

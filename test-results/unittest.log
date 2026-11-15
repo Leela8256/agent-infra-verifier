@@ -1,3 +1,26 @@
+test_partial_soft_tags_do_not_become_hard_failures (test_shared_services.AuditAndTagsTests.test_partial_soft_tags_do_not_become_hard_failures) ... ok
+test_snapshot_detects_modify_delete_and_symlink_without_following (test_shared_services.AuditAndTagsTests.test_snapshot_detects_modify_delete_and_symlink_without_following) ... ok
+test_upstream_url_validation (test_shared_services.AuditAndTagsTests.test_upstream_url_validation) ... ok
+test_each_run_has_independent_429_and_credential (test_shared_services.ServiceBoundaryTests.test_each_run_has_independent_429_and_credential) ... ok
+test_model_retry_logged_at_proxy_with_unknown_error_cost (test_shared_services.ServiceBoundaryTests.test_model_retry_logged_at_proxy_with_unknown_error_cost) ... ok
+test_pagination_cannot_pass_by_repeating_one_page (test_shared_services.ServiceBoundaryTests.test_pagination_cannot_pass_by_repeating_one_page) ... ok
+test_proxy_cannot_accept_agent_usage_events (test_shared_services.ServiceBoundaryTests.test_proxy_cannot_accept_agent_usage_events) ... ok
+test_upstream_redirect_not_followed (test_shared_services.ServiceBoundaryTests.test_upstream_redirect_not_followed) ... ok
+test_wrong_token_and_run_are_rejected (test_shared_services.ServiceBoundaryTests.test_wrong_token_and_run_are_rejected) ... ok
+test_cli_with_shell_curl_client_no_recorder (test_shared_services.SharedRunTests.test_cli_with_shell_curl_client_no_recorder) ... ok
+test_csv_contains_sync_fields_and_separate_warnings (test_shared_services.SharedRunTests.test_csv_contains_sync_fields_and_separate_warnings) ... ok
+test_invalid_provider_usage_invalidates_measurement (test_shared_services.SharedRunTests.test_invalid_provider_usage_invalidates_measurement) ... ok
+test_missing_page_fails_infra_without_rewriting_quality (test_shared_services.SharedRunTests.test_missing_page_fails_infra_without_rewriting_quality) ... ok
+test_missing_usage_remains_unknown (test_shared_services.SharedRunTests.test_missing_usage_remains_unknown) ... ok
+test_persistent_write_outside_output_is_reported (test_shared_services.SharedRunTests.test_persistent_write_outside_output_is_reported) ... ok
+test_proxy_tokens_feed_watchdog (test_shared_services.SharedRunTests.test_proxy_tokens_feed_watchdog) ... ok
+test_responses_nonstream_usage (test_shared_services.SharedRunTests.test_responses_nonstream_usage) ... ok
+test_responses_stream_usage (test_shared_services.SharedRunTests.test_responses_stream_usage) ... ok
+test_shared_accounting_without_recorder_and_secret_withheld (test_shared_services.SharedRunTests.test_shared_accounting_without_recorder_and_secret_withheld) ... ok
+test_stream_error_inside_http_200_is_recorded (test_shared_services.SharedRunTests.test_stream_error_inside_http_200_is_recorded) ... ok
+test_streaming_usage_not_double_counted (test_shared_services.SharedRunTests.test_streaming_usage_not_double_counted) ... ok
+test_truncated_stream_records_error (test_shared_services.SharedRunTests.test_truncated_stream_records_error) ... ok
+test_zero_exit_quality_fail_is_false_done (test_shared_services.SharedRunTests.test_zero_exit_quality_fail_is_false_done) ... ok
 test_contract_hash_changes (test_verifier.ConfigTests.test_contract_hash_changes) ... ok
 test_invalid_limits_rejected (test_verifier.ConfigTests.test_invalid_limits_rejected) ... ok
 test_unknown_fields_rejected (test_verifier.ConfigTests.test_unknown_fields_rejected) ... ok
@@ -37,6 +60,6 @@ test_retry_count_and_recovery (test_verifier.TelemetryTests.test_retry_count_and
 test_zero_usage_only_with_finish_and_coverage (test_verifier.TelemetryTests.test_zero_usage_only_with_finish_and_coverage) ... ok
 
 ----------------------------------------------------------------------
-Ran 37 tests in 4.442s
+Ran 60 tests in 6.559s
 
 OK

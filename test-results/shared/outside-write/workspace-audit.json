@@ -1,0 +1,31 @@
+{
+  "before": {
+    "entries": {
+      "output": {
+        "type": "directory"
+      }
+    },
+    "errors": []
+  },
+  "after": {
+    "entries": {
+      "output": {
+        "type": "directory"
+      },
+      "leaked.txt": {
+        "type": "file",
+        "sha256": "d9b9764fc1fc201f7133b7f84be893e2edebc550cd8758e134ee62a9885ce123"
+      }
+    },
+    "errors": []
+  },
+  "method": "fresh_working_directory_before_after",
+  "changes_outside_output": [
+    {
+      "path": "leaked.txt",
+      "change": "created"
+    }
+  ],
+  "errors": [],
+  "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+}

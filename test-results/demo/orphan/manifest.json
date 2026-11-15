@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "verifier_version": "0.1.0",
-  "run_id": "7591ee7a-da1c-479a-9c81-2189b1525ba6",
+  "verifier_version": "0.2.0",
+  "run_id": "fc6a61c7-1250-4782-951e-25cfb6870e2a",
   "framework": "synthetic-fixture",
   "trial": 1,
   "command": [
@@ -9,8 +9,14 @@
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "orphan"
   ],
-  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
-  "started_at": "2026-11-15T13:28:53.582696+00:00",
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-083610/orphan/workspace",
+  "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
+  "launch_command": [
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
+    "orphan"
+  ],
+  "started_at": "2026-11-15T16:36:12.346005+00:00",
   "config": {
     "schema_version": 1,
     "profile": "local-pilot-v1-not-frozen",
@@ -27,7 +33,7 @@
     "require_telemetry": true
   },
   "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
-  "comparison_key": "f091794aa98dc433d7492a4448546a9abd78a7b7fc3ba8a2c086ad02689a4f6f",
+  "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
   "inputs": {
     "experiment.json": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
@@ -56,16 +62,19 @@
   "backend": "local-sampled",
   "trace_url": null,
   "source_hashes": {
-    "__init__.py": "e4d711b2fee859921adafef10fdf7f3674ce0a7f1a9c14821d1f05f7ec58d06c",
+    "__init__.py": "1876444e10a5f3823d51a6ab0f31deaa1328de8ce60eeab1eb1d8ccc3e399d3d",
     "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
-    "cli.py": "1096d7e4c5a24556fc787fcc421fabe6390166e21bcc0ecb43366dc36e160aba",
+    "cli.py": "00e3b18a4ce1f5a77a21163cec11d380b17d828b492766d5803e42635b0d6bfb",
     "config.py": "b083f0008a293f8278e34582f99cf1f546cbc901cca8e0e0c1f0898a6301ba37",
+    "findings.py": "4c44d4354fd3068ff6f52d30eb245ea69c900b88e73effc92db8124f3067eb68",
     "quality.py": "4039ff9be23593a5f1ac90bc031e1695c4aee9bfabf96fc69d64349c62838be4",
     "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
-    "runner.py": "d620d1b91e611e8f9b8243a8b2b70a574a646f25843502f4e468e0eb0b072083",
+    "runner.py": "d39f335244b25b2cd24eff02a12a11e5c6554ecb03c394b6e20488bd5fc3eae9",
     "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
-    "summary.py": "24b77216ac03b9ee61b392d919ca2a49732609f50ba44346add40a8b30e334d2",
-    "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e"
+    "services.py": "6600fa5981ff6b06e6be9d458a9d0f8ae45c13d04c28c043ee942d84576c8cd7",
+    "summary.py": "6ce11b4072b644ab7bbb5763559f639000fe02c3af2ffb24cf614b3b859e8673",
+    "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e",
+    "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"
   },
   "psutil_version": "7.2.2",
   "declared_experiment": {
@@ -75,5 +84,8 @@
     "max_tokens": 8000,
     "cache_policy": "disabled",
     "fixture_only": true
-  }
+  },
+  "telemetry_source": "adapter_reported",
+  "model_upstream": null,
+  "search_contract": null
 }

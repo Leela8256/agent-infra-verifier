@@ -15,9 +15,12 @@ from pathlib import Path
 import psutil
 
 from . import __version__
+from .findings import failure_tags
 from .quality import DEFAULT_VERIFIER, evaluate
 from .resources import ProcessTree, rusage_metrics
+from .services import SharedServices, validate_upstream
 from .telemetry import EventStore, Receiver
+from .workspace import audit, snapshot
 
 
 def sha256(path):
@@ -48,12 +51,21 @@ def run(
     verifier=None,
     trace_url=None,
     experiment=None,
+    telemetry_source="shared_services",
+    model_upstream="https://openrouter.ai/api/v1",
+    model_key_env="OPENROUTER_API_KEY",
+    search_feed=None,
 ):
     if os.name != "posix":
         raise ValueError("local runner currently supports macOS and Linux")
     if not command:
         raise ValueError("provide an agent command after --")
     cwd = Path(cwd or Path.cwd()).resolve(strict=True)
+    source_cwd = cwd
+    if telemetry_source not in {"shared_services", "adapter_reported"}:
+        raise ValueError("telemetry_source must be shared_services or adapter_reported")
+    service_feed = None
+    upstream_key = ""
     inputs = {}
     declared_experiment = None
     if experiment is not None:
@@ -99,10 +111,44 @@ def run(
             raise ValueError("feed must be a JSON array")
     elif banned is not None or reference_time is not None or verifier is not None:
         raise ValueError("quality options require --feed")
+    if telemetry_source == "shared_services":
+        parsed = validate_upstream(model_upstream)
+        path = (
+            Path(search_feed or feed).resolve(strict=True)
+            if search_feed or feed
+            else None
+        )
+        if path is None:
+            raise ValueError("shared services require --search-feed or --feed")
+        service_feed = json.loads(path.read_text())
+        if not isinstance(service_feed, list) or len(service_feed) < 3:
+            raise ValueError("shared search requires at least three feed records")
+        inputs["search_feed.json"] = {"path": str(path), "sha256": sha256(path)}
+        upstream_key = os.environ.get(model_key_env, "")
+        if not upstream_key and parsed.hostname not in {
+            "127.0.0.1",
+            "localhost",
+            "::1",
+        }:
+            raise ValueError(f"set {model_key_env} in the supervisor environment")
     run_dir = Path(run_dir).resolve()
     run_dir.mkdir(parents=True, exist_ok=False)  # Never overwrite previous evidence.
-    output = run_dir / "output"
+    cwd = run_dir / "workspace"
+    cwd.mkdir()
+    output = cwd / "output"
     output.mkdir()
+    (run_dir / "output").symlink_to("workspace/output", target_is_directory=True)
+    before = snapshot(cwd)
+    # Resolve executable and an explicit script path before entering the empty cwd.
+    launch_command = list(command)
+    if "/" in launch_command[0] and not Path(launch_command[0]).is_absolute():
+        launch_command[0] = str(source_cwd / launch_command[0])
+    if (
+        len(launch_command) > 1
+        and not launch_command[1].startswith("-")
+        and (source_cwd / launch_command[1]).is_file()
+    ):
+        launch_command[1] = str(source_cwd / launch_command[1])
     frozen = run_dir / "inputs"
     frozen.mkdir()
     for name, source in inputs.items():
@@ -125,6 +171,12 @@ def run(
         "machine": machine,
         "source_hashes": source_hashes,
         "psutil": psutil.__version__,
+        "telemetry_source": telemetry_source,
+        "model_upstream": model_upstream if service_feed is not None else None,
+        "search_contract": "three-pages-first-valid-request-429-v1"
+        if service_feed is not None
+        else None,
+        "workspace_audit": "fresh-cwd-before-after-v1",
     }
     comparison_key = hashlib.sha256(
         json.dumps(contract, sort_keys=True).encode()
@@ -137,6 +189,8 @@ def run(
         "trial": trial,
         "command": command,
         "cwd": str(cwd),
+        "source_cwd": str(source_cwd),
+        "launch_command": launch_command,
         "started_at": datetime.now(timezone.utc).isoformat(),
         "config": asdict(config),
         "config_sha256": config.digest,
@@ -151,10 +205,17 @@ def run(
         source_hashes=source_hashes,
         psutil_version=psutil.__version__,
         declared_experiment=declared_experiment,
+        telemetry_source=telemetry_source,
+        model_upstream=contract["model_upstream"],
+        search_contract=contract["search_contract"],
     )
     write_json(run_dir / "manifest.json", manifest)
     store = EventStore(run_dir / "events.jsonl", run_id)
-    receiver = Receiver(store)
+    receiver = (
+        SharedServices(store, service_feed, model_upstream, upstream_key)
+        if service_feed is not None
+        else Receiver(store)
+    )
     receiver.start()
     child = tree = usage = None
     exit_code = None
@@ -167,6 +228,17 @@ def run(
     elapsed = 0
     orphan_count = 0
     env = dict(os.environ)
+    if service_feed is not None:
+        # The provider credential stays in the parent. No event receiver is exposed.
+        for key in {
+            model_key_env,
+            "OPENAI_API_KEY",
+            "OPENROUTER_API_KEY",
+            "ANTHROPIC_API_KEY",
+            "INFRA_EVENT_URL",
+            "INFRA_EVENT_TOKEN",
+        }:
+            env.pop(key, None)
     env.update(receiver.environment)
     env.update(
         OUTPUT_DIR=str(output),
@@ -181,7 +253,7 @@ def run(
             (run_dir / "samples.jsonl").open("w") as sample_file,
         ):
             child = subprocess.Popen(
-                command,
+                launch_command,
                 cwd=cwd,
                 env=env,
                 stdin=subprocess.DEVNULL,
@@ -246,6 +318,13 @@ def run(
             child.wait(timeout=5)
         receiver.close()
         store.close()
+    after = snapshot(cwd)
+    workspace_audit = audit(before, after)
+    write_json(
+        run_dir / "workspace-audit.json",
+        {"before": before, "after": after, **workspace_audit},
+    )
+    measurement_errors.extend(workspace_audit["errors"])
     resource = (
         rusage_metrics(usage)
         if usage is not None
@@ -265,6 +344,19 @@ def run(
         "sample_count": samples,
         "hit_budget_cap": bool(cap_triggered),
         "orphaned_processes": orphan_count,
+        "steps_source": "proxy_model_request_attempts"
+        if service_feed is not None
+        else "adapter_reported",
+        "writes_outside_output": len(workspace_audit["changes_outside_output"]),
+        **(
+            receiver.search_metrics()
+            if service_feed is not None
+            else {
+                "search_pages_fetched": None,
+                "all_search_pages_fetched": None,
+                "search_total_pages": None,
+            }
+        ),
     }
     # A short-lived leader's high-water RSS may exceed the polling samples.
     metrics["memory_observed_mb"] = (
@@ -299,6 +391,40 @@ def run(
             reference_time,
         )
         write_json(run_dir / "quality.json", quality)
+    metrics["said_done_but_failed"] = exit_code == 0 and quality["verdict"] == "fail"
+    infra_checks = [
+        {
+            "id": "working_directory_scope",
+            "hard": True,
+            "tag": "file_or_state_error",
+            "result": "fail"
+            if workspace_audit["changes_outside_output"]
+            else "unscored"
+            if workspace_audit["errors"]
+            else "pass",
+            "detail": workspace_audit["changes_outside_output"],
+        },
+        {
+            "id": "said_done_but_failed",
+            "hard": True,
+            "tag": "said_done_but_failed",
+            "result": "fail" if metrics["said_done_but_failed"] else "pass",
+            "detail": "Proxy signal: exit code 0 combined with a failing quality verdict; not a claim about the agent's wording.",
+        },
+    ]
+    if service_feed is not None:
+        infra_checks.append(
+            {
+                "id": "all_search_pages_fetched",
+                "hard": True,
+                "tag": "looped_or_quit_early",
+                "result": "pass" if metrics["all_search_pages_fetched"] else "fail",
+                "detail": {
+                    "fetched": metrics["search_pages_fetched"],
+                    "required": [1, 2, 3],
+                },
+            }
+        )
     report = {
         "schema_version": 1,
         "run_id": run_id,
@@ -314,7 +440,16 @@ def run(
         else ("incomplete" if missing and config.require_telemetry else "complete"),
         "measurement_errors": measurement_errors + store.errors,
         "telemetry_missing": missing,
-        "telemetry_source": "adapter_reported",
+        "telemetry_source": telemetry_source,
+        "usage_source": "provider_usage_via_proxy"
+        if service_feed is not None
+        else "adapter_reported",
+        "cost_source": "provider_response_usage.cost"
+        if service_feed is not None
+        else "adapter_reported",
+        "telemetry_scope": "Requests routed through this run's services only; direct provider/tool bypass is not network-blocked."
+        if service_feed is not None
+        else "cooperative adapter declarations",
         "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
         "resource_limitations": [
             "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
@@ -332,6 +467,8 @@ def run(
         "budget_stop_triggers": cap_triggered,
         "metrics": metrics,
         "quality": quality,
+        "infra_checks": infra_checks,
+        "workspace_audit": workspace_audit,
         "trace_url": trace_url,
         "output_hashes": {
             name: sha256(output / name)
@@ -339,5 +476,6 @@ def run(
             if (output / name).is_file()
         },
     }
+    report["failure_tags"], report["warning_tags"] = failure_tags(report)
     write_json(run_dir / "report.json", report)
     return report

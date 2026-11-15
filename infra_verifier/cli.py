@@ -21,6 +21,10 @@ def result_exit_code(report):
         report["runtime_status"] != "completed"
         or report["budget_status"] == "exceeded"
         or report["quality"]["verdict"] == "fail"
+        or any(
+            c.get("hard") and c.get("result") == "fail"
+            for c in report.get("infra_checks", [])
+        )
     ):
         return 2
     if report["measurement_status"] == "incomplete":
@@ -44,6 +48,24 @@ def main(argv=None):
     execute.add_argument("--reference-time")
     execute.add_argument("--quality-verifier")
     execute.add_argument("--trace-url")
+    execute.add_argument(
+        "--telemetry-source",
+        choices=["shared_services", "adapter_reported"],
+        default="shared_services",
+    )
+    execute.add_argument(
+        "--model-upstream",
+        default="https://openrouter.ai/api/v1",
+        help="upstream base URL; proxy is the canonical usage source",
+    )
+    execute.add_argument(
+        "--model-key-env",
+        default="OPENROUTER_API_KEY",
+        help="environment variable holding the real provider credential (parent only)",
+    )
+    execute.add_argument(
+        "--search-feed", help="frozen feed for shared search; defaults to --feed"
+    )
     execute.add_argument(
         "--experiment",
         help="frozen model/provider/settings JSON; hashed into comparison groups",
@@ -83,6 +105,10 @@ def main(argv=None):
             verifier=args.quality_verifier,
             trace_url=args.trace_url,
             experiment=args.experiment,
+            telemetry_source=args.telemetry_source,
+            model_upstream=args.model_upstream,
+            model_key_env=args.model_key_env,
+            search_feed=args.search_feed,
         )
         print(
             json.dumps(

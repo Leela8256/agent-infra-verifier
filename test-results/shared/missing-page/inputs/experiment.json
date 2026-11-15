@@ -1,0 +1,8 @@
+{
+  "model": "synthetic-no-provider",
+  "provider": "offline-fixture",
+  "temperature": 0,
+  "max_tokens": 8000,
+  "cache_policy": "disabled",
+  "fixture_only": true
+}

@@ -1,0 +1,22 @@
+{
+  "before": {
+    "entries": {
+      "output": {
+        "type": "directory"
+      }
+    },
+    "errors": []
+  },
+  "after": {
+    "entries": {
+      "output": {
+        "type": "directory"
+      }
+    },
+    "errors": []
+  },
+  "method": "fresh_working_directory_before_after",
+  "changes_outside_output": [],
+  "errors": [],
+  "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+}

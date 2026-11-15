@@ -1,59 +1,57 @@
-# Instrument an actual agent
+# Shared services integration
 
-## Python adapter
+## Owner contract
 
-Instrument the provider SDK and actual tool execution boundaries once per attempt. The example variable names below are placeholders for real response data.
+The default runner starts a separate loopback proxy and mock search service for every run. Owners only connect their model SDK and search tool to these endpoints. Do not add Recorder calls on this path.
 
-~~~python
-import os
-import time
-from pathlib import Path
-from infra_verifier.sdk import Recorder
+- Model base URL: `INFRA_MODEL_BASE_URL` (already ends in `/v1`).
+- Model and search authorization: `Authorization: Bearer $INFRA_PROXY_KEY`.
+- Search endpoint: `INFRA_SEARCH_URL`.
+- Optional request header: `X-Infra-Run-ID: $INFRA_RUN_ID`. An incorrect supplied ID is rejected. Omitting it is safe because the per-run credential and server bind identity.
+- Artifacts: `OUTPUT_DIR` / `./output`. The working directory starts empty except for output.
 
-recorder = Recorder()
-output = Path(os.environ["OUTPUT_DIR"])
+For example, this shell fragment runs **inside the supervised agent process**:
 
-started = time.monotonic()
-# response = actual provider SDK call
-recorder.call(
-    "model",
-    "exact-provider-model-id",
-    started,
-    tokens_in=actual_input_tokens,
-    tokens_out=actual_output_tokens,
-    cost_usd=actual_cost_or_none,
-)
-recorder.step("draft")
-# Save actual artifacts, check and fix as required.
-recorder.finish()
-~~~
+```bash
+curl --fail-with-body "$INFRA_SEARCH_URL?page=1" \
+  -H "Authorization: Bearer $INFRA_PROXY_KEY"
+# The first valid request intentionally returns 429; retry it, then fetch pages 2 and 3.
+curl --fail-with-body "$INFRA_MODEL_BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $INFRA_PROXY_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"your-frozen-model-id","messages":[{"role":"user","content":"your task"}]}'
+```
 
-Use None for unavailable usage/cost. Never substitute zero. For failed attempts, send status="error" and an error_type such as "http_429"; retain billed usage when known. A retry's retry_of is the ID returned by the previous failed call.
+The proxy also accepts `/responses`; both paths support streaming SSE and ordinary JSON. No other model routes or native Anthropic protocol are implemented. Select the compatible provider mode in Hermes/OpenClaw or any other framework. Environment variables alone do not configure SDKs that ignore them. Use absolute script/config/input paths because cwd changes; the runner resolves the executable and a direct script argument relative to the launch directory.
 
-Do not emit both aggregate agent usage and leaf-call usage. Call finish after all asynchronous calls and their telemetry have completed. A crash or budget stop leaves a preserved partial trace.
+The search tool returns `results`, `page`, `total_pages: 3`, and `next_page` (null on page 3). GET `?page=N` and POST `{"page":N}` are equivalent. Feed order is frozen and split into exactly three consecutive slices. A query field is ignored: this is the common frozen search fixture, not live search. The first valid page request per run returns 429 and `Retry-After: 0`; malformed page requests return 400. Only successfully delivered 200 responses count toward coverage. The server logs each attempt, page, status, duration, and inferred retry relationship. This repository supplies the shared mock; the team must route every owner's search tool to it.
 
-## HTTP interface
+## Single source of truth
 
-POST JSON to INFRA_EVENT_URL with Authorization: Bearer followed by INFRA_EVENT_TOKEN.
+`usage_source=provider_usage_via_proxy` and `cost_source=provider_response_usage.cost`. The proxy captures prompt/input tokens, completion/output tokens, and the provider's usage.cost. Missing usage, including a failed request with no charge information, remains unknown; it is never treated as zero. A non-OpenRouter backend must return the same cost field to produce complete cost measurements. No price-table estimate or fallback Langfuse value is used.
 
-Common fields: run_id=INFRA_RUN_ID, unique event_id, kind=model/tool/step/finish.
+Streaming usage snapshots replace previous snapshots for the same request, so repeated cumulative chunks are not added together. HTTP errors, embedded stream errors, and missing terminal markers are recorded. The proxy drains a disconnected client's upstream response to collect billed usage where possible. Provider response/request IDs and resolved model names are retained with the event. No prompt or completion text is written to the event log.
 
-Model/tool events require name, status (ok/error), duration_s, start_offset_s. Offset uses the same local monotonic clock domain as INFRA_STARTED_MONOTONIC. Model events carry tokens_in, tokens_out, cost_usd, with null for unavailable values. Optional retry_of references a failed same-kind/same-name attempt; error_type is a string.
+The supervisor forwards `X-Infra-Run-ID` upstream. It does not assume the upstream provider stores arbitrary headers. The local event log always binds the run ID. Model retries are inferred when the same endpoint and identical canonical JSON body follow a failed attempt. Search retries use the same page after failure. Changed-payload model retries cannot be reliably inferred and count as new attempts; retries are not a measure of internal SDK intentions.
 
-Step events count agreed semantic steps. Finish contains coverage=["model","tool","step"], including only genuinely instrumented event kinds.
+`steps` is the number of model request attempts observed at the proxy, including retries; `steps_source=proxy_model_request_attempts`. Hidden reasoning steps are unavailable. Other tools not routed through the shared search service are outside tool-call coverage. Freeze tool availability accordingly.
 
-HTTP 204 acknowledges acceptance or an identical retransmission. HTTP 400 rejects invalid telemetry and records a measurement error; HTTP 401 rejects unauthenticated requests. Reuse an event ID only for an identical retransmission.
+## Credentials and provenance
 
-This is cooperative instrumentation. The agent receives the token and can submit incorrect data. Provider-attested or adversarial evaluations need an external model/tool gateway.
+Set the provider key in the parent environment (`OPENROUTER_API_KEY` by default; customize with `--model-key-env`). The parent injects it upstream. The real configured key is removed from the child's environment; `OPENAI_API_KEY` and `OPENROUTER_API_KEY` become local proxy credentials. A direct provider request using those local keys should fail. This does not prevent a trusted agent from reading another key from disk or using another network endpoint. Local mode is not an adversarial sandbox.
 
-## Frozen experiment
+No writable telemetry endpoint is exposed in shared mode. Agent-supplied usage cannot override canonical fields. Events and final coverage are written by the services/supervisor. The existing Recorder interface is available only with explicit `--telemetry-source adapter_reported`, remains cooperative, and cannot be pooled with shared-service results.
 
-Pass a JSON file with --experiment containing model, provider, temperature, max_tokens and cache_policy. The shipped example is explicitly synthetic. Match the model event name to the declared model. Configure the real SDK consistently; only reported identity is checked here.
+## Experiment and Langfuse
 
-## Quality and Langfuse
+Pass `--experiment` with model/provider/temperature/max_tokens/cache_policy. Hashes partition comparisons. Configure all SDK settings consistently; the requested model identity is checked, while other settings remain declarations. The proxy records a returned resolved model separately.
 
-Pass --feed, --banned and --reference-time together. The runner copies inputs before launch and calls the original checker after measurement. Checker exceptions produce unscored, never an invented quality failure. The bundled integration runs the deterministic tier; the LLM rubric remains separate.
+Keep Langfuse traces tagged with `INFRA_RUN_ID`; optionally pass `--trace-url`. **Use proxy totals in the comparison sheet.** Langfuse is for debugging and correlation; its token/cost totals are not imported or merged. Live export/import is not implemented.
 
-Keep existing Langfuse framework tracing. Correlate with INFRA_RUN_ID and supply --trace-url when known before launch. When it is only known afterwards, keep a separate run_id-to-URL mapping instead of silently rewriting frozen evidence.
+Pass `--feed`, `--banned`, and `--reference-time` together for quality grading. `--search-feed` can override the search data, but use the same frozen feed for the sprint. Inputs are copied before launch. Quality exceptions produce unscored, never an invented failure.
 
-No live Langfuse upload, trace download, or credential handling is implemented. A live exporter needs a separate test against the team's project.
+## Workspace and outcome checks
+
+Before launching, the runner snapshots a fresh `workspace/`, with artifacts in `workspace/output/`. After process cleanup it compares persistent file hashes, directory entries, and symlink targets outside output. This catches create/modify/delete changes within the working tree. It does not monitor absolute/parent-path writes elsewhere, changes through output symlinks, or create-then-delete activity. `workspace-audit.json` includes the scope and limitations. Use a container for real write containment.
+
+`said_done_but_failed` is exactly exit_code==0 and quality.verdict==fail. Partial/unscored/not_run verdicts do not trigger it. Search coverage and scope findings stay in `infra_checks`; they do not rewrite Mithilesh's quality verdict. Hard infrastructure findings cause CLI exit 2. `failure_tags` is hard-only; `warning_tags` is soft-only, with hard precedence when the same tag appears at both severities.

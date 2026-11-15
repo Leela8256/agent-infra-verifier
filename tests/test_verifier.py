@@ -13,13 +13,19 @@ import psutil
 from infra_verifier.cli import result_exit_code
 from infra_verifier.config import Config
 from infra_verifier.quality import DEFAULT_VERIFIER
-from infra_verifier.runner import run, write_json
+from infra_verifier.runner import run as supervisor_run
+from infra_verifier.runner import write_json
 from infra_verifier.summary import summarize
 from infra_verifier.telemetry import EventStore, Receiver
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "examples/fixture_agent.py"
 REFERENCE = "2026-11-15T00:00:00Z"
+
+
+def run(*args, **kwargs):
+    """Original suite deliberately exercises the retained legacy adapter mode."""
+    return supervisor_run(*args, telemetry_source="adapter_reported", **kwargs)
 
 
 class ConfigTests(unittest.TestCase):
