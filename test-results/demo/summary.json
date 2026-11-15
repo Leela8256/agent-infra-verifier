@@ -15,25 +15,25 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.02037637506145984
+        0.025015000021085143
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.02037637506145984,
-      "tool_total_request_s": 0.037097667111083865,
-      "time_to_first_tool_call_s": 0.04912037495523691,
+      "llm_total_request_s": 0.025015000021085143,
+      "tool_total_request_s": 0.0375426261452958,
+      "time_to_first_tool_call_s": 0.04901849990710616,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.12553837499581277,
-      "cpu_time_s": 0.053971,
-      "peak_rss_mb": 31.234375,
-      "reaped_cpu_time_s": 0.053971,
-      "reaped_peak_rss_mb": 31.5,
+      "wall_clock_s": 0.12113283399958163,
+      "cpu_time_s": 0.052708,
+      "peak_rss_mb": 31.328125,
+      "reaped_cpu_time_s": 0.052708,
+      "reaped_peak_rss_mb": 31.609375,
       "sample_count": 3,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -42,7 +42,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.5,
+      "memory_observed_mb": 31.609375,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -54,8 +54,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "75d22e30-8400-4bef-aace-cd055cd53630",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "4cdf03c2-5967-4180-be73-19e914a0b395",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "pass"
     },
     {
@@ -74,25 +74,25 @@
         "search": 4
       },
       "llm_latency_s": [
-        0.025024958071298897
+        0.025011374964378774
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.025024958071298897,
-      "tool_total_request_s": 0.050113874953240156,
-      "time_to_first_tool_call_s": 0.07027654210105538,
+      "llm_total_request_s": 0.025011374964378774,
+      "tool_total_request_s": 0.05009874899405986,
+      "time_to_first_tool_call_s": 0.049188542063347995,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.18729300005361438,
-      "cpu_time_s": 0.06766,
-      "peak_rss_mb": 31.515625,
-      "reaped_cpu_time_s": 0.06766,
-      "reaped_peak_rss_mb": 31.6875,
+      "wall_clock_s": 0.18742687499616295,
+      "cpu_time_s": 0.052729,
+      "peak_rss_mb": 31.4375,
+      "reaped_cpu_time_s": 0.052729,
+      "reaped_peak_rss_mb": 31.703125,
       "sample_count": 4,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -101,7 +101,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.6875,
+      "memory_observed_mb": 31.703125,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -113,8 +113,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "c1c2f6f6-8485-4ae1-b367-72ed3d931b1a",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "8bba1d16-e3b8-4d78-ac3f-6c22ff91fc22",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "pass"
     },
     {
@@ -131,25 +131,25 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.024119250010699034
+        0.02503079199232161
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.024119250010699034,
-      "tool_total_request_s": 0.03582029207609594,
-      "time_to_first_tool_call_s": 0.049041833030059934,
+      "llm_total_request_s": 0.02503079199232161,
+      "tool_total_request_s": 0.0362282918067649,
+      "time_to_first_tool_call_s": 0.050063250004313886,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.12303274997975677,
-      "cpu_time_s": 0.052967999999999994,
-      "peak_rss_mb": 31.390625,
-      "reaped_cpu_time_s": 0.052967999999999994,
-      "reaped_peak_rss_mb": 31.640625,
+      "wall_clock_s": 0.12561787490267307,
+      "cpu_time_s": 0.053772,
+      "peak_rss_mb": 31.25,
+      "reaped_cpu_time_s": 0.053772,
+      "reaped_peak_rss_mb": 31.515625,
       "sample_count": 3,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -158,7 +158,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.640625,
+      "memory_observed_mb": 31.515625,
       "said_done_but_failed": true,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -170,8 +170,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "2735b1d5-7ac5-4d4e-adec-6dbc139db161",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "9e34e521-c75a-435a-ad9b-df9b5dfdfb85",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "fail"
     },
     {
@@ -196,11 +196,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.4735652089584619,
-      "cpu_time_s": 0.037436875,
-      "peak_rss_mb": 27.265625,
-      "reaped_cpu_time_s": 0.037436,
-      "reaped_peak_rss_mb": 27.265625,
+      "wall_clock_s": 0.4535916249733418,
+      "cpu_time_s": 0.038343458999999996,
+      "peak_rss_mb": 27.359375,
+      "reaped_cpu_time_s": 0.038342999999999995,
+      "reaped_peak_rss_mb": 27.359375,
       "sample_count": 8,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -209,7 +209,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.265625,
+      "memory_observed_mb": 27.359375,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -221,8 +221,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "b93938ae-c1bd-4ad1-a6b5-e4fea2d2019f",
-      "comparison_key": "2b7eac0f581f9872ea12b23400b59b0717dd5e68dee40c3271f12ce867361287",
+      "run_id": "3c6a4964-a82c-42e9-8e4a-adefe9850241",
+      "comparison_key": "93b6e771d07134f362dbe1a8a5d049dba5465cf7140d3766a27fdd1f3c40320b",
       "quality_verdict": "fail"
     },
     {
@@ -247,11 +247,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.07387495797593147,
-      "cpu_time_s": 0.047169415,
-      "peak_rss_mb": 123.484375,
-      "reaped_cpu_time_s": 0.047169,
-      "reaped_peak_rss_mb": 123.484375,
+      "wall_clock_s": 0.07230783393606544,
+      "cpu_time_s": 0.044627499,
+      "peak_rss_mb": 123.59375,
+      "reaped_cpu_time_s": 0.044626,
+      "reaped_peak_rss_mb": 123.59375,
       "sample_count": 2,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -260,7 +260,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 123.484375,
+      "memory_observed_mb": 123.59375,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -272,8 +272,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "e7287e82-d4f3-48de-8404-4037895b98c4",
-      "comparison_key": "b8eea2d30d9296ca11aa1c1598114753b51ecef171aa661cfc34733243dd9547",
+      "run_id": "dd0f9ffb-f776-4fc2-a9de-7ae9627648b5",
+      "comparison_key": "dc3516c707e9939b205a2c4f4690fefd5079634994ec35d3db2712475e6368c8",
       "quality_verdict": "fail"
     },
     {
@@ -298,11 +298,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.0724065420217812,
-      "cpu_time_s": 0.057034415000000005,
-      "peak_rss_mb": 139.0,
-      "reaped_cpu_time_s": 0.038648,
-      "reaped_peak_rss_mb": 27.359375,
+      "wall_clock_s": 0.0730732079828158,
+      "cpu_time_s": 0.057090665,
+      "peak_rss_mb": 139.15625,
+      "reaped_cpu_time_s": 0.038488999999999995,
+      "reaped_peak_rss_mb": 27.5,
       "sample_count": 2,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -311,7 +311,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 139.0,
+      "memory_observed_mb": 139.15625,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -323,8 +323,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "102fdfd9-0ed4-49e6-871c-4eb5377793c7",
-      "comparison_key": "b8eea2d30d9296ca11aa1c1598114753b51ecef171aa661cfc34733243dd9547",
+      "run_id": "cc36a039-1dcb-4301-b077-d1dd60ebc1ce",
+      "comparison_key": "dc3516c707e9939b205a2c4f4690fefd5079634994ec35d3db2712475e6368c8",
       "quality_verdict": "fail"
     },
     {
@@ -349,11 +349,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.2537365419557318,
-      "cpu_time_s": 0.25121299999999996,
-      "peak_rss_mb": 27.484375,
-      "reaped_cpu_time_s": 0.25121299999999996,
-      "reaped_peak_rss_mb": 27.484375,
+      "wall_clock_s": 0.25780841696541756,
+      "cpu_time_s": 0.252625,
+      "peak_rss_mb": 27.46875,
+      "reaped_cpu_time_s": 0.252625,
+      "reaped_peak_rss_mb": 27.46875,
       "sample_count": 5,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -362,7 +362,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.484375,
+      "memory_observed_mb": 27.46875,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -374,8 +374,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "f24a9fc8-1913-42d1-8f92-98d74e1f3813",
-      "comparison_key": "e22ee980d7c058faa97ccabd1c33d47efa64f56515ef2e8042700fb68346bc61",
+      "run_id": "200c140d-9f48-49da-a613-329d570b6435",
+      "comparison_key": "92c492a853a866d98182e89007e3e552af6d52236ff1b3ac12716f6c46911c94",
       "quality_verdict": "fail"
     },
     {
@@ -400,11 +400,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.06320691597647965,
-      "cpu_time_s": 0.041776,
-      "peak_rss_mb": 10.203125,
-      "reaped_cpu_time_s": 0.041776,
-      "reaped_peak_rss_mb": 27.515625,
+      "wall_clock_s": 0.06354862498119473,
+      "cpu_time_s": 0.043253,
+      "peak_rss_mb": 8.4375,
+      "reaped_cpu_time_s": 0.043253,
+      "reaped_peak_rss_mb": 27.703125,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -413,7 +413,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.515625,
+      "memory_observed_mb": 27.703125,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -425,8 +425,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "c4c45a98-6f34-4aca-81b3-0a03d6e1792c",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "051347e7-c779-4d75-b102-de3772436d34",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "fail"
     },
     {
@@ -451,11 +451,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.06380187498871237,
-      "cpu_time_s": 0.04153,
-      "peak_rss_mb": 10.140625,
-      "reaped_cpu_time_s": 0.04153,
-      "reaped_peak_rss_mb": 27.34375,
+      "wall_clock_s": 0.0585272500757128,
+      "cpu_time_s": 0.041224,
+      "peak_rss_mb": 9.171875,
+      "reaped_cpu_time_s": 0.041224,
+      "reaped_peak_rss_mb": 27.421875,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -464,7 +464,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.34375,
+      "memory_observed_mb": 27.421875,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -476,8 +476,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "f0484f3a-b82f-4e7e-bdde-435bdcfe1ee6",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "092aac2c-7ab1-4cf4-98ce-afcf60bb698c",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "pass"
     },
     {
@@ -494,25 +494,25 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.025027666008099914
+        0.02353037497960031
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.025027666008099914,
-      "tool_total_request_s": 0.03628904197830707,
-      "time_to_first_tool_call_s": 0.04699308308772743,
+      "llm_total_request_s": 0.02353037497960031,
+      "tool_total_request_s": 0.035438959021121264,
+      "time_to_first_tool_call_s": 0.05342299991752952,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 9000,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.13433820800855756,
-      "cpu_time_s": 0.044545,
-      "peak_rss_mb": 31.265625,
-      "reaped_cpu_time_s": 0.044545,
-      "reaped_peak_rss_mb": 31.515625,
+      "wall_clock_s": 0.12925458292011172,
+      "cpu_time_s": 0.051179999999999996,
+      "peak_rss_mb": 31.453125,
+      "reaped_cpu_time_s": 0.051179999999999996,
+      "reaped_peak_rss_mb": 31.6875,
       "sample_count": 3,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -521,7 +521,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.515625,
+      "memory_observed_mb": 31.6875,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -533,8 +533,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "8b38801a-5aff-4f70-a387-3107e0558d92",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "05160fd3-c131-4b46-80d0-acf8b55bae83",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "fail"
     },
     {
@@ -559,12 +559,12 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.3417777919676155,
-      "cpu_time_s": 0.057240291,
-      "peak_rss_mb": 139.1875,
-      "reaped_cpu_time_s": 0.04917,
-      "reaped_peak_rss_mb": 27.515625,
-      "sample_count": 6,
+      "wall_clock_s": 0.4055893749464303,
+      "cpu_time_s": 0.064856458,
+      "peak_rss_mb": 138.953125,
+      "reaped_cpu_time_s": 0.050635,
+      "reaped_peak_rss_mb": 27.4375,
+      "sample_count": 7,
       "hit_budget_cap": false,
       "orphaned_processes": 1,
       "steps_source": "adapter_reported",
@@ -572,7 +572,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 139.1875,
+      "memory_observed_mb": 138.953125,
       "said_done_but_failed": true,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -584,8 +584,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "fc6a61c7-1250-4782-951e-25cfb6870e2a",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "908583b4-ce4b-4776-ba55-0e4b9b708139",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "fail"
     },
     {
@@ -610,11 +610,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.06455904198810458,
-      "cpu_time_s": 0.051762,
-      "peak_rss_mb": 10.25,
-      "reaped_cpu_time_s": 0.051762,
-      "reaped_peak_rss_mb": 31.484375,
+      "wall_clock_s": 0.0614735420094803,
+      "cpu_time_s": 0.053375,
+      "peak_rss_mb": 7.890625,
+      "reaped_cpu_time_s": 0.053375,
+      "reaped_peak_rss_mb": 31.828125,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -623,7 +623,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.484375,
+      "memory_observed_mb": 31.828125,
       "said_done_but_failed": true,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -635,8 +635,8 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "b3283f6c-075c-4024-a439-293d34da7e43",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "735f3117-c4d3-4198-9d72-ab388f0fa042",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "fail"
     },
     {
@@ -653,25 +653,25 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.025025457958690822
+        0.02502308296971023
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.025025457958690822,
-      "tool_total_request_s": 0.03758487501181662,
-      "time_to_first_tool_call_s": 0.04700316698290408,
+      "llm_total_request_s": 0.02502308296971023,
+      "tool_total_request_s": 0.036416459013707936,
+      "time_to_first_tool_call_s": 0.051667458028532565,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 0,
         "tokens_out": 700,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.12517662497702986,
-      "cpu_time_s": 0.051002,
-      "peak_rss_mb": 31.5625,
-      "reaped_cpu_time_s": 0.051002,
-      "reaped_peak_rss_mb": 31.828125,
+      "wall_clock_s": 0.12529891706071794,
+      "cpu_time_s": 0.056497,
+      "peak_rss_mb": 31.359375,
+      "reaped_cpu_time_s": 0.056497,
+      "reaped_peak_rss_mb": 31.640625,
       "sample_count": 3,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -680,7 +680,7 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.828125,
+      "memory_observed_mb": 31.640625,
       "said_done_but_failed": false,
       "framework": "synthetic-fixture",
       "trial": 1,
@@ -692,31 +692,31 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "206254b7-350c-42a0-8916-d59156cb24be",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "run_id": "8e37ce93-cfc7-4e0b-800e-0423d8ae2f77",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "quality_verdict": "pass"
     }
   ],
   "aggregates": [
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "a3501e0381108b11c7af9a30ab74debb2ebf8cdd0994b41f773f3eb01a4a2d09",
+      "comparison_key": "be2626a02a6474c759102abf6c381c8d500fbe858ce2dec99c7a032de62c841a",
       "attempts": 9,
       "complete_measurements": 3,
       "quality_passing_completed_runs": 2,
       "total_cost_usd": null,
       "cost_per_passing_run": null,
       "tokens_sample_stdev": 0.0,
-      "completed_wall_clock_median_s": 0.12553837499581277,
+      "completed_wall_clock_median_s": 0.12561787490267307,
       "completed_wall_clock_range_s": [
-        0.12303274997975677,
-        0.18729300005361438
+        0.12113283399958163,
+        0.18742687499616295
       ],
       "timeouts": 0
     },
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "2b7eac0f581f9872ea12b23400b59b0717dd5e68dee40c3271f12ce867361287",
+      "comparison_key": "93b6e771d07134f362dbe1a8a5d049dba5465cf7140d3766a27fdd1f3c40320b",
       "attempts": 1,
       "complete_measurements": 0,
       "quality_passing_completed_runs": 0,
@@ -729,7 +729,7 @@
     },
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "b8eea2d30d9296ca11aa1c1598114753b51ecef171aa661cfc34733243dd9547",
+      "comparison_key": "dc3516c707e9939b205a2c4f4690fefd5079634994ec35d3db2712475e6368c8",
       "attempts": 2,
       "complete_measurements": 0,
       "quality_passing_completed_runs": 0,
@@ -742,7 +742,7 @@
     },
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "e22ee980d7c058faa97ccabd1c33d47efa64f56515ef2e8042700fb68346bc61",
+      "comparison_key": "92c492a853a866d98182e89007e3e552af6d52236ff1b3ac12716f6c46911c94",
       "attempts": 1,
       "complete_measurements": 0,
       "quality_passing_completed_runs": 0,

@@ -341,3 +341,16 @@ class AuditAndTagsTests(unittest.TestCase):
         ):
             with self.assertRaises(ValueError):
                 validate_upstream(value)
+
+    def test_loopback_opener_does_not_discover_system_proxies(self):
+        with tempfile.TemporaryDirectory() as directory:
+            store = EventStore(Path(directory) / "events.jsonl", "proxy-test")
+            store.started = time.monotonic()
+            with patch(
+                "urllib.request.getproxies",
+                side_effect=AssertionError("system proxy lookup"),
+            ):
+                service = SharedServices(store, [1, 2, 3], "http://127.0.0.1:1/v1", "")
+                service.start()
+                service.close()
+            store.close()

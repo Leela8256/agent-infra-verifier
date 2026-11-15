@@ -45,7 +45,7 @@ def validate_upstream(url):
 
 class SharedServices:
     def __init__(self, store, feed, upstream, api_key, *, timeout=15):
-        validate_upstream(upstream)
+        parsed = validate_upstream(upstream)
         if not isinstance(feed, list) or len(feed) < 3:
             raise ValueError("shared search requires at least three feed records")
         self.store, self.feed = store, feed
@@ -55,6 +55,14 @@ class SharedServices:
             timeout,
         )
         self.token = secrets.token_urlsafe(32)
+        # Never send local fixture traffic through system proxy auto-discovery.
+        # In particular, macOS PAC discovery can block a new supervisor process.
+        self.opener = urllib.request.build_opener(
+            urllib.request.ProxyHandler({})
+            if parsed.hostname in {"127.0.0.1", "localhost", "::1"}
+            else urllib.request.ProxyHandler(urllib.request.getproxies_environment()),
+            NoRedirect,
+        )
         self.lock = threading.RLock()
         self.pending, self.failed = {}, {}
         self.pages = set()
@@ -316,9 +324,7 @@ class SharedServices:
         sent = False
         try:
             try:
-                response = urllib.request.build_opener(NoRedirect).open(
-                    request, timeout=self.timeout
-                )
+                response = self.opener.open(request, timeout=self.timeout)
             except urllib.error.HTTPError as error:
                 response = error
             with response:

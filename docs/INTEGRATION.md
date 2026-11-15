@@ -40,6 +40,8 @@ The supervisor forwards `X-Infra-Run-ID` upstream. It does not assume the upstre
 
 Set the provider key in the parent environment (`OPENROUTER_API_KEY` by default; customize with `--model-key-env`). The parent injects it upstream. The real configured key is removed from the child's environment; `OPENAI_API_KEY` and `OPENROUTER_API_KEY` become local proxy credentials. A direct provider request using those local keys should fail. This does not prevent a trusted agent from reading another key from disk or using another network endpoint. Local mode is not an adversarial sandbox.
 
+Loopback upstreams bypass system proxy discovery. Remote upstreams use explicit HTTP_PROXY/HTTPS_PROXY environment configuration; OS PAC auto-discovery is not used.
+
 No writable telemetry endpoint is exposed in shared mode. Agent-supplied usage cannot override canonical fields. Events and final coverage are written by the services/supervisor. The existing Recorder interface is available only with explicit `--telemetry-source adapter_reported`, remains cooperative, and cannot be pooled with shared-service results.
 
 ## Experiment and Langfuse

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verifier_version": "0.2.0",
-  "run_id": "871c39a2-19bc-4f1c-825b-6d4b97789187",
+  "run_id": "6f5eb3e0-30cb-4fdf-bd42-9e20e847cbc9",
   "framework": "shared-http-fixture",
   "trial": 1,
   "command": [
@@ -9,14 +9,14 @@
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/shared_agent.py",
     "responses-stream"
   ],
-  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/shared-20261115-083608/responses-stream/workspace",
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/shared-20261115-083948/responses-stream/workspace",
   "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
   "launch_command": [
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/shared_agent.py",
     "responses-stream"
   ],
-  "started_at": "2026-11-15T16:36:09.391784+00:00",
+  "started_at": "2026-11-15T16:39:49.242868+00:00",
   "config": {
     "schema_version": 1,
     "profile": "local-pilot-v1-not-frozen",
@@ -33,7 +33,7 @@
     "require_telemetry": true
   },
   "config_sha256": "fd78629dad37e6d41da3887b2a94cdc3eff3d7f2db5d42eb9a1aa8fe65b35839",
-  "comparison_key": "23e977c1c418980529c82ac9f3026dc6e0d0e9f6d954beeb7f32fe303f73a7db",
+  "comparison_key": "0ab4333f817f5c7951a85ae83291602375238b2a69df990a040d2b2771b83eb2",
   "inputs": {
     "experiment.json": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
@@ -75,7 +75,7 @@
     "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
     "runner.py": "d39f335244b25b2cd24eff02a12a11e5c6554ecb03c394b6e20488bd5fc3eae9",
     "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
-    "services.py": "6600fa5981ff6b06e6be9d458a9d0f8ae45c13d04c28c043ee942d84576c8cd7",
+    "services.py": "2bf8cb08aa438f29fe3bcda4521d1d8f3433a702e4f3765b7a17d7a28213df88",
     "summary.py": "6ce11b4072b644ab7bbb5763559f639000fe02c3af2ffb24cf614b3b859e8673",
     "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e",
     "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"
@@ -90,6 +90,6 @@
     "fixture_only": true
   },
   "telemetry_source": "shared_services",
-  "model_upstream": "http://127.0.0.1:55306/v1",
+  "model_upstream": "http://127.0.0.1:55926/v1",
   "search_contract": "three-pages-first-valid-request-429-v1"
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verifier_version": "0.2.0",
-  "run_id": "e7287e82-d4f3-48de-8404-4037895b98c4",
+  "run_id": "dd0f9ffb-f776-4fc2-a9de-7ae9627648b5",
   "framework": "synthetic-fixture",
   "trial": 1,
   "command": [
@@ -9,14 +9,14 @@
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "memory"
   ],
-  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-083610/memory/workspace",
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-083949/memory/workspace",
   "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
   "launch_command": [
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "memory"
   ],
-  "started_at": "2026-11-15T16:36:11.327426+00:00",
+  "started_at": "2026-11-15T16:39:51.160133+00:00",
   "config": {
     "schema_version": 1,
     "profile": "local-pilot-v1-not-frozen",
@@ -33,7 +33,7 @@
     "require_telemetry": true
   },
   "config_sha256": "08eac31cc02ffd8831d405a4fd1c1070c28265ea78963276136125c4a280a0ca",
-  "comparison_key": "b8eea2d30d9296ca11aa1c1598114753b51ecef171aa661cfc34733243dd9547",
+  "comparison_key": "dc3516c707e9939b205a2c4f4690fefd5079634994ec35d3db2712475e6368c8",
   "inputs": {
     "experiment.json": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
@@ -71,7 +71,7 @@
     "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
     "runner.py": "d39f335244b25b2cd24eff02a12a11e5c6554ecb03c394b6e20488bd5fc3eae9",
     "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
-    "services.py": "6600fa5981ff6b06e6be9d458a9d0f8ae45c13d04c28c043ee942d84576c8cd7",
+    "services.py": "2bf8cb08aa438f29fe3bcda4521d1d8f3433a702e4f3765b7a17d7a28213df88",
     "summary.py": "6ce11b4072b644ab7bbb5763559f639000fe02c3af2ffb24cf614b3b859e8673",
     "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e",
     "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"

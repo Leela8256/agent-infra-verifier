@@ -1,3 +1,4 @@
+test_loopback_opener_does_not_discover_system_proxies (test_shared_services.AuditAndTagsTests.test_loopback_opener_does_not_discover_system_proxies) ... ok
 test_partial_soft_tags_do_not_become_hard_failures (test_shared_services.AuditAndTagsTests.test_partial_soft_tags_do_not_become_hard_failures) ... ok
 test_snapshot_detects_modify_delete_and_symlink_without_following (test_shared_services.AuditAndTagsTests.test_snapshot_detects_modify_delete_and_symlink_without_following) ... ok
 test_upstream_url_validation (test_shared_services.AuditAndTagsTests.test_upstream_url_validation) ... ok
@@ -60,6 +61,6 @@ test_retry_count_and_recovery (test_verifier.TelemetryTests.test_retry_count_and
 test_zero_usage_only_with_finish_and_coverage (test_verifier.TelemetryTests.test_zero_usage_only_with_finish_and_coverage) ... ok
 
 ----------------------------------------------------------------------
-Ran 60 tests in 6.559s
+Ran 61 tests in 6.735s
 
 OK
