@@ -2,7 +2,7 @@
 
 Validated 2026-11-15T08:36:46-08:00 on macOS arm64; Python 3.14, psutil 7.2.2.
 
-**61 automated tests passed.** Ruff lint/format checks passed. [Full test log](../test-results/unittest.log).
+**62 automated tests passed.** Ruff lint/format checks passed. [Full test log](../test-results/unittest.log).
 
 The shared-service tests use real HTTP transport and a fake upstream with synthetic tokens/cost. No paid model API, live Langfuse connection, or actual six-framework benchmark was run. Placeholder blog prose only tests structure.
 
@@ -31,7 +31,7 @@ All 13 original scenarios were rerun against this version using explicit adapter
 
 - Model proxy captures ordinary JSON and SSE for Chat Completions and Responses. Repeated usage is not summed twice.
 - Model HTTP retry, unknown error cost, missing/invalid usage, stream errors/truncation, and upstream redirect rejection.
-- Loopback upstream connections bypass system proxy discovery (macOS CI regression coverage).
+- Loopback servers avoid reverse-DNS startup lookups, and local upstreams bypass system proxy discovery. Both have regression coverage.
 - Per-run authentication, run-ID mismatch, independent planted 429s, no agent-writable usage endpoint, and provider-key removal from the child environment.
 - Shell/curl client through the actual CLI: no Python Recorder instrumentation.
 - All-three-page coverage, repeated-page rejection, and search retry recovery.

@@ -7,7 +7,9 @@ import secrets
 import threading
 import time
 from collections import Counter
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler
+
+from .http_server import LoopbackHTTPServer
 
 
 def nonnegative(value, key, integer=False):
@@ -238,7 +240,7 @@ class Receiver:
                 super().setup()
                 self.connection.settimeout(3)
 
-        self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self.server = LoopbackHTTPServer(("127.0.0.1", 0), Handler)
         self.server.daemon_threads = True
         self.thread = threading.Thread(
             target=self.server.serve_forever,

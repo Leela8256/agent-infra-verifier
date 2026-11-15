@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "run_id": "317a6987-cc16-49ab-8323-cc4597f7a026",
+  "run_id": "0be342dc-c997-422d-bb5d-1fd5f54d5fca",
   "framework": "shared-http-fixture",
   "trial": 1,
-  "comparison_key": "58909bcee434d45a9c755198511801b8ab6664dc04afc179c19c0cfdd259fffc",
+  "comparison_key": "c9cf404afbbb017c28a04cffd6b6d18285a708bd23a0da37004773835eea98fa",
   "config_sha256": "687cfa359633ff39e8f80785dac461c017451f5ad91fd060ba9c23c82f96536a",
   "experiment_declared": true,
   "runtime_status": "budget_exceeded",
@@ -44,25 +44,25 @@
       "mock_search": 4
     },
     "llm_latency_s": [
-      0.0004088749410584569
+      0.0004744590260088444
     ],
     "models_observed": [
       "synthetic-no-provider"
     ],
-    "llm_total_request_s": 0.0004088749410584569,
-    "tool_total_request_s": 0.0001465840032324195,
-    "time_to_first_tool_call_s": 0.04353504197206348,
+    "llm_total_request_s": 0.0004744590260088444,
+    "tool_total_request_s": 0.0001577091170474887,
+    "time_to_first_tool_call_s": 0.043354750028811395,
     "retry_recovered": true,
     "usage_known_subtotal": {
       "tokens_in": 1200,
       "tokens_out": 700,
       "cost_usd": 0.004
     },
-    "wall_clock_s": 0.07119954202789813,
-    "cpu_time_s": 0.040619999999999996,
-    "peak_rss_mb": 29.953125,
-    "reaped_cpu_time_s": 0.040619999999999996,
-    "reaped_peak_rss_mb": 30.21875,
+    "wall_clock_s": 0.07068191701546311,
+    "cpu_time_s": 0.040684,
+    "peak_rss_mb": 29.828125,
+    "reaped_cpu_time_s": 0.040684,
+    "reaped_peak_rss_mb": 30.046875,
     "sample_count": 2,
     "hit_budget_cap": true,
     "orphaned_processes": 0,
@@ -75,7 +75,7 @@
     ],
     "all_search_pages_fetched": true,
     "search_total_pages": 3,
-    "memory_observed_mb": 30.21875,
+    "memory_observed_mb": 30.046875,
     "said_done_but_failed": false
   },
   "quality": {

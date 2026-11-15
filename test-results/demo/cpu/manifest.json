@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "verifier_version": "0.2.0",
-  "run_id": "3984dea6-a6fa-45f0-83df-ebe6617636b0",
+  "run_id": "a6f356fd-eef0-460f-84e1-32d361ed31df",
   "framework": "synthetic-fixture",
   "trial": 1,
   "command": [
@@ -9,14 +9,14 @@
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "cpu"
   ],
-  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-084257/cpu/workspace",
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-084548/cpu/workspace",
   "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
   "launch_command": [
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "cpu"
   ],
-  "started_at": "2026-11-15T16:42:58.690086+00:00",
+  "started_at": "2026-11-15T16:45:49.837291+00:00",
   "config": {
     "schema_version": 1,
     "profile": "local-pilot-v1-not-frozen",
@@ -33,7 +33,7 @@
     "require_telemetry": true
   },
   "config_sha256": "40700052d1e96aa86903c8ef4c2644348c2bfabeaa56ce523683b24b5714a02d",
-  "comparison_key": "903395271337e9eef6f77883e85607f2649b7224247ecece34a6254b67742505",
+  "comparison_key": "cd03ce45b596bc8d10f11cc49e145998241f4c67c67d12b6fccf96812830d413",
   "inputs": {
     "experiment.json": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
@@ -67,13 +67,14 @@
     "cli.py": "00e3b18a4ce1f5a77a21163cec11d380b17d828b492766d5803e42635b0d6bfb",
     "config.py": "b083f0008a293f8278e34582f99cf1f546cbc901cca8e0e0c1f0898a6301ba37",
     "findings.py": "4c44d4354fd3068ff6f52d30eb245ea69c900b88e73effc92db8124f3067eb68",
+    "http_server.py": "84a377cbf2dc1256c934b5718a66f9d9ea92ec8ee74402661792a5b901966bd2",
     "quality.py": "4039ff9be23593a5f1ac90bc031e1695c4aee9bfabf96fc69d64349c62838be4",
     "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
     "runner.py": "d39f335244b25b2cd24eff02a12a11e5c6554ecb03c394b6e20488bd5fc3eae9",
     "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
-    "services.py": "483ef250c41bbe0541d904a8a2f8961f0caefc0b2f40f82da4d5058989224daf",
+    "services.py": "641872542b4b25b82fe546b45cbc638a7d8e34b2e988a83c142a6072605167dc",
     "summary.py": "6ce11b4072b644ab7bbb5763559f639000fe02c3af2ffb24cf614b3b859e8673",
-    "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e",
+    "telemetry.py": "4eda96832d75f8e6ba61141ff109651c44f8be220337ded1336393cbaebdd0b7",
     "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"
   },
   "psutil_version": "7.2.2",

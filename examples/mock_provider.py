@@ -2,7 +2,9 @@
 
 import json
 import threading
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler
+
+from infra_verifier.http_server import LoopbackHTTPServer
 
 
 class MockProvider:
@@ -68,7 +70,7 @@ class MockProvider:
                 else:
                     self.wfile.write(json.dumps(result).encode())
 
-        self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self.server = LoopbackHTTPServer(("127.0.0.1", 0), Handler)
         self.thread = threading.Thread(
             target=self.server.serve_forever,
             kwargs={"poll_interval": 0.01},

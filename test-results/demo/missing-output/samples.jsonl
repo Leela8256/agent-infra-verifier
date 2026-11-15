@@ -1,3 +1,3 @@
-{"elapsed_s": 0.0017111250199377537, "rss_mb": 10.15625, "cpu_time_s": 0.0073608319999999994, "processes": 1}
-{"elapsed_s": 0.06342266709543765, "rss_mb": 31.453125, "cpu_time_s": 0.047653581, "processes": 1}
-{"elapsed_s": 0.12489612505305558, "rss_mb": 0.0, "cpu_time_s": 0.047653581, "processes": 0}
+{"elapsed_s": 0.0016912500141188502, "rss_mb": 10.203125, "cpu_time_s": 0.007177458, "processes": 1}
+{"elapsed_s": 0.06154312507715076, "rss_mb": 31.4375, "cpu_time_s": 0.045483125, "processes": 1}
+{"elapsed_s": 0.12285904202144593, "rss_mb": 0.0, "cpu_time_s": 0.045483125, "processes": 0}

@@ -16,6 +16,7 @@ from examples.mock_provider import MockProvider
 from infra_verifier.cli import result_exit_code
 from infra_verifier.config import Config
 from infra_verifier.findings import failure_tags
+from infra_verifier.http_server import LoopbackHTTPServer
 from infra_verifier.runner import run
 from infra_verifier.services import SharedServices, validate_upstream
 from infra_verifier.summary import summarize, write_csv
@@ -312,6 +313,15 @@ class ServiceBoundaryTests(unittest.TestCase):
 
 
 class AuditAndTagsTests(unittest.TestCase):
+    def test_loopback_server_does_not_resolve_hostnames(self):
+        from http.server import BaseHTTPRequestHandler
+
+        with patch("socket.getfqdn", side_effect=AssertionError("reverse DNS")):
+            server = LoopbackHTTPServer(("127.0.0.1", 0), BaseHTTPRequestHandler)
+            self.assertEqual(server.server_name, "127.0.0.1")
+            self.assertGreater(server.server_port, 0)
+            server.server_close()
+
     def test_snapshot_detects_modify_delete_and_symlink_without_following(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

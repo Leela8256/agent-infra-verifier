@@ -10,8 +10,9 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler
 
+from .http_server import LoopbackHTTPServer
 from .telemetry import nonnegative
 
 
@@ -142,7 +143,7 @@ class SharedServices:
                         },
                     )
 
-        self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self.server = LoopbackHTTPServer(("127.0.0.1", 0), Handler)
         self.server.daemon_threads = True
         self.thread = threading.Thread(
             target=self.server.serve_forever,
