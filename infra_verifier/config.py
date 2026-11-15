@@ -22,6 +22,7 @@ class Config:
     steps: int | None = None
     sample_interval_s: float = 0.05
     require_telemetry: bool = True
+    enforce_budgets: bool = True
 
     def __post_init__(self):
         if type(self.schema_version) is not int or self.schema_version != 1:
@@ -30,6 +31,8 @@ class Config:
             raise ValueError("profile must be a nonempty string")
         if type(self.require_telemetry) is not bool:
             raise ValueError("require_telemetry must be boolean")
+        if type(self.enforce_budgets) is not bool:
+            raise ValueError("enforce_budgets must be boolean")
         integer_fields = {
             "model_calls",
             "tool_calls",
@@ -38,7 +41,12 @@ class Config:
             "steps",
         }
         for key, value in asdict(self).items():
-            if key in {"schema_version", "profile", "require_telemetry"}:
+            if key in {
+                "schema_version",
+                "profile",
+                "require_telemetry",
+                "enforce_budgets",
+            }:
                 continue
             if value is None:
                 if key in {"wall_clock_s", "sample_interval_s"}:

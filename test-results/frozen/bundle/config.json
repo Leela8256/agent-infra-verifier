@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "profile": "example-offline-not-scored",
+  "wall_clock_s": 30,
+  "cpu_time_s": 15,
+  "memory_mb": 512,
+  "model_calls": 20,
+  "tool_calls": 30,
+  "tokens_in": 50000,
+  "tokens_out": 8000,
+  "cost_usd": 1,
+  "steps": 50,
+  "sample_interval_s": 0.05,
+  "require_telemetry": true,
+  "enforce_budgets": true
+}

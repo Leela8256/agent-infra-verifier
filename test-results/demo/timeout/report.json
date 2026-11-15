@@ -1,10 +1,11 @@
 {
   "schema_version": 1,
-  "run_id": "69d9bb7f-d1de-4f63-9d42-5aad32c10471",
+  "run_id": "cd9d81b0-3633-4691-9276-b1234678fa0d",
+  "sprint_id": null,
   "framework": "synthetic-fixture",
   "trial": 1,
-  "comparison_key": "380f5e619fc9489b49b0eafe3a59ecc22c29410673c01bf0aca509bc83bcb384",
-  "config_sha256": "46bcf626b00e8d5f359cde08d199616ad9401c1d4cf7a75af33b13790e80b810",
+  "comparison_key": "7dc2c4a014c0d8a9418dfab69314749c309d6380999cb4855d9c4cac6a67e26b",
+  "config_sha256": "14a6e0086eea3ed3c2d1d27d704f549d25410ee3eda8f765d92ed05c8ba93fa2",
   "experiment_declared": true,
   "runtime_status": "budget_exceeded",
   "exit_code": -9,
@@ -58,11 +59,11 @@
       "tokens_out": 0,
       "cost_usd": 0
     },
-    "wall_clock_s": 0.45944033295381814,
-    "cpu_time_s": 0.038864625,
-    "peak_rss_mb": 27.34375,
-    "reaped_cpu_time_s": 0.038863999999999996,
-    "reaped_peak_rss_mb": 27.34375,
+    "wall_clock_s": 0.46201662509702146,
+    "cpu_time_s": 0.039988124,
+    "peak_rss_mb": 27.390625,
+    "reaped_cpu_time_s": 0.039986999999999995,
+    "reaped_peak_rss_mb": 27.390625,
     "sample_count": 8,
     "hit_budget_cap": true,
     "orphaned_processes": 0,
@@ -71,8 +72,10 @@
     "search_pages_fetched": null,
     "all_search_pages_fetched": null,
     "search_total_pages": null,
-    "memory_observed_mb": 27.34375,
-    "said_done_but_failed": false
+    "memory_observed_mb": 27.390625,
+    "said_done_but_failed": false,
+    "workflow_phase_count": 0,
+    "workflow_status": "missing_evidence"
   },
   "quality": {
     "verdict": "fail",
@@ -107,6 +110,28 @@
     "changes_outside_output": [],
     "errors": [],
     "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+  },
+  "write_guard": {
+    "backend": "none",
+    "probe": "not_requested"
+  },
+  "workflow": {
+    "status": "missing_evidence",
+    "phases": [],
+    "issues": [
+      "need ordered draft, check, fix evidence ending at the final fix"
+    ],
+    "count": 0,
+    "provenance": "Owner-declared phase labels with host-captured artifact snapshots; does not prove internal reasoning or correctness of the check."
+  },
+  "requires_phase_evidence": false,
+  "requires_langfuse": false,
+  "langfuse_export": {
+    "status": "not_requested"
+  },
+  "model_rubric": {
+    "status": "pending_external_review",
+    "verdict": null
   },
   "trace_url": null,
   "output_hashes": {},

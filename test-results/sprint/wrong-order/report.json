@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "run_id": "49adf9ee-ef81-48e6-9981-436e3c647199",
+  "sprint_id": null,
+  "framework": "synthetic-sprint-fixture",
+  "trial": 1,
+  "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+  "config_sha256": "08b5b9afa4f0664cdac5cf717f68b9aa04fad5e8a855ceeefa70cc016baf063c",
+  "experiment_declared": true,
+  "runtime_status": "completed",
+  "exit_code": 0,
+  "measurement_status": "complete",
+  "measurement_errors": [],
+  "telemetry_missing": [],
+  "telemetry_source": "shared_services",
+  "usage_source": "provider_usage_via_proxy",
+  "cost_source": "provider_response_usage.cost",
+  "telemetry_scope": "Requests routed through this run's services only; direct provider/tool bypass is not network-blocked.",
+  "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
+  "resource_limitations": [
+    "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
+    "CPU is max(sampled per-process CPU sum, wait4 CPU of reaped leader and its waited descendants); detached unobserved processes can be missed.",
+    "Limits are reactive watchdog stops, not kernel ceilings. Local mode is not a filesystem or network sandbox."
+  ],
+  "budget_status": "within_observed_limits",
+  "budget_violations": [],
+  "budget_stop_triggers": [],
+  "metrics": {
+    "tokens_in": 1200,
+    "tokens_out": 700,
+    "cost_usd": 0.004,
+    "llm_calls": 1,
+    "tool_calls": 4,
+    "steps": 1,
+    "retries": 1,
+    "errors": 1,
+    "errors_by_type": {
+      "http_429": 1
+    },
+    "tool_calls_by_name": {
+      "mock_search": 4
+    },
+    "llm_latency_s": [
+      0.00044774997513741255
+    ],
+    "models_observed": [
+      "synthetic-no-provider"
+    ],
+    "llm_total_request_s": 0.00044774997513741255,
+    "tool_total_request_s": 0.0001354999840259552,
+    "time_to_first_tool_call_s": 0.04585608409252018,
+    "retry_recovered": true,
+    "usage_known_subtotal": {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004
+    },
+    "wall_clock_s": 0.06332266703248024,
+    "cpu_time_s": 0.047303,
+    "peak_rss_mb": 5.03125,
+    "reaped_cpu_time_s": 0.047303,
+    "reaped_peak_rss_mb": 30.015625,
+    "sample_count": 2,
+    "hit_budget_cap": false,
+    "orphaned_processes": 0,
+    "steps_source": "proxy_model_request_attempts",
+    "writes_outside_output": 0,
+    "search_pages_fetched": [
+      1,
+      2,
+      3
+    ],
+    "all_search_pages_fetched": true,
+    "search_total_pages": 3,
+    "memory_observed_mb": 30.015625,
+    "said_done_but_failed": false,
+    "workflow_phase_count": 3,
+    "workflow_status": "inconsistent"
+  },
+  "quality": {
+    "verdict": "pass",
+    "checks": [
+      {
+        "id": "files_exist",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "blog.md=True meta.json=True"
+      },
+      {
+        "id": "meta_valid",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "keys=['topics', 'source_urls']"
+      },
+      {
+        "id": "word_count",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "644 words, want 600-800"
+      },
+      {
+        "id": "has_title",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "1 H1"
+      },
+      {
+        "id": "section_count",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "3 sections: ['Agent Harness', 'Agent Memory', 'Tool Calling']"
+      },
+      {
+        "id": "has_intro",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "40 intro words"
+      },
+      {
+        "id": "links_from_feed",
+        "hard": true,
+        "tag": "said_done_but_failed",
+        "result": "pass",
+        "detail": "0 off-feed: []"
+      },
+      {
+        "id": "has_sources",
+        "hard": false,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": ""
+      },
+      {
+        "id": "no_banned_words",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "[]"
+      },
+      {
+        "id": "no_stale_sources",
+        "hard": true,
+        "tag": "lost_context",
+        "result": "pass",
+        "detail": "cited 0 post(s) older than 7d"
+      },
+      {
+        "id": "no_urlless_source",
+        "hard": true,
+        "tag": "wrong_tool_or_args",
+        "result": "pass",
+        "detail": "1 feed posts lack a URL"
+      },
+      {
+        "id": "topics_match_feed",
+        "hard": true,
+        "tag": "wrong_tool_or_args",
+        "result": "pass",
+        "detail": "3/3: expected ['agent harness', 'agent memory', 'tool calling']"
+      },
+      {
+        "id": "no_duplicate_topic",
+        "hard": true,
+        "tag": "lost_context",
+        "result": "pass",
+        "detail": "meta topics=['agent harness', 'agent memory', 'tool calling']"
+      },
+      {
+        "id": "no_repeated_6gram",
+        "hard": false,
+        "tag": "looped_or_quit_early",
+        "result": "pass",
+        "detail": "0 repeated: []"
+      },
+      {
+        "id": "scope_respected",
+        "hard": false,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "extra files in /output: []"
+      }
+    ]
+  },
+  "infra_checks": [
+    {
+      "id": "working_directory_scope",
+      "hard": true,
+      "tag": "file_or_state_error",
+      "result": "pass",
+      "detail": []
+    },
+    {
+      "id": "said_done_but_failed",
+      "hard": true,
+      "tag": "said_done_but_failed",
+      "result": "pass",
+      "detail": "Proxy signal: exit code 0 combined with a failing quality verdict; not a claim about the agent's wording."
+    },
+    {
+      "id": "all_search_pages_fetched",
+      "hard": true,
+      "tag": "looped_or_quit_early",
+      "result": "pass",
+      "detail": {
+        "fetched": [
+          1,
+          2,
+          3
+        ],
+        "required": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "id": "draft_check_fix_evidence",
+      "hard": true,
+      "tag": "looped_or_quit_early",
+      "result": "fail",
+      "detail": [
+        "need ordered draft, check, fix evidence ending at the final fix"
+      ]
+    }
+  ],
+  "workspace_audit": {
+    "method": "fresh_working_directory_before_after",
+    "changes_outside_output": [],
+    "errors": [],
+    "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+  },
+  "write_guard": {
+    "backend": "macos-seatbelt",
+    "probe": "passed",
+    "write_root": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/sprint-demo-20261115-092507/wrong-order/workspace/output",
+    "limitations": "Allows inherited stdout/stderr and /dev/null. Read and network access are not restricted. Linux Landlock does not restrict chmod/chown/timestamps/xattrs; use a read-only container for hostile workloads or metadata containment."
+  },
+  "workflow": {
+    "status": "inconsistent",
+    "phases": [
+      "check",
+      "draft",
+      "fix"
+    ],
+    "issues": [
+      "need ordered draft, check, fix evidence ending at the final fix"
+    ],
+    "count": 3,
+    "provenance": "Owner-declared phase labels with host-captured artifact snapshots; does not prove internal reasoning or correctness of the check."
+  },
+  "requires_phase_evidence": true,
+  "requires_langfuse": true,
+  "langfuse_export": {
+    "status": "accepted",
+    "trace_id": "1560116fa2f69ee70a921e59962a9225",
+    "trace_url": "http://127.0.0.1:60014/project/fixture-project/traces/1560116fa2f69ee70a921e59962a9225",
+    "accepted_batches": 1,
+    "total_batches": 1,
+    "visibility": "not_checked"
+  },
+  "model_rubric": {
+    "status": "pending_external_review",
+    "verdict": null
+  },
+  "trace_url": "http://127.0.0.1:60014/project/fixture-project/traces/1560116fa2f69ee70a921e59962a9225",
+  "output_hashes": {
+    "blog.md": "845594a26897c97be4f664f711f996ff870ad388ddd4a4a057c7b0cc172e33bd",
+    "meta.json": "27e6ea36b1901207a0301748948df63f179ef95b7f7342280116f3f5de7dc945"
+  },
+  "failure_tags": [
+    "looped_or_quit_early"
+  ],
+  "warning_tags": []
+}

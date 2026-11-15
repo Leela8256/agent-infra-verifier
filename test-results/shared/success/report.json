@@ -1,10 +1,11 @@
 {
   "schema_version": 1,
-  "run_id": "e1c0c130-d5e2-4517-95c3-cb8e64ecc23d",
+  "run_id": "b8a7c67f-baa6-4b9f-b631-e383487122ba",
+  "sprint_id": null,
   "framework": "shared-http-fixture",
   "trial": 1,
-  "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-  "config_sha256": "fd78629dad37e6d41da3887b2a94cdc3eff3d7f2db5d42eb9a1aa8fe65b35839",
+  "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+  "config_sha256": "7cf97359e4b3702964c4e26169f911989557cbe7ae51e3d7ca240cea192bf1cc",
   "experiment_declared": true,
   "runtime_status": "completed",
   "exit_code": 0,
@@ -40,25 +41,25 @@
       "mock_search": 4
     },
     "llm_latency_s": [
-      0.0019330830546095967
+      0.0016329999780282378
     ],
     "models_observed": [
       "synthetic-no-provider"
     ],
-    "llm_total_request_s": 0.0019330830546095967,
-    "tool_total_request_s": 0.00013549975119531155,
-    "time_to_first_tool_call_s": 0.04516954207792878,
+    "llm_total_request_s": 0.0016329999780282378,
+    "tool_total_request_s": 0.00014908204320818186,
+    "time_to_first_tool_call_s": 0.04274149995762855,
     "retry_recovered": true,
     "usage_known_subtotal": {
       "tokens_in": 1200,
       "tokens_out": 700,
       "cost_usd": 0.004
     },
-    "wall_clock_s": 0.06397970800753683,
-    "cpu_time_s": 0.046387,
-    "peak_rss_mb": 8.484375,
-    "reaped_cpu_time_s": 0.046387,
-    "reaped_peak_rss_mb": 30.171875,
+    "wall_clock_s": 0.06383541692048311,
+    "cpu_time_s": 0.043923000000000004,
+    "peak_rss_mb": 9.640625,
+    "reaped_cpu_time_s": 0.043923000000000004,
+    "reaped_peak_rss_mb": 30.109375,
     "sample_count": 2,
     "hit_budget_cap": false,
     "orphaned_processes": 0,
@@ -71,8 +72,10 @@
     ],
     "all_search_pages_fetched": true,
     "search_total_pages": 3,
-    "memory_observed_mb": 30.171875,
-    "said_done_but_failed": false
+    "memory_observed_mb": 30.109375,
+    "said_done_but_failed": false,
+    "workflow_phase_count": 0,
+    "workflow_status": "missing_evidence"
   },
   "quality": {
     "verdict": "pass",
@@ -223,6 +226,28 @@
     "changes_outside_output": [],
     "errors": [],
     "limitations": "Only persistent changes within the working directory are visible. Absolute/parent-path writes elsewhere and create-then-delete writes are not detected. Symlinks are not followed. This is not filesystem containment."
+  },
+  "write_guard": {
+    "backend": "none",
+    "probe": "not_requested"
+  },
+  "workflow": {
+    "status": "missing_evidence",
+    "phases": [],
+    "issues": [
+      "need ordered draft, check, fix evidence ending at the final fix"
+    ],
+    "count": 0,
+    "provenance": "Owner-declared phase labels with host-captured artifact snapshots; does not prove internal reasoning or correctness of the check."
+  },
+  "requires_phase_evidence": false,
+  "requires_langfuse": false,
+  "langfuse_export": {
+    "status": "not_requested"
+  },
+  "model_rubric": {
+    "status": "pending_external_review",
+    "verdict": null
   },
   "trace_url": null,
   "output_hashes": {

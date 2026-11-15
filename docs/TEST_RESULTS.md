@@ -1,10 +1,30 @@
 # Test results
 
-Validated 2026-11-15T08:36:46-08:00 on macOS arm64; Python 3.14, psutil 7.2.2.
+Validated 2026-11-15T09:25:29-08:00 on macOS arm64; Python 3.14, psutil 7.2.2.
 
-**62 automated tests passed.** Ruff lint/format checks passed. [Full test log](../test-results/unittest.log).
+**77 automated tests passed.** Ruff lint/format checks passed. [Full test log](../test-results/unittest.log).
 
 The shared-service tests use real HTTP transport and a fake upstream with synthetic tokens/cost. No paid model API, live Langfuse connection, or actual six-framework benchmark was run. Placeholder blog prose only tests structure.
+
+## Populated sample: three frozen trials
+
+The filled sample was resolved against local fake services, frozen with a hashed model-rubric file and run for trials 1, 2 and 3. All three completed with accepted mock OTLP uploads and explicitly pending model-rubric review. [Sample CSV](../test-results/frozen/summary.csv) · [Sample JSON](../test-results/frozen/summary.json). The checked-in sample stays draft. This demonstration is also run in every CI matrix job.
+
+## Sprint protocol: seven retained end-to-end runs
+
+| Scenario | Phase evidence | OTLP upload | CLI status |
+|---|---|---|---:|
+| [success](../test-results/sprint/success/report.json) | evidenced | accepted | 0 |
+| [missing phases](../test-results/sprint/missing-phases/report.json) | missing | accepted | 3 |
+| [wrong order](../test-results/sprint/wrong-order/report.json) | inconsistent | accepted | 2 |
+| [unfixed findings](../test-results/sprint/unfixed-findings/report.json) | inconsistent | accepted | 2 |
+| [denied outside write](../test-results/sprint/denied-outside-write/report.json) | evidenced | accepted | 0 |
+| [partial upload](../test-results/sprint/partial-upload/report.json) | evidenced | failed | 3 |
+| [authentication failure](../test-results/sprint/upload-auth-failure/report.json) | evidenced | failed | 3 |
+
+[CSV](../test-results/sprint/summary.csv) · [JSON](../test-results/sprint/summary.json). Every retained sprint run used the native macOS write guard. The denied-write fixture catches PermissionError and completes; its zero exit confirms that no forbidden file was written, not that denied attempts are automatically tagged.
+
+Additional automated tests cover frozen bundle creation, a scored launch, refusal to overwrite a trial, tampered inputs, unresolved settings, missing feed traps, model-setting conflicts, metadata-only fixes, extra review cycles, inherited child write restrictions, symlink escapes, and trace replay with stable IDs without rerunning the agent. Record-only budgets flag breaches without killing the process. All model-rubric results remain pending external review.
 
 ## Shared services: eight retained runs
 
@@ -41,6 +61,6 @@ All 13 original scenarios were rerun against this version using explicit adapter
 
 ## Limits
 
-Filesystem checks only inspect the fresh working tree before/after, and do not provide containment or machine-wide write auditing. Direct network/provider bypass is not blocked. Provider keys are withheld from child environment but same-user local processes are trusted. The mock HTTP integration establishes transport/accounting behavior, not live OpenRouter compatibility or six-framework readiness. Each owner still needs a real-provider endpoint smoke test and the team must freeze the common feed and model/settings.
+Audit-only mode inspects the fresh working tree before/after. Scored mode additionally uses native write restrictions; Linux Landlock excludes chmod/chown/timestamp/xattr changes and the guard does not log every denied write attempt. Read and network access, including direct provider bypass with other credentials, are not blocked. Provider keys are withheld from child environment but same-user local processes are trusted. The mock HTTP integration establishes transport/accounting behavior, not live OpenRouter compatibility or six-framework readiness. Each owner still needs a real-provider endpoint smoke test and the team must freeze the common feed and model/settings.
 
 Linux/macOS CI is configured in GitHub Actions. Local evidence above is independent of the remote CI outcome.

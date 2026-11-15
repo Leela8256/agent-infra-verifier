@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "trace_id": "40cf4b52e50737f64aadf99a0d93f173",
+  "trace_url": null,
+  "accepted_batches": 0,
+  "total_batches": 1,
+  "visibility": "not_checked",
+  "error": "HTTPError",
+  "http_status": 401
+}

@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "rows": [
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.0016975830076262355
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.0016975830076262355,
+      "tool_total_request_s": 0.0001952899619936943,
+      "time_to_first_tool_call_s": 0.05011816695332527,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.0642332499846816,
+      "cpu_time_s": 0.051609999999999996,
+      "peak_rss_mb": 4.265625,
+      "reaped_cpu_time_s": 0.051609999999999996,
+      "reaped_peak_rss_mb": 30.15625,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.15625,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:59993/project/fixture-project/traces/5ffc392035f56664a76d4861698fa9c4",
+      "sprint_id": null,
+      "run_id": "7a3fd1dc-4798-4019-a19b-40f31b200525",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00045612500980496407
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00045612500980496407,
+      "tool_total_request_s": 0.00012808397877961397,
+      "time_to_first_tool_call_s": 0.0461125000147149,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06027499993797392,
+      "cpu_time_s": 0.047033,
+      "peak_rss_mb": 4.28125,
+      "reaped_cpu_time_s": 0.047033,
+      "reaped_peak_rss_mb": 30.078125,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.078125,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60005/project/fixture-project/traces/41a390c0f07c2a6c559954d4814500e3",
+      "sprint_id": null,
+      "run_id": "3ec0741c-aba8-4b0d-8c94-77c361c2511f",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00044774997513741255
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00044774997513741255,
+      "tool_total_request_s": 0.0001354999840259552,
+      "time_to_first_tool_call_s": 0.04585608409252018,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06332266703248024,
+      "cpu_time_s": 0.047303,
+      "peak_rss_mb": 5.03125,
+      "reaped_cpu_time_s": 0.047303,
+      "reaped_peak_rss_mb": 30.015625,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.015625,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "inconsistent",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "looped_or_quit_early",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60014/project/fixture-project/traces/1560116fa2f69ee70a921e59962a9225",
+      "sprint_id": null,
+      "run_id": "49adf9ee-ef81-48e6-9981-436e3c647199",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00041495903860777617
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00041495903860777617,
+      "tool_total_request_s": 0.00012908386997878551,
+      "time_to_first_tool_call_s": 0.046431833994574845,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.05880158394575119,
+      "cpu_time_s": 0.047871,
+      "peak_rss_mb": 4.359375,
+      "reaped_cpu_time_s": 0.047871,
+      "reaped_peak_rss_mb": 29.90625,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 29.90625,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "inconsistent",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "looped_or_quit_early",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60026/project/fixture-project/traces/ad66a7cc4df82bb2163d0fa0b3d340c4",
+      "sprint_id": null,
+      "run_id": "000cce65-6e89-4b6b-a299-7fbe4f40ac12",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.0004115840420126915
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.0004115840420126915,
+      "tool_total_request_s": 0.00014558201655745506,
+      "time_to_first_tool_call_s": 0.047896457952447236,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06363350001629442,
+      "cpu_time_s": 0.049356,
+      "peak_rss_mb": 4.234375,
+      "reaped_cpu_time_s": 0.049356,
+      "reaped_peak_rss_mb": 30.25,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.25,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60038/project/fixture-project/traces/d9e9d0609661e2f29c3e8c1f2711eecb",
+      "sprint_id": null,
+      "run_id": "afa29a1d-9bef-4703-944a-43d6404b30ed",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00042979198042303324
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00042979198042303324,
+      "tool_total_request_s": 0.00018845906015485525,
+      "time_to_first_tool_call_s": 0.048238332965411246,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.059311583056114614,
+      "cpu_time_s": 0.049899,
+      "peak_rss_mb": 4.28125,
+      "reaped_cpu_time_s": 0.049899,
+      "reaped_peak_rss_mb": 30.078125,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.078125,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": null,
+      "sprint_id": null,
+      "run_id": "b3ccec05-181c-4bd4-aa86-3e3b49a0b583",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "failed",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.000683249905705452
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.000683249905705452,
+      "tool_total_request_s": 0.0001421249471604824,
+      "time_to_first_tool_call_s": 0.04830837494228035,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06394683301914483,
+      "cpu_time_s": 0.05061499999999999,
+      "peak_rss_mb": 5.578125,
+      "reaped_cpu_time_s": 0.05061499999999999,
+      "reaped_peak_rss_mb": 29.984375,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 29.984375,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": null,
+      "sprint_id": null,
+      "run_id": "be8974ca-4910-4bf7-b1d3-505a5b5b8d4f",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "failed",
+      "model_rubric_status": "pending_external_review"
+    }
+  ],
+  "aggregates": [
+    {
+      "framework": "synthetic-sprint-fixture",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "attempts": 7,
+      "complete_measurements": 7,
+      "quality_passing_completed_runs": 7,
+      "total_cost_usd": 0.028,
+      "cost_per_passing_run": 0.004,
+      "tokens_sample_stdev": 0.0,
+      "completed_wall_clock_median_s": 0.06332266703248024,
+      "completed_wall_clock_range_s": [
+        0.05880158394575119,
+        0.0642332499846816
+      ],
+      "timeouts": 0
+    }
+  ],
+  "comparison_groups": 1,
+  "notes": [
+    "Each comparison_key is a separate experiment contract and machine profile.",
+    "Null cost means unknown, including when any attempt has incomplete measurements; failed-attempt cost is never silently omitted.",
+    "Quality is the upstream verdict. Infrastructure findings do not rewrite it."
+  ]
+}

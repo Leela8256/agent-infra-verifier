@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "verifier_version": "0.2.0",
-  "run_id": "75cc7739-345f-418e-ba21-50803a0138ef",
+  "verifier_version": "0.3.0",
+  "run_id": "a3a4cca5-415e-471d-9e22-7ee877e1c0f1",
   "framework": "synthetic-fixture",
   "trial": 1,
   "command": [
@@ -9,14 +9,14 @@
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "success"
   ],
-  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-084548/success/workspace",
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/demo-20261115-092509/success/workspace",
   "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
   "launch_command": [
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
     "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
     "success"
   ],
-  "started_at": "2026-11-15T16:45:48.388628+00:00",
+  "started_at": "2026-11-15T17:25:09.727866+00:00",
   "config": {
     "schema_version": 1,
     "profile": "local-pilot-v1-not-frozen",
@@ -30,10 +30,11 @@
     "cost_usd": null,
     "steps": null,
     "sample_interval_s": 0.05,
-    "require_telemetry": true
+    "require_telemetry": true,
+    "enforce_budgets": true
   },
-  "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
-  "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
+  "config_sha256": "1504b8064377c3f0b6ff173233c3427580895d478bb7592dfaea2508506e6294",
+  "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
   "inputs": {
     "experiment.json": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
@@ -41,7 +42,7 @@
     },
     "feed.json": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/feed.json",
-      "sha256": "912e0d13c66f072b6ceb2da54a65231d1431a475f5cb69a304745e3baef3a491"
+      "sha256": "01524d7e36e088879b52032c87155a86c7e45836e18f78d04c0096726e154b86"
     },
     "banned_words.txt": {
       "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/banned_words.txt",
@@ -62,19 +63,23 @@
   "backend": "local-sampled",
   "trace_url": null,
   "source_hashes": {
-    "__init__.py": "1876444e10a5f3823d51a6ab0f31deaa1328de8ce60eeab1eb1d8ccc3e399d3d",
+    "__init__.py": "c64b253c4b1e4a979d62c1e8680c757c45d32bd333928b3d27a38f371f765f06",
     "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
-    "cli.py": "00e3b18a4ce1f5a77a21163cec11d380b17d828b492766d5803e42635b0d6bfb",
-    "config.py": "b083f0008a293f8278e34582f99cf1f546cbc901cca8e0e0c1f0898a6301ba37",
+    "cli.py": "b4091b75fb7140f870a66dd4a970b7386263564a55e7ee79434bf391355bb299",
+    "config.py": "297daa0a46afa05db4f1ba9d84e06a3ec8deb1242d875a0f3a62e9f0fcc1b2da",
     "findings.py": "4c44d4354fd3068ff6f52d30eb245ea69c900b88e73effc92db8124f3067eb68",
     "http_server.py": "84a377cbf2dc1256c934b5718a66f9d9ea92ec8ee74402661792a5b901966bd2",
+    "langfuse_export.py": "33ae0760b8a2b80f6edaf325e310f00177ca17b89235988d1777196b776bb9f8",
+    "phases.py": "c7849b4e3225b938801e0ea70a9ea630f6c8933f16b54325f8d300203e2b9641",
+    "protocol.py": "b4d71f0e9b138fb623019efff4d4fb60658d7badc2279e3acd368db85b9056c8",
     "quality.py": "4039ff9be23593a5f1ac90bc031e1695c4aee9bfabf96fc69d64349c62838be4",
     "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
-    "runner.py": "d39f335244b25b2cd24eff02a12a11e5c6554ecb03c394b6e20488bd5fc3eae9",
+    "runner.py": "cf45dd22f962230251075d7041370c04a7fef7f70d3efdb9e9eb93717c8b8909",
+    "sandbox.py": "f3e9fd5825401a1c92a6ad65f52a0c3e09f52b4892dd60fe45564598b76136b3",
     "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
-    "services.py": "641872542b4b25b82fe546b45cbc638a7d8e34b2e988a83c142a6072605167dc",
-    "summary.py": "6ce11b4072b644ab7bbb5763559f639000fe02c3af2ffb24cf614b3b859e8673",
-    "telemetry.py": "4eda96832d75f8e6ba61141ff109651c44f8be220337ded1336393cbaebdd0b7",
+    "services.py": "d9d0fb5c3070a168398caa7159ff88d3833d302ef05e52838b8d55825636a99d",
+    "summary.py": "3d0d728a69b6876ac7c1f05df958f4b6e95daef9956e449693addc70558d3838",
+    "telemetry.py": "6270dac2c193c13bec17c55b0d26e77fa295f4fdec8b66e7b02c82932907335a",
     "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"
   },
   "psutil_version": "7.2.2",
@@ -88,5 +93,10 @@
   },
   "telemetry_source": "adapter_reported",
   "model_upstream": null,
-  "search_contract": null
+  "search_contract": null,
+  "write_guard": {
+    "backend": "none",
+    "probe": "not_requested"
+  },
+  "sprint_id": null
 }

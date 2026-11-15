@@ -23,11 +23,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.07214454200584441,
-      "cpu_time_s": 0.058210792,
-      "peak_rss_mb": 139.078125,
-      "reaped_cpu_time_s": 0.039524,
-      "reaped_peak_rss_mb": 27.5625,
+      "wall_clock_s": 0.07238187501206994,
+      "cpu_time_s": 0.05709604,
+      "peak_rss_mb": 139.15625,
+      "reaped_cpu_time_s": 0.038328,
+      "reaped_peak_rss_mb": 27.578125,
       "sample_count": 2,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -36,8 +36,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 139.078125,
+      "memory_observed_mb": 139.15625,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "budget_exceeded",
@@ -48,9 +50,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "4ddf4029-5f7c-4b10-ab67-8680aaf6873c",
-      "comparison_key": "76f237269cd072c306f6873f25c9297597ce36b0d233d96f053362d5bcbf95a3",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "fc613ef1-9ff2-4559-843e-326efc59f653",
+      "comparison_key": "01f981c729d72f893c0be496dfc320362789949fea44c5f7a96e324ccbe8e18f",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -74,11 +79,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.2532787920208648,
-      "cpu_time_s": 0.25074199999999996,
-      "peak_rss_mb": 27.4375,
-      "reaped_cpu_time_s": 0.25074199999999996,
-      "reaped_peak_rss_mb": 27.4375,
+      "wall_clock_s": 0.2535389999393374,
+      "cpu_time_s": 0.251034,
+      "peak_rss_mb": 27.484375,
+      "reaped_cpu_time_s": 0.251034,
+      "reaped_peak_rss_mb": 27.484375,
       "sample_count": 5,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -87,8 +92,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.4375,
+      "memory_observed_mb": 27.484375,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "budget_exceeded",
@@ -99,9 +106,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "a6f356fd-eef0-460f-84e1-32d361ed31df",
-      "comparison_key": "cd03ce45b596bc8d10f11cc49e145998241f4c67c67d12b6fccf96812830d413",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "98c635c9-deea-406f-bcbb-5a82158c1b92",
+      "comparison_key": "ba8bf8176b41674d6555381f4d94aaa1037ffe0bf1767c0565f7cf13773cc4b5",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -125,11 +135,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.06305754208005965,
-      "cpu_time_s": 0.041387999999999994,
-      "peak_rss_mb": 9.15625,
-      "reaped_cpu_time_s": 0.041387999999999994,
-      "reaped_peak_rss_mb": 27.71875,
+      "wall_clock_s": 0.06311645801179111,
+      "cpu_time_s": 0.0413,
+      "peak_rss_mb": 10.375,
+      "reaped_cpu_time_s": 0.0413,
+      "reaped_peak_rss_mb": 27.75,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -138,8 +148,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.71875,
+      "memory_observed_mb": 27.75,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "agent_error",
@@ -150,9 +162,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "f0ba091e-8e3b-4aa4-97e8-0ad2c1c10e75",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "79300898-8fa2-4e62-87ec-8aeaac6db1a5",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -176,11 +191,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.06398749991785735,
-      "cpu_time_s": 0.052331,
-      "peak_rss_mb": 8.5625,
-      "reaped_cpu_time_s": 0.052331,
-      "reaped_peak_rss_mb": 31.5625,
+      "wall_clock_s": 0.05892695905640721,
+      "cpu_time_s": 0.049391,
+      "peak_rss_mb": 10.25,
+      "reaped_cpu_time_s": 0.049391,
+      "reaped_peak_rss_mb": 31.453125,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -189,8 +204,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.5625,
+      "memory_observed_mb": 31.453125,
       "said_done_but_failed": true,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -201,9 +218,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "a7b3eb6e-7637-4587-b7dd-0b5cb0f31722",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "71e9155c-85e0-46ac-a01e-597008feb06e",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -227,11 +247,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.07248383294790983,
-      "cpu_time_s": 0.044378749,
-      "peak_rss_mb": 123.546875,
-      "reaped_cpu_time_s": 0.044378,
-      "reaped_peak_rss_mb": 123.546875,
+      "wall_clock_s": 0.07250174996443093,
+      "cpu_time_s": 0.044288374,
+      "peak_rss_mb": 123.6875,
+      "reaped_cpu_time_s": 0.044287999999999994,
+      "reaped_peak_rss_mb": 123.6875,
       "sample_count": 2,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -240,8 +260,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 123.546875,
+      "memory_observed_mb": 123.6875,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "budget_exceeded",
@@ -252,9 +274,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "1e5d3746-2ed3-49fd-b8dd-35e6113a8163",
-      "comparison_key": "76f237269cd072c306f6873f25c9297597ce36b0d233d96f053362d5bcbf95a3",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "c26d5f7e-a9f0-4f5d-8bb9-3c6767d815d3",
+      "comparison_key": "01f981c729d72f893c0be496dfc320362789949fea44c5f7a96e324ccbe8e18f",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -270,26 +295,26 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.025062875007279217
+        0.02502995904069394
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.025062875007279217,
-      "tool_total_request_s": 0.037573040928691626,
-      "time_to_first_tool_call_s": 0.049012500094249845,
+      "llm_total_request_s": 0.02502995904069394,
+      "tool_total_request_s": 0.03756650094874203,
+      "time_to_first_tool_call_s": 0.05048520804848522,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.12285904202144593,
-      "cpu_time_s": 0.053541,
-      "peak_rss_mb": 31.4375,
-      "reaped_cpu_time_s": 0.053541,
-      "reaped_peak_rss_mb": 31.703125,
-      "sample_count": 3,
+      "wall_clock_s": 0.18457837495952845,
+      "cpu_time_s": 0.054266999999999996,
+      "peak_rss_mb": 31.21875,
+      "reaped_cpu_time_s": 0.054266999999999996,
+      "reaped_peak_rss_mb": 31.5,
+      "sample_count": 4,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
       "steps_source": "adapter_reported",
@@ -297,8 +322,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.703125,
+      "memory_observed_mb": 31.5,
       "said_done_but_failed": true,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -309,9 +336,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "e65cb901-47f6-4caf-be1c-1d77478c099a",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "17247be0-e26e-44ea-9665-4f0e35960019",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -335,11 +365,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.0635140830418095,
-      "cpu_time_s": 0.041701999999999996,
-      "peak_rss_mb": 9.625,
-      "reaped_cpu_time_s": 0.041701999999999996,
-      "reaped_peak_rss_mb": 27.5,
+      "wall_clock_s": 0.06360424996819347,
+      "cpu_time_s": 0.042473,
+      "peak_rss_mb": 9.421875,
+      "reaped_cpu_time_s": 0.042473,
+      "reaped_peak_rss_mb": 27.6875,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -348,8 +378,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.5,
+      "memory_observed_mb": 27.6875,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -360,9 +392,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "46016eec-54d2-4e13-9c7e-e101723ff8b9",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "f93039a5-c7a9-459e-8933-2d68c23cec9f",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -386,11 +421,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.3362982500111684,
-      "cpu_time_s": 0.061288624,
-      "peak_rss_mb": 139.234375,
-      "reaped_cpu_time_s": 0.049009,
-      "reaped_peak_rss_mb": 27.5625,
+      "wall_clock_s": 0.33763858303427696,
+      "cpu_time_s": 0.06047954,
+      "peak_rss_mb": 139.0,
+      "reaped_cpu_time_s": 0.049000999999999996,
+      "reaped_peak_rss_mb": 27.359375,
       "sample_count": 6,
       "hit_budget_cap": false,
       "orphaned_processes": 1,
@@ -399,8 +434,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 139.234375,
+      "memory_observed_mb": 139.0,
       "said_done_but_failed": true,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "orphaned_processes",
@@ -411,9 +448,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "a60616a9-880c-4bbf-9b0b-6f403f7cab78",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "bea5e03d-d2c5-4127-81c3-0d1d6f0b0c27",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -431,25 +471,25 @@
         "search": 4
       },
       "llm_latency_s": [
-        0.025016708998009562
+        0.024219917017035186
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.025016708998009562,
-      "tool_total_request_s": 0.04819912486709654,
-      "time_to_first_tool_call_s": 0.0489850000012666,
+      "llm_total_request_s": 0.024219917017035186,
+      "tool_total_request_s": 0.05010975000914186,
+      "time_to_first_tool_call_s": 0.04859787505120039,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.18019162490963936,
-      "cpu_time_s": 0.053056,
-      "peak_rss_mb": 31.1875,
-      "reaped_cpu_time_s": 0.053056,
-      "reaped_peak_rss_mb": 31.4375,
+      "wall_clock_s": 0.18805579096078873,
+      "cpu_time_s": 0.052752,
+      "peak_rss_mb": 31.453125,
+      "reaped_cpu_time_s": 0.052752,
+      "reaped_peak_rss_mb": 31.703125,
       "sample_count": 4,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -458,8 +498,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.4375,
+      "memory_observed_mb": 31.703125,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -470,9 +512,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "ed1d12bb-f125-4854-b139-a5cd7652fde1",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "7fd7e899-d7b2-4d09-ac55-c87fe104f80a",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -488,25 +533,25 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.02434166695456952
+        0.025025000097230077
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.02434166695456952,
-      "tool_total_request_s": 0.03537533397320658,
-      "time_to_first_tool_call_s": 0.049820917076431215,
+      "llm_total_request_s": 0.025025000097230077,
+      "tool_total_request_s": 0.0373601249884814,
+      "time_to_first_tool_call_s": 0.04773054097313434,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.12234470900148153,
-      "cpu_time_s": 0.053572999999999996,
-      "peak_rss_mb": 31.28125,
-      "reaped_cpu_time_s": 0.053572999999999996,
-      "reaped_peak_rss_mb": 31.53125,
+      "wall_clock_s": 0.12555208301637322,
+      "cpu_time_s": 0.05161,
+      "peak_rss_mb": 31.515625,
+      "reaped_cpu_time_s": 0.05161,
+      "reaped_peak_rss_mb": 31.78125,
       "sample_count": 3,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -515,8 +560,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.53125,
+      "memory_observed_mb": 31.78125,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -527,9 +574,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "75cc7739-345f-418e-ba21-50803a0138ef",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "a3a4cca5-415e-471d-9e22-7ee877e1c0f1",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -553,11 +603,11 @@
         "tokens_out": 0,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.45944033295381814,
-      "cpu_time_s": 0.038864625,
-      "peak_rss_mb": 27.34375,
-      "reaped_cpu_time_s": 0.038863999999999996,
-      "reaped_peak_rss_mb": 27.34375,
+      "wall_clock_s": 0.46201662509702146,
+      "cpu_time_s": 0.039988124,
+      "peak_rss_mb": 27.390625,
+      "reaped_cpu_time_s": 0.039986999999999995,
+      "reaped_peak_rss_mb": 27.390625,
       "sample_count": 8,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -566,8 +616,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 27.34375,
+      "memory_observed_mb": 27.390625,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "budget_exceeded",
@@ -578,9 +630,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "69d9bb7f-d1de-4f63-9d42-5aad32c10471",
-      "comparison_key": "380f5e619fc9489b49b0eafe3a59ecc22c29410673c01bf0aca509bc83bcb384",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "cd9d81b0-3633-4691-9276-b1234678fa0d",
+      "comparison_key": "7dc2c4a014c0d8a9418dfab69314749c309d6380999cb4855d9c4cac6a67e26b",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -596,25 +651,25 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.025022583082318306
+        0.02503354102373123
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.025022583082318306,
-      "tool_total_request_s": 0.03757629089523107,
-      "time_to_first_tool_call_s": 0.047682708012871444,
+      "llm_total_request_s": 0.02503354102373123,
+      "tool_total_request_s": 0.037580667063593864,
+      "time_to_first_tool_call_s": 0.047386207967065275,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 9000,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.13414391595870256,
-      "cpu_time_s": 0.045182,
-      "peak_rss_mb": 31.484375,
-      "reaped_cpu_time_s": 0.045182,
-      "reaped_peak_rss_mb": 31.71875,
+      "wall_clock_s": 0.13393870799336582,
+      "cpu_time_s": 0.044940999999999995,
+      "peak_rss_mb": 31.328125,
+      "reaped_cpu_time_s": 0.044940999999999995,
+      "reaped_peak_rss_mb": 31.578125,
       "sample_count": 3,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -623,8 +678,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.71875,
+      "memory_observed_mb": 31.578125,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "budget_exceeded",
@@ -635,9 +692,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "7637ef1c-dd77-4448-9a50-5d1e67a0356b",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "f4117286-1d5f-4f5e-a759-0eddf338b86b",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": null,
@@ -653,25 +713,25 @@
         "search": 3
       },
       "llm_latency_s": [
-        0.025021000066772103
+        0.020045290933921933
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.025021000066772103,
-      "tool_total_request_s": 0.03755766700487584,
-      "time_to_first_tool_call_s": 0.0483921249397099,
+      "llm_total_request_s": 0.020045290933921933,
+      "tool_total_request_s": 0.0357388750417158,
+      "time_to_first_tool_call_s": 0.04750833299476653,
       "retry_recovered": false,
       "usage_known_subtotal": {
         "tokens_in": 0,
         "tokens_out": 700,
         "cost_usd": 0
       },
-      "wall_clock_s": 0.12380266701802611,
-      "cpu_time_s": 0.052897,
-      "peak_rss_mb": 31.203125,
-      "reaped_cpu_time_s": 0.052897,
-      "reaped_peak_rss_mb": 31.484375,
+      "wall_clock_s": 0.12492320802994072,
+      "cpu_time_s": 0.051458,
+      "peak_rss_mb": 31.421875,
+      "reaped_cpu_time_s": 0.051458,
+      "reaped_peak_rss_mb": 31.703125,
       "sample_count": 3,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -680,8 +740,10 @@
       "search_pages_fetched": "",
       "all_search_pages_fetched": null,
       "search_total_pages": null,
-      "memory_observed_mb": 31.484375,
+      "memory_observed_mb": 31.703125,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "synthetic-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -692,9 +754,12 @@
       "usage_source": "adapter_reported",
       "cost_source": "adapter_reported",
       "trace_url": null,
-      "run_id": "e6dd8f3f-7584-4284-aef0-6e9052594d20",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "a900af5a-7859-4243-9cdd-69ca4429a192",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -712,25 +777,25 @@
         "mock_search": 4
       },
       "llm_latency_s": [
-        0.0004149999003857374
+        0.0016647919546812773
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.0004149999003857374,
-      "tool_total_request_s": 0.00012870796490460634,
-      "time_to_first_tool_call_s": 0.04307254194281995,
+      "llm_total_request_s": 0.0016647919546812773,
+      "tool_total_request_s": 0.0001282910816371441,
+      "time_to_first_tool_call_s": 0.0466411670204252,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.06315058295149356,
-      "cpu_time_s": 0.044479,
-      "peak_rss_mb": 9.625,
-      "reaped_cpu_time_s": 0.044479,
-      "reaped_peak_rss_mb": 30.25,
+      "wall_clock_s": 0.0605545419966802,
+      "cpu_time_s": 0.047992,
+      "peak_rss_mb": 0.359375,
+      "reaped_cpu_time_s": 0.047992,
+      "reaped_peak_rss_mb": 30.015625,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -739,8 +804,208 @@
       "search_pages_fetched": "1;2;3",
       "all_search_pages_fetched": true,
       "search_total_pages": 3,
-      "memory_observed_mb": 30.25,
+      "memory_observed_mb": 30.015625,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:59952/project/fixture-project/traces/4bd740d1f71bfede73d7a3b5248fa391",
+      "sprint_id": "example-offline-not-scored",
+      "owner": "Example framework owner",
+      "trial_status": "awaiting_model_rubric_review",
+      "run_id": "5c7c8a0c-34ed-45db-b6bd-08c2a400fca8",
+      "comparison_key": "d7d35944ef275a51776051352d6d7f2b4659d475a0a22333baec0abd4f93d7ce",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.0004307499621063471
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.0004307499621063471,
+      "tool_total_request_s": 0.00014254299458116293,
+      "time_to_first_tool_call_s": 0.048039666027761996,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06074375007301569,
+      "cpu_time_s": 0.049628,
+      "peak_rss_mb": 3.953125,
+      "reaped_cpu_time_s": 0.049628,
+      "reaped_peak_rss_mb": 30.09375,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.09375,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "fixture",
+      "trial": 2,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:59952/project/fixture-project/traces/5647fcafdf9fe79711a9c6580b40282c",
+      "sprint_id": "example-offline-not-scored",
+      "owner": "Example framework owner",
+      "trial_status": "awaiting_model_rubric_review",
+      "run_id": "5a669ad7-861f-4ada-bd6a-160b7e5f6aac",
+      "comparison_key": "d7d35944ef275a51776051352d6d7f2b4659d475a0a22333baec0abd4f93d7ce",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.0004392089322209358
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.0004392089322209358,
+      "tool_total_request_s": 0.00015175004955381155,
+      "time_to_first_tool_call_s": 0.048731082933954895,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06375404191203415,
+      "cpu_time_s": 0.05029299999999999,
+      "peak_rss_mb": 3.921875,
+      "reaped_cpu_time_s": 0.05029299999999999,
+      "reaped_peak_rss_mb": 30.03125,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.03125,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "fixture",
+      "trial": 3,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:59952/project/fixture-project/traces/135691ef5ae900ee7235c0eeca1cd466",
+      "sprint_id": "example-offline-not-scored",
+      "owner": "Example framework owner",
+      "trial_status": "awaiting_model_rubric_review",
+      "run_id": "71a76c1c-70d4-4ec5-a074-6692c23251a2",
+      "comparison_key": "d7d35944ef275a51776051352d6d7f2b4659d475a0a22333baec0abd4f93d7ce",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.0004037079634144902
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.0004037079634144902,
+      "tool_total_request_s": 0.00013316795229911804,
+      "time_to_first_tool_call_s": 0.0426321669947356,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06389633403159678,
+      "cpu_time_s": 0.043742,
+      "peak_rss_mb": 10.53125,
+      "reaped_cpu_time_s": 0.043742,
+      "reaped_peak_rss_mb": 30.078125,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.078125,
       "said_done_but_failed": true,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -751,9 +1016,12 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "2d7cd7f5-e203-4093-8375-854d20cbbb64",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "440e8f4e-7486-4380-b1c3-a03cb398b2b9",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -771,25 +1039,25 @@
         "mock_search": 3
       },
       "llm_latency_s": [
-        0.00047312502283602953
+        0.00044262490700930357
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.00047312502283602953,
-      "tool_total_request_s": 0.0001257510157302022,
-      "time_to_first_tool_call_s": 0.04503137501887977,
+      "llm_total_request_s": 0.00044262490700930357,
+      "tool_total_request_s": 0.00011583196464926004,
+      "time_to_first_tool_call_s": 0.04287483298685402,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.06323454203084111,
-      "cpu_time_s": 0.0466,
-      "peak_rss_mb": 8.640625,
-      "reaped_cpu_time_s": 0.0466,
-      "reaped_peak_rss_mb": 30.03125,
+      "wall_clock_s": 0.06320712494198233,
+      "cpu_time_s": 0.044052999999999995,
+      "peak_rss_mb": 9.96875,
+      "reaped_cpu_time_s": 0.044052999999999995,
+      "reaped_peak_rss_mb": 30.25,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -798,8 +1066,10 @@
       "search_pages_fetched": "1;2",
       "all_search_pages_fetched": false,
       "search_total_pages": 3,
-      "memory_observed_mb": 30.03125,
+      "memory_observed_mb": 30.25,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -810,9 +1080,12 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "fcc11bef-b637-42f9-b7e1-9e94638e97fc",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "cacec908-3549-4c05-8a51-804863403d4a",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -830,25 +1103,25 @@
         "mock_search": 4
       },
       "llm_latency_s": [
-        0.00040795805398374796
+        0.00042104197200387716
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.00040795805398374796,
-      "tool_total_request_s": 0.0001292908564209938,
-      "time_to_first_tool_call_s": 0.04299370804801583,
+      "llm_total_request_s": 0.00042104197200387716,
+      "tool_total_request_s": 0.00012925011105835438,
+      "time_to_first_tool_call_s": 0.042916249949485064,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.059742750017903745,
-      "cpu_time_s": 0.044274,
-      "peak_rss_mb": 10.15625,
-      "reaped_cpu_time_s": 0.044274,
-      "reaped_peak_rss_mb": 30.109375,
+      "wall_clock_s": 0.06125562498345971,
+      "cpu_time_s": 0.044247999999999996,
+      "peak_rss_mb": 10.109375,
+      "reaped_cpu_time_s": 0.044247999999999996,
+      "reaped_peak_rss_mb": 30.0625,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -857,8 +1130,10 @@
       "search_pages_fetched": "1;2;3",
       "all_search_pages_fetched": true,
       "search_total_pages": 3,
-      "memory_observed_mb": 30.109375,
+      "memory_observed_mb": 30.0625,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -869,9 +1144,12 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "db5cb237-c026-471d-b057-27012ce26304",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "ad4aef5e-b774-41bf-9838-79dfa81a4f5c",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -889,25 +1167,25 @@
         "mock_search": 4
       },
       "llm_latency_s": [
-        0.000502833048813045
+        0.0004112499300390482
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.000502833048813045,
-      "tool_total_request_s": 0.00014566595200449228,
-      "time_to_first_tool_call_s": 0.04450591607019305,
+      "llm_total_request_s": 0.0004112499300390482,
+      "tool_total_request_s": 0.0001429171534255147,
+      "time_to_first_tool_call_s": 0.042933707940392196,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.06358850002288818,
-      "cpu_time_s": 0.046372,
-      "peak_rss_mb": 9.6875,
-      "reaped_cpu_time_s": 0.046372,
-      "reaped_peak_rss_mb": 29.96875,
+      "wall_clock_s": 0.06343770795501769,
+      "cpu_time_s": 0.044101,
+      "peak_rss_mb": 10.0,
+      "reaped_cpu_time_s": 0.044101,
+      "reaped_peak_rss_mb": 30.359375,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -916,8 +1194,10 @@
       "search_pages_fetched": "1;2;3",
       "all_search_pages_fetched": true,
       "search_total_pages": 3,
-      "memory_observed_mb": 29.96875,
+      "memory_observed_mb": 30.359375,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -928,9 +1208,12 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "c7f453b1-d15e-4916-9d09-5022ec4c1ebf",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "02627028-a8af-4059-ba7e-89b89aa65300",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -948,25 +1231,25 @@
         "mock_search": 4
       },
       "llm_latency_s": [
-        0.00043470796663314104
+        0.0004205000586807728
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.00043470796663314104,
-      "tool_total_request_s": 0.00014229200314730406,
-      "time_to_first_tool_call_s": 0.046259499969892204,
+      "llm_total_request_s": 0.0004205000586807728,
+      "tool_total_request_s": 0.00014262506738305092,
+      "time_to_first_tool_call_s": 0.04233550000935793,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.06405079190153629,
-      "cpu_time_s": 0.047545,
-      "peak_rss_mb": 6.953125,
-      "reaped_cpu_time_s": 0.047545,
-      "reaped_peak_rss_mb": 30.03125,
+      "wall_clock_s": 0.06316929101012647,
+      "cpu_time_s": 0.043644999999999996,
+      "peak_rss_mb": 10.1875,
+      "reaped_cpu_time_s": 0.043644999999999996,
+      "reaped_peak_rss_mb": 29.84375,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -975,8 +1258,10 @@
       "search_pages_fetched": "1;2;3",
       "all_search_pages_fetched": true,
       "search_total_pages": 3,
-      "memory_observed_mb": 30.03125,
+      "memory_observed_mb": 29.84375,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -987,9 +1272,12 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "9a717976-54c5-4e65-b712-351fe78bf6d9",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "d7c920f0-45a4-4e2d-b12d-b46538a7c9ff",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -1007,25 +1295,25 @@
         "mock_search": 4
       },
       "llm_latency_s": [
-        0.0005013749469071627
+        0.00042591604869812727
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.0005013749469071627,
-      "tool_total_request_s": 0.00014354102313518524,
-      "time_to_first_tool_call_s": 0.04377158300485462,
+      "llm_total_request_s": 0.00042591604869812727,
+      "tool_total_request_s": 0.00013783189933747053,
+      "time_to_first_tool_call_s": 0.042872333084233105,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.06358429102692753,
-      "cpu_time_s": 0.045399999999999996,
-      "peak_rss_mb": 10.359375,
-      "reaped_cpu_time_s": 0.045399999999999996,
-      "reaped_peak_rss_mb": 30.1875,
+      "wall_clock_s": 0.06358712504152209,
+      "cpu_time_s": 0.044346,
+      "peak_rss_mb": 9.9375,
+      "reaped_cpu_time_s": 0.044346,
+      "reaped_peak_rss_mb": 30.125,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -1034,8 +1322,10 @@
       "search_pages_fetched": "1;2;3",
       "all_search_pages_fetched": true,
       "search_total_pages": 3,
-      "memory_observed_mb": 30.1875,
+      "memory_observed_mb": 30.125,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -1046,9 +1336,12 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "7702bdb3-fb31-487a-b2a1-23c11c59f2ca",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "e895861d-a2c5-409d-9452-f909dbb6b818",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -1066,25 +1359,25 @@
         "mock_search": 4
       },
       "llm_latency_s": [
-        0.0019330830546095967
+        0.0016329999780282378
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.0019330830546095967,
-      "tool_total_request_s": 0.00013549975119531155,
-      "time_to_first_tool_call_s": 0.04516954207792878,
+      "llm_total_request_s": 0.0016329999780282378,
+      "tool_total_request_s": 0.00014908204320818186,
+      "time_to_first_tool_call_s": 0.04274149995762855,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.06397970800753683,
-      "cpu_time_s": 0.046387,
-      "peak_rss_mb": 8.484375,
-      "reaped_cpu_time_s": 0.046387,
-      "reaped_peak_rss_mb": 30.171875,
+      "wall_clock_s": 0.06383541692048311,
+      "cpu_time_s": 0.043923000000000004,
+      "peak_rss_mb": 9.640625,
+      "reaped_cpu_time_s": 0.043923000000000004,
+      "reaped_peak_rss_mb": 30.109375,
       "sample_count": 2,
       "hit_budget_cap": false,
       "orphaned_processes": 0,
@@ -1093,8 +1386,10 @@
       "search_pages_fetched": "1;2;3",
       "all_search_pages_fetched": true,
       "search_total_pages": 3,
-      "memory_observed_mb": 30.171875,
+      "memory_observed_mb": 30.109375,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "completed",
@@ -1105,9 +1400,12 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "e1c0c130-d5e2-4517-95c3-cb8e64ecc23d",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
-      "quality_verdict": "pass"
+      "sprint_id": null,
+      "run_id": "b8a7c67f-baa6-4b9f-b631-e383487122ba",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
     },
     {
       "tokens_in": 1200,
@@ -1125,25 +1423,25 @@
         "mock_search": 4
       },
       "llm_latency_s": [
-        0.0004744590260088444
+        0.00040254194755107164
       ],
       "models_observed": [
         "synthetic-no-provider"
       ],
-      "llm_total_request_s": 0.0004744590260088444,
-      "tool_total_request_s": 0.0001577091170474887,
-      "time_to_first_tool_call_s": 0.043354750028811395,
+      "llm_total_request_s": 0.00040254194755107164,
+      "tool_total_request_s": 0.00014116789679974318,
+      "time_to_first_tool_call_s": 0.04312779102474451,
       "retry_recovered": true,
       "usage_known_subtotal": {
         "tokens_in": 1200,
         "tokens_out": 700,
         "cost_usd": 0.004
       },
-      "wall_clock_s": 0.07068191701546311,
-      "cpu_time_s": 0.040684,
-      "peak_rss_mb": 29.828125,
-      "reaped_cpu_time_s": 0.040684,
-      "reaped_peak_rss_mb": 30.046875,
+      "wall_clock_s": 0.06729066604748368,
+      "cpu_time_s": 0.040206,
+      "peak_rss_mb": 29.953125,
+      "reaped_cpu_time_s": 0.040206,
+      "reaped_peak_rss_mb": 30.234375,
       "sample_count": 2,
       "hit_budget_cap": true,
       "orphaned_processes": 0,
@@ -1152,8 +1450,10 @@
       "search_pages_fetched": "1;2;3",
       "all_search_pages_fetched": true,
       "search_total_pages": 3,
-      "memory_observed_mb": 30.046875,
+      "memory_observed_mb": 30.234375,
       "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
       "framework": "shared-http-fixture",
       "trial": 1,
       "runtime_status": "budget_exceeded",
@@ -1164,15 +1464,466 @@
       "usage_source": "provider_usage_via_proxy",
       "cost_source": "provider_response_usage.cost",
       "trace_url": null,
-      "run_id": "0be342dc-c997-422d-bb5d-1fd5f54d5fca",
-      "comparison_key": "c9cf404afbbb017c28a04cffd6b6d18285a708bd23a0da37004773835eea98fa",
-      "quality_verdict": "fail"
+      "sprint_id": null,
+      "run_id": "5185fdb3-dc4d-4785-8905-1dce88fd82e2",
+      "comparison_key": "6892ebcecaa64bc4d83fab14ffa6f41a6928835968f13c39bb97d96b0ee9584a",
+      "quality_verdict": "fail",
+      "langfuse_export_status": "not_requested",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.0004115840420126915
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.0004115840420126915,
+      "tool_total_request_s": 0.00014558201655745506,
+      "time_to_first_tool_call_s": 0.047896457952447236,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06363350001629442,
+      "cpu_time_s": 0.049356,
+      "peak_rss_mb": 4.234375,
+      "reaped_cpu_time_s": 0.049356,
+      "reaped_peak_rss_mb": 30.25,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.25,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60038/project/fixture-project/traces/d9e9d0609661e2f29c3e8c1f2711eecb",
+      "sprint_id": null,
+      "run_id": "afa29a1d-9bef-4703-944a-43d6404b30ed",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00045612500980496407
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00045612500980496407,
+      "tool_total_request_s": 0.00012808397877961397,
+      "time_to_first_tool_call_s": 0.0461125000147149,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06027499993797392,
+      "cpu_time_s": 0.047033,
+      "peak_rss_mb": 4.28125,
+      "reaped_cpu_time_s": 0.047033,
+      "reaped_peak_rss_mb": 30.078125,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.078125,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 0,
+      "workflow_status": "missing_evidence",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60005/project/fixture-project/traces/41a390c0f07c2a6c559954d4814500e3",
+      "sprint_id": null,
+      "run_id": "3ec0741c-aba8-4b0d-8c94-77c361c2511f",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00042979198042303324
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00042979198042303324,
+      "tool_total_request_s": 0.00018845906015485525,
+      "time_to_first_tool_call_s": 0.048238332965411246,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.059311583056114614,
+      "cpu_time_s": 0.049899,
+      "peak_rss_mb": 4.28125,
+      "reaped_cpu_time_s": 0.049899,
+      "reaped_peak_rss_mb": 30.078125,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.078125,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": null,
+      "sprint_id": null,
+      "run_id": "b3ccec05-181c-4bd4-aa86-3e3b49a0b583",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "failed",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.0016975830076262355
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.0016975830076262355,
+      "tool_total_request_s": 0.0001952899619936943,
+      "time_to_first_tool_call_s": 0.05011816695332527,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.0642332499846816,
+      "cpu_time_s": 0.051609999999999996,
+      "peak_rss_mb": 4.265625,
+      "reaped_cpu_time_s": 0.051609999999999996,
+      "reaped_peak_rss_mb": 30.15625,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.15625,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:59993/project/fixture-project/traces/5ffc392035f56664a76d4861698fa9c4",
+      "sprint_id": null,
+      "run_id": "7a3fd1dc-4798-4019-a19b-40f31b200525",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00041495903860777617
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00041495903860777617,
+      "tool_total_request_s": 0.00012908386997878551,
+      "time_to_first_tool_call_s": 0.046431833994574845,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.05880158394575119,
+      "cpu_time_s": 0.047871,
+      "peak_rss_mb": 4.359375,
+      "reaped_cpu_time_s": 0.047871,
+      "reaped_peak_rss_mb": 29.90625,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 29.90625,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "inconsistent",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "looped_or_quit_early",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60026/project/fixture-project/traces/ad66a7cc4df82bb2163d0fa0b3d340c4",
+      "sprint_id": null,
+      "run_id": "000cce65-6e89-4b6b-a299-7fbe4f40ac12",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.000683249905705452
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.000683249905705452,
+      "tool_total_request_s": 0.0001421249471604824,
+      "time_to_first_tool_call_s": 0.04830837494228035,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06394683301914483,
+      "cpu_time_s": 0.05061499999999999,
+      "peak_rss_mb": 5.578125,
+      "reaped_cpu_time_s": 0.05061499999999999,
+      "reaped_peak_rss_mb": 29.984375,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 29.984375,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "evidenced",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": null,
+      "sprint_id": null,
+      "run_id": "be8974ca-4910-4bf7-b1d3-505a5b5b8d4f",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "failed",
+      "model_rubric_status": "pending_external_review"
+    },
+    {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004,
+      "llm_calls": 1,
+      "tool_calls": 4,
+      "steps": 1,
+      "retries": 1,
+      "errors": 1,
+      "errors_by_type": {
+        "http_429": 1
+      },
+      "tool_calls_by_name": {
+        "mock_search": 4
+      },
+      "llm_latency_s": [
+        0.00044774997513741255
+      ],
+      "models_observed": [
+        "synthetic-no-provider"
+      ],
+      "llm_total_request_s": 0.00044774997513741255,
+      "tool_total_request_s": 0.0001354999840259552,
+      "time_to_first_tool_call_s": 0.04585608409252018,
+      "retry_recovered": true,
+      "usage_known_subtotal": {
+        "tokens_in": 1200,
+        "tokens_out": 700,
+        "cost_usd": 0.004
+      },
+      "wall_clock_s": 0.06332266703248024,
+      "cpu_time_s": 0.047303,
+      "peak_rss_mb": 5.03125,
+      "reaped_cpu_time_s": 0.047303,
+      "reaped_peak_rss_mb": 30.015625,
+      "sample_count": 2,
+      "hit_budget_cap": false,
+      "orphaned_processes": 0,
+      "steps_source": "proxy_model_request_attempts",
+      "writes_outside_output": 0,
+      "search_pages_fetched": "1;2;3",
+      "all_search_pages_fetched": true,
+      "search_total_pages": 3,
+      "memory_observed_mb": 30.015625,
+      "said_done_but_failed": false,
+      "workflow_phase_count": 3,
+      "workflow_status": "inconsistent",
+      "framework": "synthetic-sprint-fixture",
+      "trial": 1,
+      "runtime_status": "completed",
+      "measurement_status": "complete",
+      "budget_status": "within_observed_limits",
+      "failure_tags": "looped_or_quit_early",
+      "warning_tags": "",
+      "usage_source": "provider_usage_via_proxy",
+      "cost_source": "provider_response_usage.cost",
+      "trace_url": "http://127.0.0.1:60014/project/fixture-project/traces/1560116fa2f69ee70a921e59962a9225",
+      "sprint_id": null,
+      "run_id": "49adf9ee-ef81-48e6-9981-436e3c647199",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "quality_verdict": "pass",
+      "langfuse_export_status": "accepted",
+      "model_rubric_status": "pending_external_review"
     }
   ],
   "aggregates": [
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "76f237269cd072c306f6873f25c9297597ce36b0d233d96f053362d5bcbf95a3",
+      "comparison_key": "01f981c729d72f893c0be496dfc320362789949fea44c5f7a96e324ccbe8e18f",
       "attempts": 2,
       "complete_measurements": 0,
       "quality_passing_completed_runs": 0,
@@ -1185,7 +1936,7 @@
     },
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "cd03ce45b596bc8d10f11cc49e145998241f4c67c67d12b6fccf96812830d413",
+      "comparison_key": "ba8bf8176b41674d6555381f4d94aaa1037ffe0bf1767c0565f7cf13773cc4b5",
       "attempts": 1,
       "complete_measurements": 0,
       "quality_passing_completed_runs": 0,
@@ -1198,23 +1949,23 @@
     },
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "f53f464698f414688f8b5563a1c04f21bcbe390631bcf9bea6eb4afd5c4f06c6",
+      "comparison_key": "7f13b338f205c82702774bd0451a491454e2a8e5f43299c7e54994d0bba6cef7",
       "attempts": 9,
       "complete_measurements": 3,
       "quality_passing_completed_runs": 2,
       "total_cost_usd": null,
       "cost_per_passing_run": null,
       "tokens_sample_stdev": 0.0,
-      "completed_wall_clock_median_s": 0.12285904202144593,
+      "completed_wall_clock_median_s": 0.18457837495952845,
       "completed_wall_clock_range_s": [
-        0.12234470900148153,
-        0.18019162490963936
+        0.12555208301637322,
+        0.18805579096078873
       ],
       "timeouts": 0
     },
     {
       "framework": "synthetic-fixture",
-      "comparison_key": "380f5e619fc9489b49b0eafe3a59ecc22c29410673c01bf0aca509bc83bcb384",
+      "comparison_key": "7dc2c4a014c0d8a9418dfab69314749c309d6380999cb4855d9c4cac6a67e26b",
       "attempts": 1,
       "complete_measurements": 0,
       "quality_passing_completed_runs": 0,
@@ -1226,24 +1977,40 @@
       "timeouts": 1
     },
     {
+      "framework": "fixture",
+      "comparison_key": "d7d35944ef275a51776051352d6d7f2b4659d475a0a22333baec0abd4f93d7ce",
+      "attempts": 3,
+      "complete_measurements": 3,
+      "quality_passing_completed_runs": 3,
+      "total_cost_usd": 0.012,
+      "cost_per_passing_run": 0.004,
+      "tokens_sample_stdev": 0.0,
+      "completed_wall_clock_median_s": 0.06074375007301569,
+      "completed_wall_clock_range_s": [
+        0.0605545419966802,
+        0.06375404191203415
+      ],
+      "timeouts": 0
+    },
+    {
       "framework": "shared-http-fixture",
-      "comparison_key": "7970aa350300d50a4f16cfcbe9b704e939664f8bdff0cea02bd041057fea12a1",
+      "comparison_key": "7ce689a150c925f0d06440e5bf34d735f05fb07e945bf61c6fa46aa2f4a355d9",
       "attempts": 7,
       "complete_measurements": 7,
       "quality_passing_completed_runs": 6,
       "total_cost_usd": 0.028,
       "cost_per_passing_run": 0.004666666666666667,
       "tokens_sample_stdev": 0.0,
-      "completed_wall_clock_median_s": 0.06358429102692753,
+      "completed_wall_clock_median_s": 0.06343770795501769,
       "completed_wall_clock_range_s": [
-        0.059742750017903745,
-        0.06405079190153629
+        0.06125562498345971,
+        0.06389633403159678
       ],
       "timeouts": 0
     },
     {
       "framework": "shared-http-fixture",
-      "comparison_key": "c9cf404afbbb017c28a04cffd6b6d18285a708bd23a0da37004773835eea98fa",
+      "comparison_key": "6892ebcecaa64bc4d83fab14ffa6f41a6928835968f13c39bb97d96b0ee9584a",
       "attempts": 1,
       "complete_measurements": 1,
       "quality_passing_completed_runs": 0,
@@ -1253,9 +2020,25 @@
       "completed_wall_clock_median_s": null,
       "completed_wall_clock_range_s": null,
       "timeouts": 0
+    },
+    {
+      "framework": "synthetic-sprint-fixture",
+      "comparison_key": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c",
+      "attempts": 7,
+      "complete_measurements": 7,
+      "quality_passing_completed_runs": 7,
+      "total_cost_usd": 0.028,
+      "cost_per_passing_run": 0.004,
+      "tokens_sample_stdev": 0.0,
+      "completed_wall_clock_median_s": 0.06332266703248024,
+      "completed_wall_clock_range_s": [
+        0.05880158394575119,
+        0.0642332499846816
+      ],
+      "timeouts": 0
     }
   ],
-  "comparison_groups": 6,
+  "comparison_groups": 8,
   "notes": [
     "Each comparison_key is a separate experiment contract and machine profile.",
     "Null cost means unknown, including when any attempt has incomplete measurements; failed-attempt cost is never silently omitted.",

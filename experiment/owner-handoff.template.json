@@ -1,0 +1,20 @@
+{
+  "framework": null,
+  "owner": null,
+  "sprint_id": null,
+  "trial_reports": [],
+  "langfuse_trace_urls": [],
+  "live_trace_visibility_confirmed": null,
+  "model_rubric_results": [],
+  "grading_model_and_version": null,
+  "reviewer": null,
+  "failure_tags_and_evidence": [],
+  "setup_minutes": null,
+  "direct_dependencies_added": null,
+  "agent_lines_written": null,
+  "tracing_effort": null,
+  "tool_allowlist_verified": null,
+  "sdk_settings_verified": null,
+  "no_human_help_during_trials": null,
+  "one_learning": null
+}

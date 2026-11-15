@@ -1,0 +1,9 @@
+{
+  "status": "failed",
+  "trace_id": "80b37d55beb479559850fb87419687da",
+  "trace_url": null,
+  "accepted_batches": 0,
+  "total_batches": 1,
+  "visibility": "not_checked",
+  "error": "Langfuse reported partial ingestion; retain and replay evidence"
+}

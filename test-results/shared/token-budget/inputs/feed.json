@@ -30,6 +30,7 @@
   {
     "id": 5,
     "topic": "outdated topic",
+    "summary": "Old announcement uses the banned word synergy.",
     "score": 100,
     "url": "https://example.test/old",
     "published_at": "2026-10-01T00:00:00Z"

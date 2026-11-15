@@ -24,6 +24,8 @@ COLUMNS = [
     "retries",
     "steps",
     "steps_source",
+    "workflow_phase_count",
+    "workflow_status",
     "errors",
     "retry_recovered",
     "hit_budget_cap",
@@ -39,6 +41,11 @@ COLUMNS = [
     "usage_source",
     "cost_source",
     "trace_url",
+    "langfuse_export_status",
+    "model_rubric_status",
+    "sprint_id",
+    "owner",
+    "trial_status",
     "run_id",
     "comparison_key",
 ]
@@ -61,6 +68,10 @@ def summarize(report_paths):
                 **report["metrics"],
                 **{k: report.get(k) for k in COLUMNS if k in report},
                 "quality_verdict": quality["verdict"],
+                "langfuse_export_status": report.get("langfuse_export", {}).get(
+                    "status"
+                ),
+                "model_rubric_status": report.get("model_rubric", {}).get("status"),
                 "failure_tags": ";".join(tags),
                 "warning_tags": ";".join(warnings),
                 "search_pages_fetched": ";".join(

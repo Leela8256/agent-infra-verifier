@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import math
 import os
 import platform
 import shutil
@@ -16,6 +17,7 @@ import psutil
 
 from . import __version__
 from .findings import failure_tags
+from .phases import PhaseEvidence
 from .quality import DEFAULT_VERIFIER, evaluate
 from .resources import ProcessTree, rusage_metrics
 from .services import SharedServices, validate_upstream
@@ -55,11 +57,36 @@ def run(
     model_upstream="https://openrouter.ai/api/v1",
     model_key_env="OPENROUTER_API_KEY",
     search_feed=None,
+    task_prompt=None,
+    filesystem_mode="audit",
+    require_phases=False,
+    langfuse="off",
+    request_timeout_s=15,
+    enforce_model_settings=False,
+    sprint_id=None,
 ):
     if os.name != "posix":
         raise ValueError("local runner currently supports macOS and Linux")
     if not command:
         raise ValueError("provide an agent command after --")
+    if filesystem_mode not in {"audit", "enforce"} or langfuse not in {
+        "off",
+        "required",
+    }:
+        raise ValueError("invalid filesystem or Langfuse mode")
+    if (
+        isinstance(request_timeout_s, bool)
+        or not isinstance(request_timeout_s, (int, float))
+        or not math.isfinite(request_timeout_s)
+        or request_timeout_s <= 0
+    ):
+        raise ValueError("request timeout must be positive and finite")
+    if enforce_model_settings and experiment is None:
+        raise ValueError("model settings enforcement requires --experiment")
+    if langfuse == "required":
+        from .langfuse_export import settings
+
+        settings()  # Fail before launching if credentials/project are absent.
     cwd = Path(cwd or Path.cwd()).resolve(strict=True)
     source_cwd = cwd
     if telemetry_source not in {"shared_services", "adapter_reported"}:
@@ -67,6 +94,9 @@ def run(
     service_feed = None
     upstream_key = ""
     inputs = {}
+    if task_prompt:
+        path = Path(task_prompt).resolve(strict=True)
+        inputs["prompt.txt"] = {"path": str(path), "sha256": sha256(path)}
     declared_experiment = None
     if experiment is not None:
         declared_experiment = json.loads(Path(experiment).read_text())
@@ -137,6 +167,11 @@ def run(
     cwd.mkdir()
     output = cwd / "output"
     output.mkdir()
+    write_guard = {"backend": "none", "probe": "not_requested"}
+    if filesystem_mode == "enforce":
+        from .sandbox import probe
+
+        write_guard = probe(output)
     (run_dir / "output").symlink_to("workspace/output", target_is_directory=True)
     before = snapshot(cwd)
     # Resolve executable and an explicit script path before entering the empty cwd.
@@ -177,6 +212,13 @@ def run(
         if service_feed is not None
         else None,
         "workspace_audit": "fresh-cwd-before-after-v1",
+        "filesystem_mode": filesystem_mode,
+        "write_guard_backend": write_guard["backend"],
+        "require_phases": require_phases,
+        "langfuse": langfuse,
+        "request_timeout_s": request_timeout_s,
+        "enforce_model_settings": enforce_model_settings,
+        "sprint_id": sprint_id,
     }
     comparison_key = hashlib.sha256(
         json.dumps(contract, sort_keys=True).encode()
@@ -208,11 +250,22 @@ def run(
         telemetry_source=telemetry_source,
         model_upstream=contract["model_upstream"],
         search_contract=contract["search_contract"],
+        write_guard=write_guard,
+        sprint_id=sprint_id,
     )
     write_json(run_dir / "manifest.json", manifest)
     store = EventStore(run_dir / "events.jsonl", run_id)
+    phases = PhaseEvidence(store, output, run_dir / "phase-evidence")
     receiver = (
-        SharedServices(store, service_feed, model_upstream, upstream_key)
+        SharedServices(
+            store,
+            service_feed,
+            model_upstream,
+            upstream_key,
+            timeout=request_timeout_s,
+            phases=phases,
+            model_settings=declared_experiment if enforce_model_settings else None,
+        )
         if service_feed is not None
         else Receiver(store)
     )
@@ -228,6 +281,9 @@ def run(
     elapsed = 0
     orphan_count = 0
     env = dict(os.environ)
+    for key in list(env):
+        if key.startswith("LANGFUSE_"):
+            env.pop(key)
     if service_feed is not None:
         # The provider credential stays in the parent. No event receiver is exposed.
         for key in {
@@ -246,6 +302,12 @@ def run(
         PYTHONDONTWRITEBYTECODE="1",
     )
     store.started = started
+    if task_prompt:
+        env["INFRA_TASK_PROMPT"] = str(frozen / "prompt.txt")
+    if filesystem_mode == "enforce":
+        from .sandbox import command as guarded_command
+
+        launch_command = guarded_command(launch_command, output)
     try:
         with (
             (run_dir / "stdout.log").open("wb") as stdout,
@@ -286,7 +348,7 @@ def run(
                     limit = getattr(config, key)
                     if limit is not None and value > limit:
                         hits.append(key)
-                if hits:
+                if hits and config.enforce_budgets:
                     cap_triggered = sorted(set(hits))
                     reason = "budget_exceeded"
                     tree.kill()
@@ -392,6 +454,16 @@ def run(
         )
         write_json(run_dir / "quality.json", quality)
     metrics["said_done_but_failed"] = exit_code == 0 and quality["verdict"] == "fail"
+    workflow = phases.result(
+        {
+            name: sha256(output / name)
+            for name in ("blog.md", "meta.json")
+            if (output / name).is_file()
+        }
+    )
+    metrics.update(
+        workflow_phase_count=workflow["count"], workflow_status=workflow["status"]
+    )
     infra_checks = [
         {
             "id": "working_directory_scope",
@@ -425,9 +497,24 @@ def run(
                 },
             }
         )
+    if require_phases:
+        infra_checks.append(
+            {
+                "id": "draft_check_fix_evidence",
+                "hard": True,
+                "tag": "looped_or_quit_early",
+                "result": "pass"
+                if workflow["status"] == "evidenced"
+                else "unscored"
+                if workflow["status"] == "missing_evidence"
+                else "fail",
+                "detail": workflow["issues"],
+            }
+        )
     report = {
         "schema_version": 1,
         "run_id": run_id,
+        "sprint_id": sprint_id,
         "framework": framework,
         "trial": trial,
         "comparison_key": comparison_key,
@@ -469,6 +556,12 @@ def run(
         "quality": quality,
         "infra_checks": infra_checks,
         "workspace_audit": workspace_audit,
+        "write_guard": write_guard,
+        "workflow": workflow,
+        "requires_phase_evidence": require_phases,
+        "requires_langfuse": langfuse == "required",
+        "langfuse_export": {"status": "not_requested"},
+        "model_rubric": {"status": "pending_external_review", "verdict": None},
         "trace_url": trace_url,
         "output_hashes": {
             name: sha256(output / name)
@@ -478,4 +571,10 @@ def run(
     }
     report["failure_tags"], report["warning_tags"] = failure_tags(report)
     write_json(run_dir / "report.json", report)
+    if langfuse == "required":
+        from .langfuse_export import export
+
+        report["langfuse_export"] = export(run_dir)
+        report["trace_url"] = report["langfuse_export"].get("trace_url")
+        write_json(run_dir / "report.json", report)
     return report

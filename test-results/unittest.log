@@ -23,6 +23,21 @@ test_stream_error_inside_http_200_is_recorded (test_shared_services.SharedRunTes
 test_streaming_usage_not_double_counted (test_shared_services.SharedRunTests.test_streaming_usage_not_double_counted) ... ok
 test_truncated_stream_records_error (test_shared_services.SharedRunTests.test_truncated_stream_records_error) ... ok
 test_zero_exit_quality_fail_is_false_done (test_shared_services.SharedRunTests.test_zero_exit_quality_fail_is_false_done) ... ok
+test_freeze_and_sprint_trial_prevent_overwrite (test_sprint.SprintTests.test_freeze_and_sprint_trial_prevent_overwrite) ... ok
+test_metadata_fix_and_additional_review_cycle_are_accepted (test_sprint.SprintTests.test_metadata_fix_and_additional_review_cycle_are_accepted) ... ok
+test_missing_phases_never_claim_workflow_completion (test_sprint.SprintTests.test_missing_phases_never_claim_workflow_completion) ... ok
+test_model_settings_mismatch_not_forwarded (test_sprint.SprintTests.test_model_settings_mismatch_not_forwarded) ... ok
+test_native_guard_blocks_absolute_symlink_truncate_and_child_writes (test_sprint.SprintTests.test_native_guard_blocks_absolute_symlink_truncate_and_child_writes) ... ok
+test_native_guard_in_real_agent_run (test_sprint.SprintTests.test_native_guard_in_real_agent_run) ... ok
+test_phase_evidence_and_langfuse_export (test_sprint.SprintTests.test_phase_evidence_and_langfuse_export) ... ok
+test_preflight_detects_missing_old_and_banned_traps (test_sprint.SprintTests.test_preflight_detects_missing_old_and_banned_traps) ... ok
+test_record_only_budgets_do_not_stop_agent (test_sprint.SprintTests.test_record_only_budgets_do_not_stop_agent) ... ok
+test_tampered_bundle_rejected_before_agent_runs (test_sprint.SprintTests.test_tampered_bundle_rejected_before_agent_runs) ... ok
+test_template_is_explicitly_not_ready (test_sprint.SprintTests.test_template_is_explicitly_not_ready) ... ok
+test_trace_export_replay_preserves_ids_and_does_not_rerun_agent (test_sprint.SprintTests.test_trace_export_replay_preserves_ids_and_does_not_rerun_agent) ... ok
+test_trace_partial_ingestion_blocks_success (test_sprint.SprintTests.test_trace_partial_ingestion_blocks_success) ... ok
+test_unfixed_findings_are_visible (test_sprint.SprintTests.test_unfixed_findings_are_visible) ... ok
+test_wrong_order_is_detected_after_run (test_sprint.SprintTests.test_wrong_order_is_detected_after_run) ... ok
 test_contract_hash_changes (test_verifier.ConfigTests.test_contract_hash_changes) ... ok
 test_invalid_limits_rejected (test_verifier.ConfigTests.test_invalid_limits_rejected) ... ok
 test_unknown_fields_rejected (test_verifier.ConfigTests.test_unknown_fields_rejected) ... ok
@@ -62,6 +77,6 @@ test_retry_count_and_recovery (test_verifier.TelemetryTests.test_retry_count_and
 test_zero_usage_only_with_finish_and_coverage (test_verifier.TelemetryTests.test_zero_usage_only_with_finish_and_coverage) ... ok
 
 ----------------------------------------------------------------------
-Ran 62 tests in 6.711s
+Ran 77 tests in 8.304s
 
 OK

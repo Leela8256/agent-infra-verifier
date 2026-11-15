@@ -45,11 +45,22 @@ def validate_upstream(url):
 
 
 class SharedServices:
-    def __init__(self, store, feed, upstream, api_key, *, timeout=15):
+    def __init__(
+        self,
+        store,
+        feed,
+        upstream,
+        api_key,
+        *,
+        timeout=15,
+        phases=None,
+        model_settings=None,
+    ):
         parsed = validate_upstream(upstream)
         if not isinstance(feed, list) or len(feed) < 3:
             raise ValueError("shared search requires at least three feed records")
         self.store, self.feed = store, feed
+        self.phases, self.model_settings = phases, model_settings
         self.upstream, self.api_key, self.timeout = (
             upstream.rstrip("/"),
             api_key,
@@ -133,6 +144,13 @@ class SharedServices:
                     return
                 if self.path == "/search":
                     owner.search(self, data)
+                elif self.path == "/phase" and owner.phases is not None:
+                    try:
+                        with owner.lock:
+                            result = owner.phases.capture(data)
+                        self.reply(200, result)
+                    except (ValueError, OSError) as error:
+                        self.reply(400, {"error": str(error)})
                 elif self.path in {"/v1/chat/completions", "/v1/responses"}:
                     owner.model(self, data)
                 else:
@@ -166,6 +184,7 @@ class SharedServices:
             "OPENROUTER_BASE_URL": base + "/v1",
             "INFRA_PROXY_KEY": self.token,
             "INFRA_SEARCH_URL": base + "/search",
+            "INFRA_PHASE_URL": base + "/phase",
         }
 
     def begin(self, kind, name, fingerprint, **extra):
@@ -297,6 +316,47 @@ class SharedServices:
             event.update(status="error", error_type="provider_error")
 
     def model(self, handler, data):
+        if self.model_settings:
+            expected = self.model_settings
+            token_key = (
+                "max_output_tokens"
+                if handler.path.endswith("responses")
+                else "max_tokens"
+            )
+            token_keys = (
+                ("max_output_tokens",)
+                if token_key == "max_output_tokens"
+                else ("max_tokens", "max_completion_tokens")
+            )
+            mismatches = [
+                key
+                for key, value in (
+                    ("model", expected["model"]),
+                    ("temperature", expected["temperature"]),
+                )
+                if data.get(key, value) != value
+            ]
+            if any(
+                data.get(key, expected["max_tokens"]) != expected["max_tokens"]
+                for key in token_keys
+            ):
+                mismatches.append("max_tokens")
+            if mismatches:
+                self.store.invalid(
+                    "frozen model settings mismatch: " + ", ".join(mismatches)
+                )
+                handler.reply(
+                    409,
+                    {
+                        "error": "request conflicts with frozen model settings",
+                        "fields": mismatches,
+                    },
+                )
+                return
+            data = dict(data)
+            data.update(model=expected["model"], temperature=expected["temperature"])
+            if token_key == "max_output_tokens" or "max_completion_tokens" not in data:
+                data[token_key] = expected["max_tokens"]
         model = data.get("model")
         if not isinstance(model, str) or not 1 <= len(model) <= 256:
             handler.reply(400, {"error": "model is required"})
@@ -312,6 +372,9 @@ class SharedServices:
         if event is None:
             handler.reply(503, {"error": "run closed"})
             return
+        if self.model_settings:
+            event["request_json"] = body.decode()[:65536]
+            event["request_truncated"] = len(body.decode()) > 65536
         request = urllib.request.Request(
             self.upstream + handler.path.removeprefix("/v1"),
             data=body,
@@ -383,6 +446,15 @@ class SharedServices:
                         if len(line) > 1024 * 1024 or size > 64 * 1024 * 1024:
                             raise ValueError("upstream stream exceeds capture limit")
                         if line.startswith(b"data:"):
+                            if self.model_settings:
+                                text = event.get("response_text", "") + line.decode(
+                                    "utf8", errors="replace"
+                                )
+                                event["response_text"] = text[:65536]
+                                event["response_truncated"] = (
+                                    event.get("response_truncated", False)
+                                    or len(text) > 65536
+                                )
                             value = line[5:].strip()
                             if value == b"[DONE]":
                                 terminal = True
@@ -409,6 +481,11 @@ class SharedServices:
                     raw = response.read(64 * 1024 * 1024 + 1)
                     if len(raw) > 64 * 1024 * 1024:
                         raise ValueError("upstream response exceeds capture limit")
+                    if self.model_settings:
+                        event["response_text"] = raw.decode("utf8", errors="replace")[
+                            :65536
+                        ]
+                        event["response_truncated"] = len(raw) > 65536
                     try:
                         self.usage(event, json.loads(raw))
                     except ValueError:

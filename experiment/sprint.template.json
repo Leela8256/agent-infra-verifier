@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "draft",
+  "sprint_id": null,
+  "framework_owners": null,
+  "model": null,
+  "provider": null,
+  "model_upstream": "https://openrouter.ai/api/v1",
+  "temperature": null,
+  "max_tokens": null,
+  "cache_policy": null,
+  "request_timeout_s": null,
+  "sdk_retry_policy": null,
+  "reference_time": null,
+  "budget_policy": null,
+  "execution_host": null,
+  "langfuse_base_url": null,
+  "langfuse_project_id": null,
+  "quality_review_protocol": null,
+  "feed_record_count": null,
+  "paths": {
+    "prompt": "task.prompt.txt",
+    "feed": null,
+    "banned": null,
+    "rubric": null
+  },
+  "budgets": {
+    "wall_clock_s": null,
+    "cpu_time_s": null,
+    "memory_mb": null,
+    "model_calls": null,
+    "tool_calls": null,
+    "tokens_in": null,
+    "tokens_out": null,
+    "cost_usd": null,
+    "steps": null
+  }
+}

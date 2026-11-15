@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "draft",
+  "sprint_id": "example-offline-not-scored",
+  "framework_owners": {
+    "fixture": "Example framework owner"
+  },
+  "model": "synthetic-no-provider",
+  "provider": "offline-fixture",
+  "model_upstream": "http://127.0.0.1:4000/v1",
+  "temperature": 0,
+  "max_tokens": 8000,
+  "cache_policy": "disabled",
+  "request_timeout_s": 15,
+  "sdk_retry_policy": "Retry the planted search 429 once with the same page; no model retries in the offline fixture.",
+  "reference_time": "2026-11-15T00:00:00Z",
+  "budget_policy": "record_and_stop",
+  "execution_host": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "logical_cpus": 2
+  },
+  "langfuse_base_url": "http://127.0.0.1:4001",
+  "langfuse_project_id": "fixture-project",
+  "quality_review_protocol": "EXAMPLE ONLY: apply the frozen model-rubric.json after each run; use the same frozen model with temperature 0, no tools and one grading call; blind framework identity; include feed, prompt, blog and metadata; human quality owner reviews cited evidence; retain raw grade; no repairs or reruns; keep script, model and trace verdicts separate. The offline provider cannot grade meaningfully, so its rubric status remains pending.",
+  "feed_record_count": 6,
+  "paths": {
+    "prompt": "task.prompt.txt",
+    "feed": "../examples/feed.json",
+    "banned": "../examples/banned_words.txt",
+    "rubric": "model-rubric.sample.json"
+  },
+  "budgets": {
+    "wall_clock_s": 30,
+    "cpu_time_s": 15,
+    "memory_mb": 512,
+    "model_calls": 20,
+    "tool_calls": 30,
+    "tokens_in": 50000,
+    "tokens_out": 8000,
+    "cost_usd": 1,
+    "steps": 50
+  }
+}

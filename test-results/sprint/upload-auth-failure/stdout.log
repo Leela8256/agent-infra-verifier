@@ -1,0 +1,3 @@
+{'checkpoint': 1, 'phase': 'draft'}
+{'checkpoint': 2, 'phase': 'check'}
+{'checkpoint': 3, 'phase': 'fix'}

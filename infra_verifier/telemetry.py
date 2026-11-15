@@ -57,8 +57,8 @@ class EventStore:
             if len(self.events) >= 10000:
                 raise ValueError("event limit exceeded")
             kind = event.get("kind")
-            if kind not in {"model", "tool", "step", "finish"}:
-                raise ValueError("kind must be model, tool, step, or finish")
+            if kind not in {"model", "tool", "step", "phase", "finish"}:
+                raise ValueError("kind must be model, tool, step, phase, or finish")
             if kind in {"model", "tool"}:
                 if (
                     not isinstance(event.get("name"), str)

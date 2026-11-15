@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "verifier_version": "0.3.0",
+  "run_id": "5c7c8a0c-34ed-45db-b6bd-08c2a400fca8",
+  "framework": "fixture",
+  "trial": 1,
+  "command": [
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/phase_agent.py"
+  ],
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/trials/example-offline-not-scored/fixture/trial-1/workspace",
+  "source_cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
+  "launch_command": [
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/phase_agent.py"
+  ],
+  "started_at": "2026-11-15T17:24:39.230929+00:00",
+  "config": {
+    "schema_version": 1,
+    "profile": "example-offline-not-scored",
+    "wall_clock_s": 30,
+    "cpu_time_s": 15,
+    "memory_mb": 512,
+    "model_calls": 20,
+    "tool_calls": 30,
+    "tokens_in": 50000,
+    "tokens_out": 8000,
+    "cost_usd": 1,
+    "steps": 50,
+    "sample_interval_s": 0.05,
+    "require_telemetry": true,
+    "enforce_budgets": true
+  },
+  "config_sha256": "c02b98f6262719ba9b6e50ef26ab4448d4d092c4b65742c692757a50e4495a72",
+  "comparison_key": "d7d35944ef275a51776051352d6d7f2b4659d475a0a22333baec0abd4f93d7ce",
+  "inputs": {
+    "prompt.txt": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/bundle/prompt.txt",
+      "sha256": "32d6e3734623d1819727218e98fb7c80f914d14a7f1bca091327233d658de13c"
+    },
+    "experiment.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/bundle/experiment.json",
+      "sha256": "7503af99313356ca6ef412b18fbc38498aa54c7d070290973459439bf59ccf0d"
+    },
+    "feed.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/bundle/feed.json",
+      "sha256": "01524d7e36e088879b52032c87155a86c7e45836e18f78d04c0096726e154b86"
+    },
+    "banned_words.txt": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/bundle/banned_words.txt",
+      "sha256": "a0dad36632121ea28674d265c50c8d7467daa0afee87db122a434877f19d062c"
+    },
+    "verify.py": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/bundle/verify.py",
+      "sha256": "e209098f0029f751b360cf97eb71ac5695eee01faa089eff83ef8dadae1bae89"
+    },
+    "search_feed.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/bundle/feed.json",
+      "sha256": "01524d7e36e088879b52032c87155a86c7e45836e18f78d04c0096726e154b86"
+    }
+  },
+  "reference_time": "2026-11-15T00:00:00Z",
+  "machine": {
+    "system": "Darwin",
+    "release": "25.5.0",
+    "machine": "arm64",
+    "logical_cpus": 18
+  },
+  "backend": "local-sampled",
+  "trace_url": null,
+  "source_hashes": {
+    "__init__.py": "c64b253c4b1e4a979d62c1e8680c757c45d32bd333928b3d27a38f371f765f06",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "b4091b75fb7140f870a66dd4a970b7386263564a55e7ee79434bf391355bb299",
+    "config.py": "297daa0a46afa05db4f1ba9d84e06a3ec8deb1242d875a0f3a62e9f0fcc1b2da",
+    "findings.py": "4c44d4354fd3068ff6f52d30eb245ea69c900b88e73effc92db8124f3067eb68",
+    "http_server.py": "84a377cbf2dc1256c934b5718a66f9d9ea92ec8ee74402661792a5b901966bd2",
+    "langfuse_export.py": "33ae0760b8a2b80f6edaf325e310f00177ca17b89235988d1777196b776bb9f8",
+    "phases.py": "c7849b4e3225b938801e0ea70a9ea630f6c8933f16b54325f8d300203e2b9641",
+    "protocol.py": "b4d71f0e9b138fb623019efff4d4fb60658d7badc2279e3acd368db85b9056c8",
+    "quality.py": "4039ff9be23593a5f1ac90bc031e1695c4aee9bfabf96fc69d64349c62838be4",
+    "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
+    "runner.py": "cf45dd22f962230251075d7041370c04a7fef7f70d3efdb9e9eb93717c8b8909",
+    "sandbox.py": "f3e9fd5825401a1c92a6ad65f52a0c3e09f52b4892dd60fe45564598b76136b3",
+    "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
+    "services.py": "d9d0fb5c3070a168398caa7159ff88d3833d302ef05e52838b8d55825636a99d",
+    "summary.py": "3d0d728a69b6876ac7c1f05df958f4b6e95daef9956e449693addc70558d3838",
+    "telemetry.py": "6270dac2c193c13bec17c55b0d26e77fa295f4fdec8b66e7b02c82932907335a",
+    "workspace.py": "13fd01e4743d33d3312d6f10f1ad050322d45df2df071ae6da5eeec0b8f7952b"
+  },
+  "psutil_version": "7.2.2",
+  "declared_experiment": {
+    "model": "synthetic-no-provider",
+    "provider": "offline-fixture",
+    "temperature": 0,
+    "max_tokens": 8000,
+    "cache_policy": "disabled"
+  },
+  "telemetry_source": "shared_services",
+  "model_upstream": "http://127.0.0.1:59951/v1",
+  "search_contract": "three-pages-first-valid-request-429-v1",
+  "write_guard": {
+    "backend": "macos-seatbelt",
+    "probe": "passed",
+    "write_root": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/runs/frozen-demo-20261115-092439/trials/example-offline-not-scored/fixture/trial-1/workspace/output",
+    "limitations": "Allows inherited stdout/stderr and /dev/null. Read and network access are not restricted. Linux Landlock does not restrict chmod/chown/timestamps/xattrs; use a read-only container for hostile workloads or metadata containment."
+  },
+  "sprint_id": "example-offline-not-scored"
+}

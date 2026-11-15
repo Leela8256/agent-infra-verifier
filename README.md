@@ -1,104 +1,78 @@
 # Agent infrastructure verifier
 
-Leela's infrastructure component for the GTM framework experiment. It runs a trusted local agent command, measures resources, and grades its blog with Mithilesh's unchanged verifier.
+**The included sample is a synthetic demonstration, not a real agent or a frozen team experiment.** Its model, owner, limits, six-post feed, Langfuse destination and grading rubric are examples. No real model API is called by the sample; no complete benchmark score is claimed.
 
-**Sprint default: shared HTTP services.** Model usage comes from the supervisor's proxy; the frozen search service records its own attempts, planted 429, retries, and three-page coverage. Owners configure endpoints and credentials, without adding Recorder calls.
+Start with [the filled settings sample](experiment/sprint.sample.json), [the sample model-grading rubric](experiment/model-rubric.sample.json), and [the teammate setup guide](docs/TEAM_SETUP.md).
 
-## Start here
+To get started with a **real agent**:
 
-Requires macOS or Linux, Python 3.11+, and psutil. From this checkout:
+1. Clone/install using the commands below; run the offline demo to check the harness.
+2. Copy experiment/sprint.template.json or sprint.sample.json to sprint.local.json. Agree the real model/settings, budgets, shared feed/banned words, owners, execution host, Langfuse project and grading procedure. Replace every sample-specific value; [DECISIONS.md](docs/DECISIONS.md) explains each field.
+3. Install your framework and use an absolute entrypoint. Configure its model SDK, search tool, output directory and phase checkpoints using the injected environment variables in [the owner integration steps](docs/TEAM_SETUP.md#3-each-owner-connect-the-actual-framework). The harness does not implement your framework agent.
+4. Set the real model and Langfuse keys in the supervisor environment. Smoke-test the actual agent and confirm the trace appears in the real Langfuse project.
+5. Run preflight, freeze the common bundle, then run sprint-run for trials 1, 2 and 3. Preserve failures and complete the external model-rubric review. [Exact commands](docs/TEAM_SETUP.md#freeze-once) are in the guide.
+
+The [sprint protocol](docs/SPRINT_PROTOCOL.md) maps the presentation's rules to the implementation. [Undecided settings](docs/DECISIONS.md) are explicit; the repo is not yet a frozen scored experiment.
+
+This is Leela's infrastructure harness around Mithilesh's unchanged deterministic blog checker. It measures agent execution and records failures. It does not repair the agent, change its prompt, or rerun failed trials.
+
+## Run the offline smoke test
+
+Requires Python 3.11+ on macOS or Linux. From a fresh checkout:
 
 ```bash
+git clone https://github.com/Leela8256/agent-infra-verifier.git
+cd agent-infra-verifier
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.lock
 .venv/bin/python -m pip install -e . --no-deps
 .venv/bin/python -m unittest discover -s tests -v
-.venv/bin/python tools/demo_shared.py
+.venv/bin/python tools/demo_sprint.py
+# Also exercise the populated sample: freeze + three trials.
+.venv/bin/python tools/demo_frozen_sprint.py
 ```
 
-The shared demo runs eight scenarios over real HTTP against a local fake provider. Token/cost values and blog prose are synthetic; it makes no paid API calls. The older adapter demonstration remains available through `tools/demo.py`. [Test evidence](docs/TEST_RESULTS.md).
+The demo uses fake model and Langfuse endpoints. It makes real HTTP requests, captures phase artifacts, and exercises the native write guard. Its prose, tokens and costs are synthetic. It does not establish real-provider or framework compatibility.
 
-## Run a sprint agent
+## What is implemented
 
-Set the real `OPENROUTER_API_KEY` in the supervisor's environment using your usual secret handling. Then:
+- Shared model proxy: canonical provider-reported tokens/cost, model/tool attempt logs, retry/error accounting, streaming support, and frozen model/temperature/token settings on scored runs.
+- Shared frozen search: three pages and a planted first-call 429. Successful page coverage is measured server-side.
+- Real process CPU, memory and time, with explicitly selected record-only or stop-on-budget policy.
+- Native per-process write guard: macOS Seatbelt or Linux Landlock ABI >=3, checked before launch. The before/after working-directory audit remains supplementary.
+- Draft/check/fix checkpoints with host-captured artifact snapshots, ordering/change checks, and explicit missing-evidence status. Model-request count is separate from workflow phases.
+- Langfuse OTLP export for run, model, search and phase observations. Failed/partial exports remain visible and can be replayed without rerunning the agent.
+- Preflight, immutable input bundle, code/input hash checks, and three numbered trial slots per framework. Existing trial directories cannot be overwritten.
+- CSV/JSON summaries with separate quality, runtime, measurement, budgets, workflow evidence, hard failures and soft warnings.
+
+## Prepare a real sprint
 
 ```bash
-.venv/bin/python -m infra_verifier run \
-  --framework your-framework --config configs/pilot.json \
-  --experiment /absolute/path/to/frozen-experiment.json \
-  --feed /absolute/path/to/frozen-feed.json \
-  --banned /absolute/path/to/banned_words.txt \
-  --reference-time 2026-11-15T00:00:00Z \
-  -- /absolute/path/to/agent-entrypoint
+cp experiment/sprint.template.json experiment/sprint.local.json
+.venv/bin/python -m infra_verifier preflight --spec experiment/sprint.local.json
 ```
 
-The child receives these per-run settings:
+The template intentionally fails preflight until the team supplies the model/settings, real shared inputs, budgets, execution-host profile, Langfuse destination, owners and quality-review procedure. Secrets belong in the parent environment, never in JSON or Git.
 
-| Setting | Use |
-|---|---|
-| `INFRA_MODEL_BASE_URL` | Model SDK base URL; proxy supports `/chat/completions` and `/responses`, including SSE streams |
-| `INFRA_PROXY_KEY` | Local bearer credential for model and search endpoints |
-| `INFRA_SEARCH_URL` | Shared frozen search endpoint; GET `?page=1` or POST `{"page":1}` |
-| `INFRA_RUN_ID` | Run identity for trace correlation; the proxy binds it server-side |
-| `OUTPUT_DIR` | Absolute artifact directory; also available as `./output` in the fresh cwd |
+When all decisions are complete, follow [freeze and run](docs/TEAM_SETUP.md#freeze-once) in the setup guide. Do not use `configs/pilot.json` or the six-record example feed for scored results: those are development fixtures. The final feed is about 30 posts, as specified by the presentation.
 
-`OPENAI_BASE_URL`, `OPENROUTER_BASE_URL`, and their API-key variables are also set to the local proxy settings. Frameworks that ignore these variables must explicitly configure their SDK's base URL/key. Native Anthropic and other API formats are not supported by this proxy. Python, JavaScript, CLI, or other HTTP clients can use it. No framework-specific adapter is claimed as tested.
+## Important boundaries
 
-The real upstream key stays in the parent; the child receives a run-scoped proxy key. Other directly inherited provider credentials with common names are removed. This is a local trusted-process setup, not a security boundary against a malicious process running as your user.
+The presentation's semantic workflow is draft/check/fix. Checkpoint labels are declared by the owner and backed by snapshots; they do not prove hidden reasoning or the correctness of self-review. Missing phase evidence cannot produce an infrastructure success exit code.
 
-By default the proxy forwards to OpenRouter. Set `--model-upstream` and `--model-key-env` for another compatible backend. A separate `--search-feed` is available when quality grading is not requested.
+The native guard blocks common file creation, content writes, truncation, removal and symlink escapes outside output, with inherited stdout/stderr and `/dev/null` permitted for runtime I/O. Linux Landlock does not restrict chmod/chown/timestamps/xattrs; this is not a claim of full metadata containment or an adversarial sandbox. Reads and network access remain unrestricted. These limitations and tool-allowlist verification must be included in the team review.
 
-[Integration contract and curl example](docs/INTEGRATION.md) · [Parameter definitions](METRICS.md)
+Langfuse export is implemented against its documented OTLP/HTTP JSON API. The team must verify one live trace appears in its project; HTTP acceptance is not proof of UI visibility. Proxy usage remains canonical even if Langfuse estimates a different cost. Project keys are not available in this development environment, so retained integration evidence uses a local test endpoint.
 
-## Accounting and checks
+The model-graded grounding/factuality/readability rubric belongs to the quality layer and remains an external post-run review. `quality.verdict` is the deterministic checker result, not the complete slide-8 score. Every report explicitly marks the model rubric pending; a CLI exit 0 does not certify the missing rubric.
 
-- **Canonical tokens/cost:** provider response usage captured by the proxy. No client-supplied usage and no Langfuse totals are merged into these fields. Missing values remain null.
-- **Search:** the first valid request gets HTTP 429. The same run's successful page responses are tracked as a set; repeating one page cannot satisfy all three pages.
-- **Resources:** elapsed time, CPU-seconds, sampled process-tree RSS, and OS high-water statistics.
-- **Budgets:** reactive watchdog stops for time, CPU, memory, tokens, calls, steps, and reported cost.
-- **Working directory:** every run starts in a fresh retained directory. A before/after audit flags persistent changes outside its `output` subtree, including symlink changes. It does not detect writes elsewhere on the machine or temporary writes deleted before exit.
-- **False completion:** `said_done_but_failed` means exit code 0 plus quality verdict fail. This is an exit-status proxy, not a language analysis of the agent's final message.
-- **Reports:** upstream quality verdict, infrastructure checks, measurement validity, and budgets stay separate. CSV `failure_tags` contains hard failures; `warning_tags` contains soft-only failures.
+## Other documentation
 
-`steps` in shared mode means model request attempts, including retries. It does not expose framework-internal reasoning steps. `steps_source` records this definition; legacy adapter runs stay in different comparison groups.
+- [Presentation rules and implementation map](docs/SPRINT_PROTOCOL.md)
+- [Team setup and exact commands](docs/TEAM_SETUP.md)
+- [Settings still requiring a team decision](docs/DECISIONS.md)
+- [HTTP and phase integration contract](docs/INTEGRATION.md)
+- [Metric definitions](METRICS.md)
+- [Validation and evidence](docs/TEST_RESULTS.md)
 
-Langfuse remains a trace viewer/correlation layer. Use `INFRA_RUN_ID` in traces and `--trace-url` to retain a known link. Live Langfuse export/import is not implemented. **The proxy is the token and cost source of truth for comparisons.**
-
-## Evidence and summaries
-
-Each fresh run directory includes `manifest.json`, `report.json`, `quality.json`, host-written `events.jsonl`, `samples.jsonl`, agent logs, frozen `inputs/`, `workspace-audit.json`, and `workspace/output/`. `output` at the run root is a convenience symlink. Existing run directories are refused.
-
-```bash
-.venv/bin/python -m infra_verifier summarize runs/shared-*/*/report.json \
-  --json comparison.json --csv comparison.csv
-```
-
-CSV includes steps, errors, retry recovery, budget-stop status, time to first tool call, orphaned processes, page coverage, scope changes, false completion, and separate hard/soft tags. Input/configuration/source/dependency/machine/telemetry-source hashes keep incompatible runs in separate groups. The demos deliberately vary budgets; they are not a framework leaderboard.
-
-Cost per quality-passing completed run includes failed-attempt costs. It is null if any attempt has incomplete cost or no run qualifies. Infrastructure checks are separately visible, even for quality-passing runs.
-
-| CLI code | Meaning |
-|---|---|
-| 0 | Completed, measurements acceptable, quality passes or not requested, no hard infrastructure finding/budget breach |
-| 1 | Quality partial (soft failures) |
-| 2 | Agent failure, budget breach, hard infrastructure finding, or quality failure |
-| 3 | Configuration/launch/collector error, required telemetry incomplete, or grading error |
-
-## Mithilesh's contribution and legacy mode
-
-The vendored checker is byte-for-byte identical to [commit 6630669](https://github.com/mithileshgau/agent-blog-verifier/tree/6630669c083fcac811b04acdb6df644ff54a490c). Its MIT license and original documents are included. A test verifies the Git blob hash. It runs after resource collection with an explicit grading date. No LLM rubric judge is implemented.
-
-The earlier cooperative Recorder interface is retained only via `--telemetry-source adapter_reported`. It is not the sprint default. It produces `adapter_reported` provenance and separate comparison groups. To run the original fixture:
-
-```bash
-.venv/bin/python -m infra_verifier run --framework fixture \
-  --telemetry-source adapter_reported -- .venv/bin/python examples/fixture_agent.py success
-```
-
-## Remaining limits
-
-Local mode is not a filesystem or network sandbox. The workspace audit is partial; direct provider/tool bypass is not blocked. Proxy coverage means requests routed through it, not proof of all activity. Host-recorded HTTP evidence removes self-reported usage from the sprint path, but same-user processes could still tamper with local files.
-
-RSS can double-count shared pages and miss peaks; detached or short-lived children can be missed. Watchdog stops can overshoot. The proxy counts completed attempts, and token/cost limits cannot reserve future spending. In-flight requests are drained for accounting after agent exit, with bounded wait; this drain is excluded from agent wall time.
-
-No container/cgroup backend, GPU/VRAM, disk/network totals, live Langfuse sync, or real six-framework benchmark is claimed. The real frozen feed, SDK endpoint configuration, and provider usage must be smoke-tested by each owner before scored runs. Keep the same model/settings, search feed, limits, and verifier version across all three trials per framework.
+Mithilesh's checker and MIT license are preserved in `vendor/agent_blog_verifier/`. Its original Git blob hash is tested. Legacy Recorder mode remains available with explicit `--telemetry-source adapter_reported`; it is not allowed by the scored-trial command and is never pooled with shared-service runs.

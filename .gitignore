@@ -9,3 +9,5 @@ runs/
 .env
 .ruff_cache/
 dist/
+experiment/*.local.json
+experiment/frozen*/

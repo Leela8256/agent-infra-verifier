@@ -1,0 +1,554 @@
+[
+  {
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "agent-infra-verifier"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "infra-verifier"
+            },
+            "spans": [
+              {
+                "traceId": "41a390c0f07c2a6c559954d4814500e3",
+                "spanId": "3682f3d935763816",
+                "name": "synthetic-sprint-fixture",
+                "kind": 1,
+                "startTimeUnixNano": "1794763507529072128",
+                "endTimeUnixNano": "1794763507589347127",
+                "attributes": [
+                  {
+                    "key": "langfuse.trace.name",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.session.id",
+                    "value": {
+                      "stringValue": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.run_id",
+                    "value": {
+                      "stringValue": "3ec0741c-aba8-4b0d-8c94-77c361c2511f"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.framework",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.trial",
+                    "value": {
+                      "intValue": "1"
+                    }
+                  },
+                  {
+                    "key": "langfuse.version",
+                    "value": {
+                      "stringValue": "0.3.0"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.usage_source",
+                    "value": {
+                      "stringValue": "provider_usage_via_proxy"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.type",
+                    "value": {
+                      "stringValue": "agent"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.output",
+                    "value": {
+                      "stringValue": "{\"quality\": \"pass\", \"runtime\": \"completed\", \"failure_tags\": []}"
+                    }
+                  }
+                ],
+                "status": {
+                  "code": 1
+                }
+              },
+              {
+                "traceId": "41a390c0f07c2a6c559954d4814500e3",
+                "spanId": "604e4676e1ddba39",
+                "name": "mock_search",
+                "kind": 1,
+                "startTimeUnixNano": "1794763507575184628",
+                "endTimeUnixNano": "1794763507575236920",
+                "attributes": [
+                  {
+                    "key": "langfuse.trace.name",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.session.id",
+                    "value": {
+                      "stringValue": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.run_id",
+                    "value": {
+                      "stringValue": "3ec0741c-aba8-4b0d-8c94-77c361c2511f"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.framework",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.trial",
+                    "value": {
+                      "intValue": "1"
+                    }
+                  },
+                  {
+                    "key": "langfuse.version",
+                    "value": {
+                      "stringValue": "0.3.0"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.usage_source",
+                    "value": {
+                      "stringValue": "provider_usage_via_proxy"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.type",
+                    "value": {
+                      "stringValue": "tool"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.source",
+                    "value": {
+                      "stringValue": "mock_search"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.retry_of",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.status_message",
+                    "value": {
+                      "stringValue": "http_429"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.output",
+                    "value": {
+                      "stringValue": "{\"page\": 1, \"http_status\": 429}"
+                    }
+                  }
+                ],
+                "status": {
+                  "code": 2
+                },
+                "parentSpanId": "3682f3d935763816"
+              },
+              {
+                "traceId": "41a390c0f07c2a6c559954d4814500e3",
+                "spanId": "3c0f720207849c7f",
+                "name": "mock_search",
+                "kind": 1,
+                "startTimeUnixNano": "1794763507575611169",
+                "endTimeUnixNano": "1794763507575638127",
+                "attributes": [
+                  {
+                    "key": "langfuse.trace.name",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.session.id",
+                    "value": {
+                      "stringValue": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.run_id",
+                    "value": {
+                      "stringValue": "3ec0741c-aba8-4b0d-8c94-77c361c2511f"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.framework",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.trial",
+                    "value": {
+                      "intValue": "1"
+                    }
+                  },
+                  {
+                    "key": "langfuse.version",
+                    "value": {
+                      "stringValue": "0.3.0"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.usage_source",
+                    "value": {
+                      "stringValue": "provider_usage_via_proxy"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.type",
+                    "value": {
+                      "stringValue": "tool"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.source",
+                    "value": {
+                      "stringValue": "mock_search"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.retry_of",
+                    "value": {
+                      "stringValue": "efe93fb8-6dcd-4a18-b2d5-fdcf47f9a44b"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.status_message",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.output",
+                    "value": {
+                      "stringValue": "{\"page\": 1, \"http_status\": 200}"
+                    }
+                  }
+                ],
+                "status": {
+                  "code": 1
+                },
+                "parentSpanId": "3682f3d935763816"
+              },
+              {
+                "traceId": "41a390c0f07c2a6c559954d4814500e3",
+                "spanId": "21c42758df4ea090",
+                "name": "mock_search",
+                "kind": 1,
+                "startTimeUnixNano": "1794763507575907294",
+                "endTimeUnixNano": "1794763507575931753",
+                "attributes": [
+                  {
+                    "key": "langfuse.trace.name",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.session.id",
+                    "value": {
+                      "stringValue": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.run_id",
+                    "value": {
+                      "stringValue": "3ec0741c-aba8-4b0d-8c94-77c361c2511f"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.framework",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.trial",
+                    "value": {
+                      "intValue": "1"
+                    }
+                  },
+                  {
+                    "key": "langfuse.version",
+                    "value": {
+                      "stringValue": "0.3.0"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.usage_source",
+                    "value": {
+                      "stringValue": "provider_usage_via_proxy"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.type",
+                    "value": {
+                      "stringValue": "tool"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.source",
+                    "value": {
+                      "stringValue": "mock_search"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.retry_of",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.status_message",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.output",
+                    "value": {
+                      "stringValue": "{\"page\": 2, \"http_status\": 200}"
+                    }
+                  }
+                ],
+                "status": {
+                  "code": 1
+                },
+                "parentSpanId": "3682f3d935763816"
+              },
+              {
+                "traceId": "41a390c0f07c2a6c559954d4814500e3",
+                "spanId": "d623799638264798",
+                "name": "mock_search",
+                "kind": 1,
+                "startTimeUnixNano": "1794763507576175544",
+                "endTimeUnixNano": "1794763507576199920",
+                "attributes": [
+                  {
+                    "key": "langfuse.trace.name",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.session.id",
+                    "value": {
+                      "stringValue": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.run_id",
+                    "value": {
+                      "stringValue": "3ec0741c-aba8-4b0d-8c94-77c361c2511f"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.framework",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.trial",
+                    "value": {
+                      "intValue": "1"
+                    }
+                  },
+                  {
+                    "key": "langfuse.version",
+                    "value": {
+                      "stringValue": "0.3.0"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.usage_source",
+                    "value": {
+                      "stringValue": "provider_usage_via_proxy"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.type",
+                    "value": {
+                      "stringValue": "tool"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.source",
+                    "value": {
+                      "stringValue": "mock_search"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.retry_of",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.status_message",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.output",
+                    "value": {
+                      "stringValue": "{\"page\": 3, \"http_status\": 200}"
+                    }
+                  }
+                ],
+                "status": {
+                  "code": 1
+                },
+                "parentSpanId": "3682f3d935763816"
+              },
+              {
+                "traceId": "41a390c0f07c2a6c559954d4814500e3",
+                "spanId": "070ccd5bfe264eb0",
+                "name": "synthetic-no-provider",
+                "kind": 1,
+                "startTimeUnixNano": "1794763507576496252",
+                "endTimeUnixNano": "1794763507576952377",
+                "attributes": [
+                  {
+                    "key": "langfuse.trace.name",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.session.id",
+                    "value": {
+                      "stringValue": "87f0def99bea9cd9cb196f642226b36d1ced27f8b9d9e6de9a0f3146fb71d17c"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.run_id",
+                    "value": {
+                      "stringValue": "3ec0741c-aba8-4b0d-8c94-77c361c2511f"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.framework",
+                    "value": {
+                      "stringValue": "synthetic-sprint-fixture"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.trial",
+                    "value": {
+                      "intValue": "1"
+                    }
+                  },
+                  {
+                    "key": "langfuse.version",
+                    "value": {
+                      "stringValue": "0.3.0"
+                    }
+                  },
+                  {
+                    "key": "langfuse.trace.metadata.usage_source",
+                    "value": {
+                      "stringValue": "provider_usage_via_proxy"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.type",
+                    "value": {
+                      "stringValue": "generation"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.source",
+                    "value": {
+                      "stringValue": "model_proxy"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.retry_of",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.status_message",
+                    "value": {
+                      "stringValue": ""
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.input",
+                    "value": {
+                      "stringValue": "{\"model\": \"synthetic-no-provider\", \"messages\": [{\"role\": \"user\", \"content\": \"synthetic draft\"}], \"temperature\": 0, \"max_tokens\": 8000}"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.output",
+                    "value": {
+                      "stringValue": "{\"id\": \"fixture-request\", \"model\": \"synthetic-no-provider\", \"usage\": {\"prompt_tokens\": 1200, \"completion_tokens\": 700, \"cost\": 0.004}, \"choices\": []}"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.metadata.io_truncated",
+                    "value": {
+                      "boolValue": false
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.model.name",
+                    "value": {
+                      "stringValue": "synthetic-no-provider"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.usage_details",
+                    "value": {
+                      "stringValue": "{\"input\": 1200, \"output\": 700}"
+                    }
+                  },
+                  {
+                    "key": "langfuse.observation.cost_details",
+                    "value": {
+                      "stringValue": "{\"total\": 0.004}"
+                    }
+                  }
+                ],
+                "status": {
+                  "code": 1
+                },
+                "parentSpanId": "3682f3d935763816"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
