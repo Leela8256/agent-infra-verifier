@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "run_id": "699b4f0c-aa0b-4765-a979-d98af443c61f",
+  "framework": "synthetic-fixture",
+  "trial": 1,
+  "comparison_key": "f091794aa98dc433d7492a4448546a9abd78a7b7fc3ba8a2c086ad02689a4f6f",
+  "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
+  "experiment_declared": true,
+  "runtime_status": "budget_exceeded",
+  "exit_code": -9,
+  "measurement_status": "incomplete",
+  "measurement_errors": [],
+  "telemetry_missing": [
+    "finish event",
+    "model coverage declaration",
+    "tool coverage declaration",
+    "step coverage declaration",
+    "tokens_in",
+    "tokens_out",
+    "cost_usd"
+  ],
+  "telemetry_source": "adapter_reported",
+  "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
+  "resource_limitations": [
+    "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
+    "CPU is max(sampled per-process CPU sum, wait4 CPU of reaped leader and its waited descendants); detached unobserved processes can be missed.",
+    "Limits are reactive watchdog stops, not kernel ceilings. Local mode is not a filesystem or network sandbox."
+  ],
+  "budget_status": "exceeded",
+  "budget_violations": [
+    "tokens_in"
+  ],
+  "budget_stop_triggers": [
+    "tokens_in"
+  ],
+  "metrics": {
+    "tokens_in": null,
+    "tokens_out": null,
+    "cost_usd": null,
+    "llm_calls": 1,
+    "tool_calls": 3,
+    "steps": 2,
+    "retries": 0,
+    "errors": 0,
+    "errors_by_type": {},
+    "tool_calls_by_name": {
+      "search": 3
+    },
+    "llm_latency_s": [
+      0.03002916695550084
+    ],
+    "models_observed": [
+      "synthetic-no-provider"
+    ],
+    "llm_total_request_s": 0.03002916695550084,
+    "tool_total_request_s": 0.04509558400604874,
+    "time_to_first_tool_call_s": 0.049438250018283725,
+    "retry_recovered": false,
+    "usage_known_subtotal": {
+      "tokens_in": 9000,
+      "tokens_out": 700,
+      "cost_usd": 0.004
+    },
+    "wall_clock_s": 0.14557600009720773,
+    "cpu_time_s": 0.046534,
+    "peak_rss_mb": 31.34375,
+    "reaped_cpu_time_s": 0.046534,
+    "reaped_peak_rss_mb": 31.609375,
+    "sample_count": 3,
+    "hit_budget_cap": true,
+    "orphaned_processes": 0,
+    "memory_observed_mb": 31.609375
+  },
+  "quality": {
+    "verdict": "fail",
+    "checks": [
+      {
+        "id": "files_exist",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "fail",
+        "detail": "blog.md=False meta.json=False"
+      }
+    ]
+  },
+  "trace_url": null,
+  "output_hashes": {}
+}

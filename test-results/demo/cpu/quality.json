@@ -1,0 +1,12 @@
+{
+  "verdict": "fail",
+  "checks": [
+    {
+      "id": "files_exist",
+      "hard": true,
+      "tag": "file_or_state_error",
+      "result": "fail",
+      "detail": "blog.md=False meta.json=False"
+    }
+  ]
+}

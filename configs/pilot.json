@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "profile": "local-pilot-v1-not-frozen",
+  "wall_clock_s": 300,
+  "cpu_time_s": 120,
+  "memory_mb": 2048,
+  "model_calls": 20,
+  "tool_calls": 30,
+  "tokens_in": 50000,
+  "tokens_out": 8000,
+  "cost_usd": null,
+  "steps": 50,
+  "sample_interval_s": 0.05,
+  "require_telemetry": true
+}

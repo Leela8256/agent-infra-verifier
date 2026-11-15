@@ -1,0 +1,96 @@
+{
+  "verdict": "fail",
+  "checks": [
+    {
+      "id": "files_exist",
+      "hard": true,
+      "tag": "file_or_state_error",
+      "result": "fail",
+      "detail": "blog.md=True meta.json=False"
+    },
+    {
+      "id": "word_count",
+      "hard": true,
+      "tag": "misread_instruction",
+      "result": "pass",
+      "detail": "644 words, want 600-800"
+    },
+    {
+      "id": "has_title",
+      "hard": true,
+      "tag": "misread_instruction",
+      "result": "pass",
+      "detail": "1 H1"
+    },
+    {
+      "id": "section_count",
+      "hard": true,
+      "tag": "misread_instruction",
+      "result": "pass",
+      "detail": "3 sections: ['Agent Harness', 'Agent Memory', 'Tool Calling']"
+    },
+    {
+      "id": "has_intro",
+      "hard": true,
+      "tag": "misread_instruction",
+      "result": "pass",
+      "detail": "40 intro words"
+    },
+    {
+      "id": "links_from_feed",
+      "hard": true,
+      "tag": "said_done_but_failed",
+      "result": "pass",
+      "detail": "0 off-feed: []"
+    },
+    {
+      "id": "has_sources",
+      "hard": false,
+      "tag": "misread_instruction",
+      "result": "pass",
+      "detail": ""
+    },
+    {
+      "id": "no_banned_words",
+      "hard": true,
+      "tag": "misread_instruction",
+      "result": "pass",
+      "detail": "[]"
+    },
+    {
+      "id": "no_stale_sources",
+      "hard": true,
+      "tag": "lost_context",
+      "result": "pass",
+      "detail": "cited 0 post(s) older than 7d"
+    },
+    {
+      "id": "no_urlless_source",
+      "hard": true,
+      "tag": "wrong_tool_or_args",
+      "result": "pass",
+      "detail": "1 feed posts lack a URL"
+    },
+    {
+      "id": "topics_match_feed",
+      "hard": true,
+      "tag": "wrong_tool_or_args",
+      "result": "pass",
+      "detail": "3/3: expected ['agent harness', 'agent memory', 'tool calling']"
+    },
+    {
+      "id": "no_repeated_6gram",
+      "hard": false,
+      "tag": "looped_or_quit_early",
+      "result": "pass",
+      "detail": "0 repeated: []"
+    },
+    {
+      "id": "scope_respected",
+      "hard": false,
+      "tag": "file_or_state_error",
+      "result": "pass",
+      "detail": "extra files in /output: []"
+    }
+  ]
+}

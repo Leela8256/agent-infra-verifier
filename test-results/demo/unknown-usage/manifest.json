@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "verifier_version": "0.1.0",
+  "run_id": "e468c510-1f34-4dfd-af53-aa9d030ad9d1",
+  "framework": "synthetic-fixture",
+  "trial": 1,
+  "command": [
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/.venv/bin/python",
+    "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py",
+    "unknown-usage"
+  ],
+  "cwd": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier",
+  "started_at": "2026-11-15T13:28:54.183533+00:00",
+  "config": {
+    "schema_version": 1,
+    "profile": "local-pilot-v1-not-frozen",
+    "wall_clock_s": 5,
+    "cpu_time_s": null,
+    "memory_mb": 256,
+    "model_calls": null,
+    "tool_calls": null,
+    "tokens_in": 2000,
+    "tokens_out": null,
+    "cost_usd": null,
+    "steps": null,
+    "sample_interval_s": 0.05,
+    "require_telemetry": true
+  },
+  "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
+  "comparison_key": "f091794aa98dc433d7492a4448546a9abd78a7b7fc3ba8a2c086ad02689a4f6f",
+  "inputs": {
+    "experiment.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/experiment.json",
+      "sha256": "fe53a3f21d01e3ed2104f9413e36e7ea370f0746614fd4b2956332c6cf074d3a"
+    },
+    "feed.json": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/feed.json",
+      "sha256": "912e0d13c66f072b6ceb2da54a65231d1431a475f5cb69a304745e3baef3a491"
+    },
+    "banned_words.txt": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/banned_words.txt",
+      "sha256": "a0dad36632121ea28674d265c50c8d7467daa0afee87db122a434877f19d062c"
+    },
+    "verify.py": {
+      "path": "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/vendor/agent_blog_verifier/verify.py",
+      "sha256": "e209098f0029f751b360cf97eb71ac5695eee01faa089eff83ef8dadae1bae89"
+    }
+  },
+  "reference_time": "2026-11-15T00:00:00Z",
+  "machine": {
+    "system": "Darwin",
+    "release": "25.5.0",
+    "machine": "arm64",
+    "logical_cpus": 18
+  },
+  "backend": "local-sampled",
+  "trace_url": null,
+  "source_hashes": {
+    "__init__.py": "e4d711b2fee859921adafef10fdf7f3674ce0a7f1a9c14821d1f05f7ec58d06c",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "cli.py": "1096d7e4c5a24556fc787fcc421fabe6390166e21bcc0ecb43366dc36e160aba",
+    "config.py": "b083f0008a293f8278e34582f99cf1f546cbc901cca8e0e0c1f0898a6301ba37",
+    "quality.py": "4039ff9be23593a5f1ac90bc031e1695c4aee9bfabf96fc69d64349c62838be4",
+    "resources.py": "0ee2d9d8ffb1cd672994d16d46654cdb14f3df70f44d11b0b3e2b58cd010b013",
+    "runner.py": "d620d1b91e611e8f9b8243a8b2b70a574a646f25843502f4e468e0eb0b072083",
+    "sdk.py": "eb2cb2c74b77199e30b6a7496a5521390b2d7a3214f00c1467fd5485ae91d35c",
+    "summary.py": "24b77216ac03b9ee61b392d919ca2a49732609f50ba44346add40a8b30e334d2",
+    "telemetry.py": "7a23a10885cbd5c9169ac1eb5fafd54522856bf4425a882a29eef458e9067d3e"
+  },
+  "psutil_version": "7.2.2",
+  "declared_experiment": {
+    "model": "synthetic-no-provider",
+    "provider": "offline-fixture",
+    "temperature": 0,
+    "max_tokens": 8000,
+    "cache_policy": "disabled",
+    "fixture_only": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "repository": "https://github.com/mithileshgau/agent-blog-verifier",
+  "commit": "6630669c083fcac811b04acdb6df644ff54a490c",
+  "files": {
+    "LICENSE": {
+      "sha256": "4e2047e54a6beeda537270d1118f26ce11acfa9f01c2a29534c1bac35b5f2cbf",
+      "git_blob_sha1": "af77dcceeff1e3a862d17e09eb07ecf460c65dd4"
+    },
+    "VERIFIER.md": {
+      "sha256": "02fec2be4e962a7f44e5d4a227f478f3c2bdfc51d21e74f160299dd5a9a2961d",
+      "git_blob_sha1": "86896ab9f6e87d13b749cce108fccad0da9a46f3"
+    },
+    "metrics.md": {
+      "sha256": "ccfe67b4accdbdd8612c981a1415b54801d321d82feee9ec864f7879f4261a53",
+      "git_blob_sha1": "d61e544f0e3a8e0d1965ec51bad1350b9f4f6cce"
+    },
+    "prompt.md": {
+      "sha256": "7902ea42144962b3ceb9e243d9e825c98d628ab9121d9e3f99227067c029ae5a",
+      "git_blob_sha1": "54aaaa2b1ff24b143692fe924a0c70b121b2637e"
+    },
+    "verify.py": {
+      "sha256": "e209098f0029f751b360cf97eb71ac5695eee01faa089eff83ef8dadae1bae89",
+      "git_blob_sha1": "1333783e451cad6dd9cf1b41180606e13df0ce1f"
+    }
+  }
+}

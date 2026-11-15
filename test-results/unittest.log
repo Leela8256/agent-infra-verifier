@@ -1,0 +1,42 @@
+test_contract_hash_changes (test_verifier.ConfigTests.test_contract_hash_changes) ... ok
+test_invalid_limits_rejected (test_verifier.ConfigTests.test_invalid_limits_rejected) ... ok
+test_unknown_fields_rejected (test_verifier.ConfigTests.test_unknown_fields_rejected) ... ok
+test_child_memory_and_cleanup (test_verifier.RunTests.test_child_memory_and_cleanup) ... ok
+test_cpu_budget (test_verifier.RunTests.test_cpu_budget) ... ok
+test_crash_not_misclassified_as_verifier_error (test_verifier.RunTests.test_crash_not_misclassified_as_verifier_error) ... ok
+test_invalid_event (test_verifier.RunTests.test_invalid_event) ... ok
+test_launch_error_still_writes_report (test_verifier.RunTests.test_launch_error_still_writes_report) ... ok
+test_memory_budget (test_verifier.RunTests.test_memory_budget) ... ok
+test_missing_output_keeps_quality_failure (test_verifier.RunTests.test_missing_output_keeps_quality_failure) ... ok
+test_missing_telemetry_is_unknown (test_verifier.RunTests.test_missing_telemetry_is_unknown) ... ok
+test_model_configuration_changes_comparison_group (test_verifier.RunTests.test_model_configuration_changes_comparison_group) ... ok
+test_model_mismatch_is_invalid (test_verifier.RunTests.test_model_mismatch_is_invalid) ... ok
+test_orphan_cleanup (test_verifier.RunTests.test_orphan_cleanup) ... ok
+test_quality_exception_is_unscored (test_verifier.RunTests.test_quality_exception_is_unscored) ... ok
+test_quality_inputs_required_before_launch (test_verifier.RunTests.test_quality_inputs_required_before_launch) ... ok
+test_refuse_overwrite (test_verifier.RunTests.test_refuse_overwrite) ... ok
+test_retry (test_verifier.RunTests.test_retry) ... ok
+test_success_measures_real_process_and_preserves_quality (test_verifier.RunTests.test_success_measures_real_process_and_preserves_quality) ... ok
+test_timeout_is_stopped (test_verifier.RunTests.test_timeout_is_stopped) ... ok
+test_token_budget (test_verifier.RunTests.test_token_budget) ... ok
+test_unknown_usage (test_verifier.RunTests.test_unknown_usage) ... ok
+test_upstream_copy_has_original_git_blob_hash (test_verifier.RunTests.test_upstream_copy_has_original_git_blob_hash) ... ok
+test_contracts_not_pooled (test_verifier.SummaryTests.test_contracts_not_pooled) ... ok
+test_duplicate_runs_rejected (test_verifier.SummaryTests.test_duplicate_runs_rejected) ... ok
+test_failed_attempt_cost_included (test_verifier.SummaryTests.test_failed_attempt_cost_included) ... ok
+test_missing_cost_does_not_produce_cheaper_result (test_verifier.SummaryTests.test_missing_cost_does_not_produce_cheaper_result) ... ok
+test_no_success_is_null (test_verifier.SummaryTests.test_no_success_is_null) ... ok
+test_conflicting_duplicates_rejected (test_verifier.TelemetryTests.test_conflicting_duplicates_rejected) ... ok
+test_duplicate_transport_event_not_double_counted (test_verifier.TelemetryTests.test_duplicate_transport_event_not_double_counted) ... ok
+test_events_after_finish_rejected (test_verifier.TelemetryTests.test_events_after_finish_rejected) ... ok
+test_http_auth_and_invalid_payload (test_verifier.TelemetryTests.test_http_auth_and_invalid_payload) ... ok
+test_invalid_values (test_verifier.TelemetryTests.test_invalid_values) ... ok
+test_missing_cost_not_zero (test_verifier.TelemetryTests.test_missing_cost_not_zero) ... ok
+test_partial_stream_totals_are_unknown_but_budget_still_enforced (test_verifier.TelemetryTests.test_partial_stream_totals_are_unknown_but_budget_still_enforced) ... ok
+test_retry_count_and_recovery (test_verifier.TelemetryTests.test_retry_count_and_recovery) ... ok
+test_zero_usage_only_with_finish_and_coverage (test_verifier.TelemetryTests.test_zero_usage_only_with_finish_and_coverage) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 4.442s
+
+OK

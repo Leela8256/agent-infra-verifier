@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "run_id": "5a1936c7-dc5b-47d9-b6e7-e40749d94371",
+  "framework": "synthetic-fixture",
+  "trial": 1,
+  "comparison_key": "f091794aa98dc433d7492a4448546a9abd78a7b7fc3ba8a2c086ad02689a4f6f",
+  "config_sha256": "f4d821463ee939376d892f18a51f770d5a8edec5fcbeb2fbf58ca36db285a152",
+  "experiment_declared": true,
+  "runtime_status": "completed",
+  "exit_code": 0,
+  "measurement_status": "complete",
+  "measurement_errors": [],
+  "telemetry_missing": [],
+  "telemetry_source": "adapter_reported",
+  "resource_method": "local sampled process-tree RSS and CPU; wait4 CPU/high-water cross-check",
+  "resource_limitations": [
+    "RSS sum can double-count shared pages; peaks and short-lived children can be missed between samples.",
+    "CPU is max(sampled per-process CPU sum, wait4 CPU of reaped leader and its waited descendants); detached unobserved processes can be missed.",
+    "Limits are reactive watchdog stops, not kernel ceilings. Local mode is not a filesystem or network sandbox."
+  ],
+  "budget_status": "within_observed_limits",
+  "budget_violations": [],
+  "budget_stop_triggers": [],
+  "metrics": {
+    "tokens_in": 1200,
+    "tokens_out": 700,
+    "cost_usd": 0.004,
+    "llm_calls": 1,
+    "tool_calls": 3,
+    "steps": 3,
+    "retries": 0,
+    "errors": 0,
+    "errors_by_type": {},
+    "tool_calls_by_name": {
+      "search": 3
+    },
+    "llm_latency_s": [
+      0.026502458029426634
+    ],
+    "models_observed": [
+      "synthetic-no-provider"
+    ],
+    "llm_total_request_s": 0.026502458029426634,
+    "tool_total_request_s": 0.045066292164847255,
+    "time_to_first_tool_call_s": 0.048140374943614006,
+    "retry_recovered": false,
+    "usage_known_subtotal": {
+      "tokens_in": 1200,
+      "tokens_out": 700,
+      "cost_usd": 0.004
+    },
+    "wall_clock_s": 0.12977808399591595,
+    "cpu_time_s": 0.052471000000000004,
+    "peak_rss_mb": 31.53125,
+    "reaped_cpu_time_s": 0.052471000000000004,
+    "reaped_peak_rss_mb": 31.796875,
+    "sample_count": 3,
+    "hit_budget_cap": false,
+    "orphaned_processes": 0,
+    "memory_observed_mb": 31.796875
+  },
+  "quality": {
+    "verdict": "pass",
+    "checks": [
+      {
+        "id": "files_exist",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "blog.md=True meta.json=True"
+      },
+      {
+        "id": "meta_valid",
+        "hard": true,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "keys=['topics', 'source_urls']"
+      },
+      {
+        "id": "word_count",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "644 words, want 600-800"
+      },
+      {
+        "id": "has_title",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "1 H1"
+      },
+      {
+        "id": "section_count",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "3 sections: ['Agent Harness', 'Agent Memory', 'Tool Calling']"
+      },
+      {
+        "id": "has_intro",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "40 intro words"
+      },
+      {
+        "id": "links_from_feed",
+        "hard": true,
+        "tag": "said_done_but_failed",
+        "result": "pass",
+        "detail": "0 off-feed: []"
+      },
+      {
+        "id": "has_sources",
+        "hard": false,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": ""
+      },
+      {
+        "id": "no_banned_words",
+        "hard": true,
+        "tag": "misread_instruction",
+        "result": "pass",
+        "detail": "[]"
+      },
+      {
+        "id": "no_stale_sources",
+        "hard": true,
+        "tag": "lost_context",
+        "result": "pass",
+        "detail": "cited 0 post(s) older than 7d"
+      },
+      {
+        "id": "no_urlless_source",
+        "hard": true,
+        "tag": "wrong_tool_or_args",
+        "result": "pass",
+        "detail": "1 feed posts lack a URL"
+      },
+      {
+        "id": "topics_match_feed",
+        "hard": true,
+        "tag": "wrong_tool_or_args",
+        "result": "pass",
+        "detail": "3/3: expected ['agent harness', 'agent memory', 'tool calling']"
+      },
+      {
+        "id": "no_duplicate_topic",
+        "hard": true,
+        "tag": "lost_context",
+        "result": "pass",
+        "detail": "meta topics=['agent harness', 'agent memory', 'tool calling']"
+      },
+      {
+        "id": "no_repeated_6gram",
+        "hard": false,
+        "tag": "looped_or_quit_early",
+        "result": "pass",
+        "detail": "0 repeated: []"
+      },
+      {
+        "id": "scope_respected",
+        "hard": false,
+        "tag": "file_or_state_error",
+        "result": "pass",
+        "detail": "extra files in /output: []"
+      }
+    ]
+  },
+  "trace_url": null,
+  "output_hashes": {
+    "blog.md": "845594a26897c97be4f664f711f996ff870ad388ddd4a4a057c7b0cc172e33bd",
+    "meta.json": "27e6ea36b1901207a0301748948df63f179ef95b7f7342280116f3f5de7dc945"
+  }
+}

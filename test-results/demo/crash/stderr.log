@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py", line 142, in <module>
+    main()
+    ~~~~^^
+  File "/Users/leelaprasaddammalapati/Documents/ChatGPT/agent_verfier/examples/fixture_agent.py", line 82, in main
+    raise RuntimeError("deliberate fixture crash")
+RuntimeError: deliberate fixture crash
