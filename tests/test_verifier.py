@@ -348,7 +348,7 @@ class RunTests(unittest.TestCase):
         content = DEFAULT_VERIFIER.read_bytes()
         blob = b"blob " + str(len(content)).encode() + b"\0" + content
         self.assertEqual(
-            hashlib.sha1(blob).hexdigest(), "1333783e451cad6dd9cf1b41180606e13df0ce1f"
+            hashlib.sha1(blob).hexdigest(), "8be85f3ebacef524d919cad4c73c84575bfc41ee"
         )
 
     def test_model_mismatch_is_invalid(self):

@@ -1,26 +1,43 @@
 {
   "repository": "https://github.com/mithileshgau/agent-blog-verifier",
-  "commit": "6630669c083fcac811b04acdb6df644ff54a490c",
+  "tag": "v3.0.0",
+  "commit": "8724c29a311475a01bcc5d37426ed67a13c8b5c5",
   "files": {
     "LICENSE": {
       "sha256": "4e2047e54a6beeda537270d1118f26ce11acfa9f01c2a29534c1bac35b5f2cbf",
       "git_blob_sha1": "af77dcceeff1e3a862d17e09eb07ecf460c65dd4"
     },
     "VERIFIER.md": {
-      "sha256": "02fec2be4e962a7f44e5d4a227f478f3c2bdfc51d21e74f160299dd5a9a2961d",
-      "git_blob_sha1": "86896ab9f6e87d13b749cce108fccad0da9a46f3"
+      "sha256": "f2176517e0b6fb32ed37cc842388f8bed1f2ad0c669d62ffe6267f211f3a6e19",
+      "git_blob_sha1": "83e341dabc741454d2e25c4a16613c46a5542f7e"
+    },
+    "banned_words.txt": {
+      "sha256": "7c5a7373e47c2f8658ed8e8151e8a4ceb882c1158efbee18380223954979f213",
+      "git_blob_sha1": "4a8d6da11374a46dff04f3a9ed81ea02a76e7ea9"
+    },
+    "feed.json": {
+      "sha256": "88ec474e036bee7e1d53b764deb46553a2d9655097e4c495b810419b6ab9ec8e",
+      "git_blob_sha1": "d93eed38bda7d9c175fab860aa500833ac20fa81"
     },
     "metrics.md": {
       "sha256": "ccfe67b4accdbdd8612c981a1415b54801d321d82feee9ec864f7879f4261a53",
       "git_blob_sha1": "d61e544f0e3a8e0d1965ec51bad1350b9f4f6cce"
     },
     "prompt.md": {
-      "sha256": "7902ea42144962b3ceb9e243d9e825c98d628ab9121d9e3f99227067c029ae5a",
-      "git_blob_sha1": "54aaaa2b1ff24b143692fe924a0c70b121b2637e"
+      "sha256": "a9889430fe823ca0fba9e59766dd4de1811f9790ae48b1af0aae87be75ddd6ef",
+      "git_blob_sha1": "ddcbd1a6ae54016de6953a5e6a97e2acfad695b9"
+    },
+    "rubric.md": {
+      "sha256": "d1115fab07487876c91136c2d36237c1c59770c0c1776a0d87869f8a68ff64e2",
+      "git_blob_sha1": "36526b22e1123cc5062d098027c2378e5973eddd"
+    },
+    "rubric.py": {
+      "sha256": "2b834afdec2188f3ca1e5181f6f2070c8ddb8bb309d86da911a00134d81a9e14",
+      "git_blob_sha1": "a2dca959aac2d32037f2591cc5b74fdf5a6cc2fe"
     },
     "verify.py": {
-      "sha256": "e209098f0029f751b360cf97eb71ac5695eee01faa089eff83ef8dadae1bae89",
-      "git_blob_sha1": "1333783e451cad6dd9cf1b41180606e13df0ce1f"
+      "sha256": "82412e09acab2d1a1b5e156345870a75569076b49989d3692bacc9e7b60ad1b7",
+      "git_blob_sha1": "8be85f3ebacef524d919cad4c73c84575bfc41ee"
     }
   }
 }

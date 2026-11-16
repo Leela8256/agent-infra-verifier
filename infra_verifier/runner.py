@@ -350,6 +350,10 @@ def run(
     if declared_experiment is not None:
         # v2: owners no longer hard-code the frozen model id (a mismatch is a 409).
         env["INFRA_MODEL"] = declared_experiment["model"]
+    if reference_time is not None:
+        # The frozen "today" the checker grades against. Without it agents take the
+        # 7-day window from the real clock and drift from the checker's window.
+        env["INFRA_REFERENCE_TIME"] = reference_time
     launch_wall = datetime.now()
     revisions = []  # v2: host-observed versions of the output artifacts
     seen = {}
