@@ -20,14 +20,33 @@ def backend():
     )
 
 
+# Framework runtime lock directories that cannot be relocated by configuration.
+# Allowed for every framework, never only for one owner. OpenClaw's exec hard-codes
+# /tmp/openclaw-state-locks-<uid> for its SQLite lifecycle locks on macOS/Linux.
+RUNTIME_LOCK_DIRS = ("openclaw-state-locks-{uid}",)
+
+
+def runtime_lock_dirs():
+    """Absolute, existing lock directories the guard permits besides output."""
+    uid = os.getuid() if hasattr(os, "getuid") else ""
+    root = Path("/tmp").resolve()
+    out = []
+    for name in RUNTIME_LOCK_DIRS:
+        path = root / name.format(uid=uid)
+        path.mkdir(mode=0o700, exist_ok=True)  # Landlock needs an existing path
+        out.append(str(path))
+    return out
+
+
 def command(argv, output):
     mode = backend()
     output = str(Path(output).resolve(strict=True))
     if mode == "macos-seatbelt":
+        extra = "".join(" (subpath " + json.dumps(p) + ")" for p in runtime_lock_dirs())
         profile = (
             "(version 1)(allow default)(deny file-write*)(allow file-write* (subpath "
             + json.dumps(output)
-            + ') (literal "/dev/null"))'
+            + ')' + extra + ' (literal "/dev/null"))'
         )
         return ["/usr/bin/sandbox-exec", "-p", profile, *argv]
     return [sys.executable, "-m", "infra_verifier.sandbox", output, *argv]
@@ -106,7 +125,9 @@ def landlock(output):
     if ruleset < 0:
         raise OSError(ctypes.get_errno(), "landlock_create_ruleset")
     try:
-        for path, allowed in ((output, rights), ("/dev/null", (1 << 1))):
+        allowed_paths = [(output, rights), ("/dev/null", (1 << 1))]
+        allowed_paths += [(p, rights) for p in runtime_lock_dirs()]
+        for path, allowed in allowed_paths:
             fd = os.open(path, os.O_PATH | os.O_CLOEXEC)
             try:
                 rule = PathBeneath(allowed, fd)
@@ -146,7 +167,8 @@ def probe(output):
         "backend": backend(),
         "probe": "passed",
         "write_root": str(output),
-        "limitations": "Allows inherited stdout/stderr and /dev/null. Read and network access are not restricted. Linux Landlock does not restrict chmod/chown/timestamps/xattrs; use a read-only container for hostile workloads or metadata containment.",
+        "runtime_lock_dirs": runtime_lock_dirs(),
+        "limitations": "Allows inherited stdout/stderr, /dev/null and the shared framework runtime lock directories listed in runtime_lock_dirs. Read and network access are not restricted. Linux Landlock does not restrict chmod/chown/timestamps/xattrs; use a read-only container for hostile workloads or metadata containment.",
     }
 
 
