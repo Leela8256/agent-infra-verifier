@@ -93,8 +93,8 @@ def main(argv=None):
     execute.add_argument(
         "--phase-evidence",
         choices=["declared", "declared_or_observed"],
-        default="declared",
-        help="v2: accept host-observed blog.md revisions when no stages are declared",
+        default="declared_or_observed",
+        help="accept host-observed blog.md revisions when no stages are declared (default); use declared to require explicit draft/check/fix checkpoints",
     )
     execute.add_argument("--langfuse", choices=["off", "required"], default="off")
     execute.add_argument("--request-timeout", type=float, default=15)

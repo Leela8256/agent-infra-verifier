@@ -49,12 +49,20 @@ def denied_writes(pids, start, end):
     try:
         result = subprocess.run(
             [
-                "log", "show", "--style", "compact",
-                "--start", (start - timedelta(seconds=1)).strftime(fmt),
-                "--end", (end + timedelta(seconds=2)).strftime(fmt),
-                "--predicate", 'eventMessage CONTAINS "deny(1) file-write"',
+                "log",
+                "show",
+                "--style",
+                "compact",
+                "--start",
+                (start - timedelta(seconds=1)).strftime(fmt),
+                "--end",
+                (end + timedelta(seconds=2)).strftime(fmt),
+                "--predicate",
+                'eventMessage CONTAINS "deny(1) file-write"',
             ],
-            capture_output=True, text=True, timeout=60,
+            capture_output=True,
+            text=True,
+            timeout=60,
         )
     except (OSError, subprocess.TimeoutExpired):
         return None
@@ -66,8 +74,12 @@ def denied_writes(pids, start, end):
         match = pattern.search(line)
         if match and int(match.group(2)) in pids:
             found.append(
-                {"process": match.group(1), "pid": int(match.group(2)),
-                 "operation": match.group(3), "path": match.group(4).strip()}
+                {
+                    "process": match.group(1),
+                    "pid": int(match.group(2)),
+                    "operation": match.group(3),
+                    "path": match.group(4).strip(),
+                }
             )
     return found
 

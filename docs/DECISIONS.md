@@ -6,7 +6,12 @@ The presentation already fixes the task and main run rules. These values are not
 |---|---|---|
 | sprint_id, framework_owners | Experiment identifier, final five/six-framework roster, one owner each | Sprint lead |
 | model, provider, model_upstream | Exact common model and compatible endpoint; OpenRouter URL is a proposed default | Sprint lead/model owner |
-| temperature, max_tokens | Common inference settings; max_tokens is per request | Sprint lead |
+| temperature, max_tokens | Common inference settings; max_tokens is per request. Use `"omit"` for temperature on models that reject the parameter (Claude Opus 5.5 and Sonnet 5.5 accept only 1): the proxy leaves it out and returns 409 to any agent that sends one, so owners must turn their framework's default temperature off | Sprint lead |
+| model_key_env | Name of the supervisor environment variable that holds the provider key (default `OPENROUTER_API_KEY`, e.g. `ANTHROPIC_API_KEY`) | Infrastructure owner |
+| price_per_mtok | `{"input": USD, "output": USD}` per million tokens, for providers that return tokens but no cost (e.g. the Claude API). Cost = provider tokens × frozen price; a provider-reported cost still wins. Agree the price source and how cached/reasoning tokens are billed. `null` = provider cost only | Sprint lead + infrastructure owner |
+| reasoning_effort | Optional frozen effort. `null` = not frozen: the agent's value passes through. When set, a different value gets 409. Anthropic's OpenAI-compatible endpoint ignores the field, so freezing it there has no effect | Sprint lead |
+| phase_evidence | `declared_or_observed` (default): if no draft/check/fix checkpoints are declared, 2+ saved versions of blog.md count as revision evidence and 1 version is a soft finding. `declared`: explicit checkpoints required | Sprint lead |
+| paths.verifier | Optional. Replaces Mithilesh's vendored checker in the bundle. Preflight warns, and every report records `quality_checker.is_upstream`. Confirm with the quality owner | Quality owner |
 | cache_policy, sdk_retry_policy | Caching and SDK retry/backoff behavior, including how to handle the planted 429 | Owners agree together |
 | request_timeout_s | Shared proxy request timeout | Infrastructure owner |
 | paths.feed, feed_record_count | Actual frozen feed, approximately 30 posts, with all planted traps | Task/quality owner |

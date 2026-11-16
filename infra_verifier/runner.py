@@ -57,8 +57,14 @@ def observe_revisions(output, seen, revisions, elapsed):
         if not revisions or not any(
             r["file"] == name and r["sha256"] == digest for r in revisions[-2:]
         ):
-            revisions.append({"file": name, "elapsed_s": round(elapsed, 3),
-                              "sha256": digest, "bytes": stat.st_size})
+            revisions.append(
+                {
+                    "file": name,
+                    "elapsed_s": round(elapsed, 3),
+                    "sha256": digest,
+                    "bytes": stat.st_size,
+                }
+            )
 
 
 def run(
@@ -86,7 +92,7 @@ def run(
     request_timeout_s=15,
     enforce_model_settings=False,
     sprint_id=None,
-    phase_evidence="declared",
+    phase_evidence="declared_or_observed",
 ):
     if phase_evidence not in {"declared", "declared_or_observed"}:
         raise ValueError("phase_evidence must be declared or declared_or_observed")
@@ -425,27 +431,38 @@ def run(
         receiver.close()
         store.close()
     observe_revisions(output, seen, revisions, time.monotonic() - started)
-    write_json(run_dir / "artifact-revisions.json", {
-        "method": "host sampling of output files every sample_interval_s; "
-                  "two writes inside one interval appear as one version",
-        "revisions": revisions,
-    })
+    write_json(
+        run_dir / "artifact-revisions.json",
+        {
+            "method": "host sampling of output files every sample_interval_s; "
+            "two writes inside one interval appear as one version",
+            "revisions": revisions,
+        },
+    )
     denied = None
     if filesystem_mode == "enforce" and tree is not None:
         from .sandbox import denied_writes
 
         time.sleep(1)  # let the unified log flush the last denials
-        raw_denied = denied_writes({p for p, _ in tree.known}, launch_wall, datetime.now())
+        raw_denied = denied_writes(
+            {p for p, _ in tree.known}, launch_wall, datetime.now()
+        )
         # Runtimes touch device files on start (Python writes /dev/dtracehelper, and the
         # log records it only sometimes). Those are not agent file writes: keep them in
         # the evidence file but do not count them.
-        denied = None if raw_denied is None else [
-            d for d in raw_denied if not d["path"].startswith("/dev/")
-        ]
-        write_json(run_dir / "denied-writes.json", {
-            "counted": denied, "raw": raw_denied,
-            "rule": "count denied file writes by the agent's processes, excluding /dev/ device files",
-        })
+        denied = (
+            None
+            if raw_denied is None
+            else [d for d in raw_denied if not d["path"].startswith("/dev/")]
+        )
+        write_json(
+            run_dir / "denied-writes.json",
+            {
+                "counted": denied,
+                "raw": raw_denied,
+                "rule": "count denied file writes by the agent's processes, excluding /dev/ device files",
+            },
+        )
     else:
         write_json(run_dir / "denied-writes.json", {"counted": None, "raw": None})
     after = snapshot(cwd)
@@ -536,18 +553,27 @@ def run(
         }
     )
     blog_versions = metrics["observed_artifact_versions"]["blog.md"]
-    if phase_evidence == "declared_or_observed" and workflow["status"] == "missing_evidence":
+    if (
+        phase_evidence == "declared_or_observed"
+        and workflow["status"] == "missing_evidence"
+    ):
         # v2: one-loop agents have no stage boundaries to declare. The host still sees
         # each saved version of blog.md; a later version is evidence of a revision,
         # not proof that a check happened or that it fixed anything.
         if blog_versions >= 2:
-            workflow = {**workflow, "status": "observed_revisions",
-                        "provenance": "host-observed blog.md versions; no declared stage labels",
-                        "observed_blog_versions": blog_versions}
+            workflow = {
+                **workflow,
+                "status": "observed_revisions",
+                "provenance": "host-observed blog.md versions; no declared stage labels",
+                "observed_blog_versions": blog_versions,
+            }
         elif blog_versions == 1:
-            workflow = {**workflow, "status": "single_version_observed",
-                        "provenance": "host saw one blog.md version: no visible draft->fix revision",
-                        "observed_blog_versions": 1}
+            workflow = {
+                **workflow,
+                "status": "single_version_observed",
+                "provenance": "host saw one blog.md version: no visible draft->fix revision",
+                "observed_blog_versions": 1,
+            }
     metrics.update(
         workflow_phase_count=workflow["count"], workflow_status=workflow["status"]
     )
@@ -592,9 +618,15 @@ def run(
                 "tag": "file_or_state_error",
                 # A logged denial is certain. No logged denial is not proof of none: in
                 # testing, the unified log missed a denial made by an agent process.
-                "result": "unscored" if denied is None else "fail" if denied else "not_observed",
-                "detail": denied if denied
-                else "guard denials are not observable on this host" if denied is None
+                "result": "unscored"
+                if denied is None
+                else "fail"
+                if denied
+                else "not_observed",
+                "detail": denied
+                if denied
+                else "guard denials are not observable on this host"
+                if denied is None
                 else "no denial found in the macOS unified log (best effort: absence is not proof)",
             }
         )
@@ -614,7 +646,9 @@ def run(
                 else "unscored"
                 if workflow["status"] == "missing_evidence"
                 else "fail",
-                "detail": workflow["issues"] if not (observed or single) else workflow["provenance"],
+                "detail": workflow["issues"]
+                if not (observed or single)
+                else workflow["provenance"],
             }
         )
     report = {
@@ -664,6 +698,13 @@ def run(
         "budget_stop_triggers": cap_triggered,
         "metrics": metrics,
         "quality": quality,
+        # Which checker graded this run; is_upstream is False if paths.verifier replaced it.
+        "quality_checker": {
+            "sha256": inputs["verify.py"]["sha256"],
+            "is_upstream": inputs["verify.py"]["sha256"] == sha256(DEFAULT_VERIFIER),
+        }
+        if "verify.py" in inputs
+        else None,
         "infra_checks": infra_checks,
         "workspace_audit": workspace_audit,
         "write_guard": write_guard,

@@ -350,12 +350,22 @@ class SharedServices:
                 for key, value in (
                     ("model", expected["model"]),
                     ("temperature", expected["temperature"]),
-                    ("reasoning_effort", expected.get("reasoning_effort")),
                 )
-                # v2: a frozen None means "omit": any explicit value is a conflict.
-                if (key in data and value is None and key != "model")
+                # v2: a frozen None temperature means "omit": any explicit value is a conflict.
+                if (key == "temperature" and value is None and key in data)
                 or (value is not None and data.get(key, value) != value)
             ]
+            # reasoning_effort is checked only when the spec freezes it; otherwise the
+            # agent's value passes through unchanged, as before v2.
+            effort = expected.get("reasoning_effort")
+            if effort is not None:
+                sent = (
+                    (data.get("reasoning") or {}).get("effort")
+                    if handler.path.endswith("responses")
+                    else data.get("reasoning_effort")
+                )
+                if sent is not None and sent != effort:
+                    mismatches.append("reasoning_effort")
             if any(
                 data.get(key, expected["max_tokens"]) != expected["max_tokens"]
                 for key in token_keys
@@ -382,8 +392,10 @@ class SharedServices:
                 data["temperature"] = expected["temperature"]
             if expected.get("reasoning_effort") is not None:
                 if handler.path.endswith("responses"):
-                    data["reasoning"] = {**(data.get("reasoning") or {}),
-                                         "effort": expected["reasoning_effort"]}
+                    data["reasoning"] = {
+                        **(data.get("reasoning") or {}),
+                        "effort": expected["reasoning_effort"],
+                    }
                 else:
                     data["reasoning_effort"] = expected["reasoning_effort"]
             if token_key == "max_output_tokens" or "max_completion_tokens" not in data:

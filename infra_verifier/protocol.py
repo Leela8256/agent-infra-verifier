@@ -137,8 +137,11 @@ def inspect_spec(path):
         isinstance(spec["model_key_env"], str)
         and re.fullmatch(r"[A-Z][A-Z0-9_]{0,63}", spec["model_key_env"])
     ):
-        issue("model_key_env", "name the supervisor environment variable holding the provider key")
-    if "reasoning_effort" in spec and not (
+        issue(
+            "model_key_env",
+            "name the supervisor environment variable holding the provider key",
+        )
+    if spec.get("reasoning_effort") is not None and not (
         isinstance(spec["reasoning_effort"], str) and spec["reasoning_effort"].strip()
     ):
         issue("reasoning_effort", "use a nonempty effort string, or remove the field")
@@ -146,11 +149,16 @@ def inspect_spec(path):
     if prices is not None and not (
         isinstance(prices, dict)
         and set(prices) == {"input", "output"}
-        and all(isinstance(v, (int, float)) and not isinstance(v, bool) and v >= 0
-                for v in prices.values())
+        and all(
+            isinstance(v, (int, float)) and not isinstance(v, bool) and v >= 0
+            for v in prices.values()
+        )
     ):
         issue("price_per_mtok", "give input and output USD per million tokens")
-    if spec.get("phase_evidence", "declared") not in {"declared", "declared_or_observed"}:
+    if spec.get("phase_evidence", "declared_or_observed") not in {
+        "declared",
+        "declared_or_observed",
+    }:
         issue("phase_evidence", "use declared or declared_or_observed")
     budgets = spec.get("budgets") if isinstance(spec.get("budgets"), dict) else {}
     for key in LIMITS:
@@ -279,7 +287,22 @@ def inspect_spec(path):
             "execution_host",
             "record system, machine and logical_cpus for the shared execution host",
         )
-    return spec, {"ready": not blockers, "blockers": blockers}, files, config
+    warnings = []
+    if paths.get("verifier"):
+        # Visible, not blocking: the bundle will not use Mithilesh's vendored checker.
+        warnings.append(
+            {
+                "field": "paths.verifier",
+                "reason": "replaces the vendored upstream quality checker; "
+                "confirm with the quality owner before freezing",
+            }
+        )
+    return (
+        spec,
+        {"ready": not blockers, "blockers": blockers, "warnings": warnings},
+        files,
+        config,
+    )
 
 
 def freeze(spec_path, bundle):
@@ -332,6 +355,10 @@ def freeze(spec_path, bundle):
         {
             "files": hashes,
             "verifier_sources": code_hashes(),
+            "quality_checker": {
+                "sha256": hashes["verify.py"],
+                "is_upstream": hashes["verify.py"] == sha256(DEFAULT_VERIFIER),
+            },
             "bundle_id": hashlib.sha256(
                 json.dumps(hashes, sort_keys=True).encode()
             ).hexdigest(),
@@ -392,7 +419,7 @@ def run_trial(bundle, framework, trial, run_root, command):
         model_upstream=spec.get("model_upstream", "https://openrouter.ai/api/v1"),
         # v2: the provider key no longer has to live in OPENROUTER_API_KEY
         model_key_env=spec.get("model_key_env", "OPENROUTER_API_KEY"),
-        phase_evidence=spec.get("phase_evidence", "declared"),
+        phase_evidence=spec.get("phase_evidence", "declared_or_observed"),
     )
     report["protocol_bundle_id"] = lock["bundle_id"]
     report["owner"] = spec["framework_owners"][framework]

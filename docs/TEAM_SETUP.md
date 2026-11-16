@@ -70,10 +70,11 @@ The supervisor injects:
 | INFRA_SEARCH_URL | Actual shared search tool endpoint |
 | INFRA_PHASE_URL | Checkpoint transport for observing workflow phases |
 | INFRA_RUN_ID | Trace correlation when adding framework-native spans |
+| INFRA_MODEL | The frozen model id; pass it to the SDK instead of hard-coding one (a different id gets 409) |
 
 OPENAI_BASE_URL/OPENROUTER_BASE_URL and API-key aliases are also injected, but SDKs may ignore them. Explicitly configure the provider adapter. Supported wire formats are Chat Completions and Responses, including SSE. Native Anthropic messages format is not implemented. An incompatible framework/provider configuration is a setup finding to document, not silently bypass via a direct provider key.
 
-The proxy supplies frozen model/temperature/token settings when omitted and rejects explicit conflicts. Configure caching, retries and other SDK settings exactly as agreed; those remain owner declarations. Search returns results/page/total_pages/next_page and intentionally returns 429 on the first valid request.
+The proxy supplies frozen model/temperature/token settings when omitted and rejects explicit conflicts. If the spec freezes temperature as `"omit"` (Claude models), any temperature the agent sends, even 1, gets 409: turn off the framework's default temperature before the smoke test. `reasoning_effort` is rejected only when the spec freezes it to a different value. Configure caching, retries and other SDK settings exactly as agreed; those remain owner declarations. Search returns results/page/total_pages/next_page and intentionally returns 429 on the first valid request.
 
 Keep the same frozen prompt. The common runtime mapping is: logical /output means OUTPUT_DIR, also ./output inside the fresh cwd. Explain that mapping in the framework's runtime/tool configuration, without changing the task content independently for each framework.
 
@@ -83,7 +84,11 @@ Connect checkpoints to the framework's actual stage boundaries. Do not force sta
 
 At the end of draft, save the current blog.md to OUTPUT_DIR and POST `{"phase":"draft"}`. At the end of check, POST `{"phase":"check","findings":["actual issue"]}` or an empty findings array when no issues were found. At the end of fix, save the revised final files and POST `{"phase":"fix","resolution":"what changed, or why no change was necessary"}`.
 
-All POSTs go to INFRA_PHASE_URL with the same proxy bearer key. The host copies artifacts, records hashes and evaluates the sequence only after exit. Additional internal check/fix cycles can be recorded. If a framework hides these boundaries, report missing evidence; do not label three arbitrary model calls as the three stages.
+All POSTs go to INFRA_PHASE_URL with the same proxy bearer key. The host copies artifacts, records hashes and evaluates the sequence only after exit. Additional internal check/fix cycles can be recorded. If a framework hides these boundaries, do not label three arbitrary model calls as the three stages.
+
+**One-loop frameworks.** If you cannot declare stages, send no checkpoints. With the default `phase_evidence: "declared_or_observed"`, the host records every saved version of blog.md (`artifact-revisions.json`, sampled every 50 ms). Two or more distinct versions count as revision evidence. One version is a soft finding, `single_version_observed`. This shows the file changed, not that a check happened or fixed anything, so it never counts as a hard pass of the deck's draft/check/fix stressor. Saving blog.md in chunks also produces several versions. Declared checkpoints are stronger evidence where a framework has real stage boundaries.
+
+**Writes outside /output.** With `--filesystem-mode enforce` on macOS, guard denials are read from the unified log after the run. A logged denial fails the hard check `no_blocked_writes`. Absence is reported as `not_observed`, never pass, because the log can miss denials. Runtime device files under `/dev/` are kept in `denied-writes.json` but not counted. On Linux (Landlock) there is no log, so the check is `unscored`.
 
 For shell-capable wrappers, the installed CLI is a common transport:
 
