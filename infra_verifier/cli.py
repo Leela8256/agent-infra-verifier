@@ -90,6 +90,12 @@ def main(argv=None):
         "--filesystem-mode", choices=["audit", "enforce"], default="audit"
     )
     execute.add_argument("--require-phases", action="store_true")
+    execute.add_argument(
+        "--phase-evidence",
+        choices=["declared", "declared_or_observed"],
+        default="declared",
+        help="v2: accept host-observed blog.md revisions when no stages are declared",
+    )
     execute.add_argument("--langfuse", choices=["off", "required"], default="off")
     execute.add_argument("--request-timeout", type=float, default=15)
     execute.add_argument("--enforce-model-settings", action="store_true")
@@ -236,6 +242,7 @@ def main(argv=None):
             langfuse=args.langfuse,
             request_timeout_s=args.request_timeout,
             enforce_model_settings=args.enforce_model_settings,
+            phase_evidence=args.phase_evidence,
         )
         print(
             json.dumps(

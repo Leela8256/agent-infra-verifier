@@ -33,6 +33,45 @@ def command(argv, output):
     return [sys.executable, "-m", "infra_verifier.sandbox", output, *argv]
 
 
+def denied_writes(pids, start, end):
+    """v2: write attempts the guard blocked for these processes, or None if unknowable.
+
+    macOS Seatbelt logs every denial to the unified log ("Sandbox: name(pid) deny(1)
+    file-write-create /path"), so the host can count them after the run. Linux Landlock
+    has no equivalent log, so the result there is None (unscored), never 0.
+    """
+    import re
+    from datetime import timedelta
+
+    if backend() != "macos-seatbelt" or not shutil.which("log"):
+        return None
+    fmt = "%Y-%m-%d %H:%M:%S"
+    try:
+        result = subprocess.run(
+            [
+                "log", "show", "--style", "compact",
+                "--start", (start - timedelta(seconds=1)).strftime(fmt),
+                "--end", (end + timedelta(seconds=2)).strftime(fmt),
+                "--predicate", 'eventMessage CONTAINS "deny(1) file-write"',
+            ],
+            capture_output=True, text=True, timeout=60,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if result.returncode:
+        return None
+    found = []
+    pattern = re.compile(r"Sandbox: (.+?)\((\d+)\) deny\(1\) (file-write[\w-]*) (.+)$")
+    for line in result.stdout.splitlines():
+        match = pattern.search(line)
+        if match and int(match.group(2)) in pids:
+            found.append(
+                {"process": match.group(1), "pid": int(match.group(2)),
+                 "operation": match.group(3), "path": match.group(4).strip()}
+            )
+    return found
+
+
 def landlock(output):
     """ABI >=3 is required: old kernels cannot protect path-based truncation."""
     libc = ctypes.CDLL(None, use_errno=True)

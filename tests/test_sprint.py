@@ -104,7 +104,15 @@ class SprintTests(unittest.TestCase):
         self.assertEqual(report["runtime_status"], "completed")
         self.assertEqual(report["write_guard"]["probe"], "passed")
         self.assertFalse((self.root / "outside.txt").exists())
-        self.assertEqual(result_exit_code(report), 0)
+        # v2: a blocked attempt is now a hard finding instead of a silent pass.
+        blocked = {c["id"]: c for c in report["infra_checks"]}["no_blocked_writes"]
+        if blocked["result"] == "unscored":  # host cannot observe guard denials
+            self.assertEqual(result_exit_code(report), 0)
+        else:
+            self.assertEqual(blocked["result"], "fail")
+            self.assertTrue(any("outside.txt" in d["path"] for d in blocked["detail"]))
+            self.assertEqual(report["metrics"]["writes_blocked_by_guard"], len(blocked["detail"]))
+            self.assertEqual(result_exit_code(report), 2)
 
     def test_trace_partial_ingestion_blocks_success(self):
         report, _, _ = self.fixture(trace_mode="partial")

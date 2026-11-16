@@ -121,6 +121,8 @@ def inspect_spec(path):
         )
     for key in ("temperature", "max_tokens", "request_timeout_s"):
         value = spec.get(key)
+        if key == "temperature" and value == "omit":
+            continue  # v2: frozen "omit" for models that reject a temperature
         if (
             isinstance(value, bool)
             or not isinstance(value, (int, float))
@@ -130,6 +132,26 @@ def inspect_spec(path):
             or (key == "max_tokens" and type(value) is not int)
         ):
             issue(key, "requires a finite valid model setting")
+    # v2 optional settings
+    if "model_key_env" in spec and not (
+        isinstance(spec["model_key_env"], str)
+        and re.fullmatch(r"[A-Z][A-Z0-9_]{0,63}", spec["model_key_env"])
+    ):
+        issue("model_key_env", "name the supervisor environment variable holding the provider key")
+    if "reasoning_effort" in spec and not (
+        isinstance(spec["reasoning_effort"], str) and spec["reasoning_effort"].strip()
+    ):
+        issue("reasoning_effort", "use a nonempty effort string, or remove the field")
+    prices = spec.get("price_per_mtok")
+    if prices is not None and not (
+        isinstance(prices, dict)
+        and set(prices) == {"input", "output"}
+        and all(isinstance(v, (int, float)) and not isinstance(v, bool) and v >= 0
+                for v in prices.values())
+    ):
+        issue("price_per_mtok", "give input and output USD per million tokens")
+    if spec.get("phase_evidence", "declared") not in {"declared", "declared_or_observed"}:
+        issue("phase_evidence", "use declared or declared_or_observed")
     budgets = spec.get("budgets") if isinstance(spec.get("budgets"), dict) else {}
     for key in LIMITS:
         value = budgets.get(key)
@@ -166,10 +188,10 @@ def inspect_spec(path):
         issue("reference_time", "use an explicit ISO timestamp with timezone")
     files = {}
     paths = spec.get("paths") if isinstance(spec.get("paths"), dict) else {}
-    for name in ("prompt", "feed", "banned", "rubric"):
+    for name in ("prompt", "feed", "banned", "rubric", "verifier"):
         value = paths.get(name)
-        if name == "rubric" and value is None:
-            continue
+        if name in ("rubric", "verifier") and value is None:
+            continue  # v2: paths.verifier optionally replaces the vendored checker
         if not isinstance(value, str) or not value:
             issue("paths." + name, "choose the shared input file")
             continue
@@ -278,6 +300,7 @@ def freeze(spec_path, bundle):
                 "feed": "feed.json",
                 "banned": "banned_words.txt",
                 "rubric": "model-rubric.json",
+                "verifier": "verify.py",
             }[name],
         )
     prompt = (bundle / "prompt.txt").read_text()
@@ -289,16 +312,20 @@ def freeze(spec_path, bundle):
     (bundle / "prompt.txt").write_text(
         prompt.replace("{{BANNED_WORDS}}", ", ".join(banned))
     )
-    shutil.copyfile(DEFAULT_VERIFIER, bundle / "verify.py")
+    if "verifier" not in files:
+        shutil.copyfile(DEFAULT_VERIFIER, bundle / "verify.py")
     write_json(bundle / "protocol.json", spec)
     write_json(bundle / "config.json", asdict(config))
-    write_json(
-        bundle / "experiment.json",
-        {
-            k: spec[k]
-            for k in ("model", "provider", "temperature", "max_tokens", "cache_policy")
-        },
-    )
+    experiment = {
+        k: spec[k]
+        for k in ("model", "provider", "temperature", "max_tokens", "cache_policy")
+    }
+    if experiment["temperature"] == "omit":
+        experiment["temperature"] = None  # v2: proxy leaves temperature out
+    for optional in ("reasoning_effort", "price_per_mtok"):
+        if spec.get(optional) is not None:
+            experiment[optional] = spec[optional]
+    write_json(bundle / "experiment.json", experiment)
     hashes = {p.name: sha256(p) for p in bundle.iterdir() if p.is_file()}
     write_json(
         bundle / "lock.json",
@@ -363,6 +390,9 @@ def run_trial(bundle, framework, trial, run_root, command):
         enforce_model_settings=True,
         sprint_id=spec["sprint_id"],
         model_upstream=spec.get("model_upstream", "https://openrouter.ai/api/v1"),
+        # v2: the provider key no longer has to live in OPENROUTER_API_KEY
+        model_key_env=spec.get("model_key_env", "OPENROUTER_API_KEY"),
+        phase_evidence=spec.get("phase_evidence", "declared"),
     )
     report["protocol_bundle_id"] = lock["bundle_id"]
     report["owner"] = spec["framework_owners"][framework]

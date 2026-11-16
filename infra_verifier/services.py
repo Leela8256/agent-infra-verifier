@@ -300,8 +300,25 @@ class SharedServices:
                     try:
                         nonnegative(value, key, integer=key != "cost_usd")
                         event[key] = value
+                        if key == "cost_usd":
+                            event["cost_source"] = "provider_response_usage.cost"
                     except ValueError:
                         self.store.invalid(f"provider returned invalid {key}")
+            # v2: providers such as the Claude API return tokens but no cost. With a frozen
+            # price table, derive cost from provider-reported tokens; provider cost still wins.
+            prices = (self.model_settings or {}).get("price_per_mtok")
+            if (
+                prices
+                and event.get("cost_source") != "provider_response_usage.cost"
+                and event.get("tokens_in") is not None
+                and event.get("tokens_out") is not None
+            ):
+                event["cost_usd"] = round(
+                    event["tokens_in"] * prices["input"] / 1e6
+                    + event["tokens_out"] * prices["output"] / 1e6,
+                    8,
+                )
+                event["cost_source"] = "frozen_price_table"
         if payload.get("error") or payload.get("type") in {
             "response.failed",
             "response.incomplete",
@@ -333,8 +350,11 @@ class SharedServices:
                 for key, value in (
                     ("model", expected["model"]),
                     ("temperature", expected["temperature"]),
+                    ("reasoning_effort", expected.get("reasoning_effort")),
                 )
-                if data.get(key, value) != value
+                # v2: a frozen None means "omit": any explicit value is a conflict.
+                if (key in data and value is None and key != "model")
+                or (value is not None and data.get(key, value) != value)
             ]
             if any(
                 data.get(key, expected["max_tokens"]) != expected["max_tokens"]
@@ -354,7 +374,18 @@ class SharedServices:
                 )
                 return
             data = dict(data)
-            data.update(model=expected["model"], temperature=expected["temperature"])
+            data["model"] = expected["model"]
+            # v2: temperature None = leave it out (models such as Claude Opus 5.5 reject it).
+            if expected["temperature"] is None:
+                data.pop("temperature", None)
+            else:
+                data["temperature"] = expected["temperature"]
+            if expected.get("reasoning_effort") is not None:
+                if handler.path.endswith("responses"):
+                    data["reasoning"] = {**(data.get("reasoning") or {}),
+                                         "effort": expected["reasoning_effort"]}
+                else:
+                    data["reasoning_effort"] = expected["reasoning_effort"]
             if token_key == "max_output_tokens" or "max_completion_tokens" not in data:
                 data[token_key] = expected["max_tokens"]
         model = data.get("model")
