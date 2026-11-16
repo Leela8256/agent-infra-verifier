@@ -29,7 +29,15 @@ class SprintTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def fixture(self, mode="success", *, trace_mode="ok", guard=False, config=None):
+    def fixture(
+        self,
+        mode="success",
+        *,
+        trace_mode="ok",
+        guard=False,
+        config=None,
+        phase_evidence="declared_or_observed",
+    ):
         directory = self.root / "run"
         with (
             MockProvider() as provider,
@@ -54,6 +62,7 @@ class SprintTests(unittest.TestCase):
                 langfuse="required",
                 filesystem_mode="enforce" if guard else "audit",
                 enforce_model_settings=True,
+                phase_evidence=phase_evidence,
             )
         return report, directory, tracing
 
@@ -84,10 +93,23 @@ class SprintTests(unittest.TestCase):
         self.assertTrue((directory / "phase-evidence/001-draft.json").is_file())
 
     def test_missing_phases_never_claim_workflow_completion(self):
-        report, _, _ = self.fixture("missing")
+        # Strict mode: explicit checkpoints are required.
+        report, _, _ = self.fixture("missing", phase_evidence="declared")
         self.assertEqual(report["quality"]["verdict"], "pass")
         self.assertEqual(report["workflow"]["status"], "missing_evidence")
         self.assertEqual(result_exit_code(report), 3)
+
+    def test_report_names_the_checker_that_graded_it(self):
+        report, _, _ = self.fixture()
+        self.assertTrue(report["quality_checker"]["is_upstream"])
+
+    def test_default_records_a_single_saved_version_as_a_soft_finding(self):
+        # Default mode: no checkpoints, one saved blog.md -> no visible revision.
+        report, _, _ = self.fixture("missing")
+        self.assertEqual(report["workflow"]["status"], "single_version_observed")
+        check = {c["id"]: c for c in report["infra_checks"]}["draft_check_fix_evidence"]
+        self.assertEqual((check["result"], check["hard"]), ("fail", False))
+        self.assertNotEqual(result_exit_code(report), 3)
 
     def test_wrong_order_is_detected_after_run(self):
         report, _, _ = self.fixture("wrong-order")
@@ -104,7 +126,17 @@ class SprintTests(unittest.TestCase):
         self.assertEqual(report["runtime_status"], "completed")
         self.assertEqual(report["write_guard"]["probe"], "passed")
         self.assertFalse((self.root / "outside.txt").exists())
-        self.assertEqual(result_exit_code(report), 0)
+        # v2: a blocked attempt is now a hard finding instead of a silent pass.
+        blocked = {c["id"]: c for c in report["infra_checks"]}["no_blocked_writes"]
+        if blocked["result"] == "unscored":  # host cannot observe guard denials
+            self.assertEqual(result_exit_code(report), 0)
+        else:
+            self.assertEqual(blocked["result"], "fail")
+            self.assertTrue(any("outside.txt" in d["path"] for d in blocked["detail"]))
+            self.assertEqual(
+                report["metrics"]["writes_blocked_by_guard"], len(blocked["detail"])
+            )
+            self.assertEqual(result_exit_code(report), 2)
 
     def test_trace_partial_ingestion_blocks_success(self):
         report, _, _ = self.fixture(trace_mode="partial")

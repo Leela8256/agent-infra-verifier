@@ -88,6 +88,11 @@ Record setup_minutes, dependencies added, lines to the working agent, and tracin
 | failure_tags | Hard failed quality/infrastructure checks only |
 | warning_tags | Soft failed quality checks; excludes tags already present as hard |
 | steps_source | proxy_model_request_attempts or adapter_reported |
+| cost_source (per model event) | `provider_response_usage.cost`, or `frozen_price_table` when the provider returns tokens but no cost and the spec sets price_per_mtok |
+| writes_blocked_by_guard | macOS: denied write attempts by the agent's processes found in the unified log, excluding /dev/ device files; null where denials are not observable (Linux). Absence is not proof of none |
+| observed_artifact_versions | Distinct saved versions of blog.md and meta.json seen by host sampling (50 ms) |
+| workflow_status | Adds `observed_revisions` (2+ blog.md versions, no declared stages) and `single_version_observed` (soft finding) under phase_evidence declared_or_observed |
+| quality_checker | sha256 of the checker that graded the run; `is_upstream` is false if paths.verifier replaced Mithilesh's vendored checker |
 
 The CSV also exports steps, errors, retry_recovered, hit_budget_cap, time_to_first_tool_call_s, and orphaned_processes. Retry counts are inferred at shared service boundaries: identical model request after failure, or same search page after failure. Other tool activity and changed-payload retries are not inferred. Provider costs on failed attempts can be unknown even when a later retry succeeds.
 

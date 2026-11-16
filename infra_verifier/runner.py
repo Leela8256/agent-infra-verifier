@@ -39,6 +39,34 @@ def write_json(path, data):
     temporary.replace(path)
 
 
+def observe_revisions(output, seen, revisions, elapsed):
+    """v2: record each new version of blog.md / meta.json the host can see."""
+    for name in ("blog.md", "meta.json"):
+        path = output / name
+        try:
+            if not path.is_file() or path.is_symlink():
+                continue
+            stat = path.stat()
+            key = (stat.st_mtime_ns, stat.st_size)
+            if seen.get(name) == key:
+                continue
+            seen[name] = key
+            digest = sha256(path)
+        except OSError:
+            continue
+        if not revisions or not any(
+            r["file"] == name and r["sha256"] == digest for r in revisions[-2:]
+        ):
+            revisions.append(
+                {
+                    "file": name,
+                    "elapsed_s": round(elapsed, 3),
+                    "sha256": digest,
+                    "bytes": stat.st_size,
+                }
+            )
+
+
 def run(
     command,
     run_dir,
@@ -64,7 +92,10 @@ def run(
     request_timeout_s=15,
     enforce_model_settings=False,
     sprint_id=None,
+    phase_evidence="declared_or_observed",
 ):
+    if phase_evidence not in {"declared", "declared_or_observed"}:
+        raise ValueError("phase_evidence must be declared or declared_or_observed")
     if os.name != "posix":
         raise ValueError("local runner currently supports macOS and Linux")
     if not command:
@@ -116,7 +147,18 @@ def run(
                 raise ValueError(f"experiment {key} must be a nonempty string")
         from .telemetry import nonnegative
 
-        nonnegative(declared_experiment["temperature"], "temperature")
+        # v2: temperature may be None ("omit"), for models that reject the parameter.
+        if declared_experiment["temperature"] is not None:
+            nonnegative(declared_experiment["temperature"], "temperature")
+        effort = declared_experiment.get("reasoning_effort")
+        if effort is not None and (not isinstance(effort, str) or not effort.strip()):
+            raise ValueError("experiment reasoning_effort must be a nonempty string")
+        prices = declared_experiment.get("price_per_mtok")
+        if prices is not None:
+            if not isinstance(prices, dict) or set(prices) != {"input", "output"}:
+                raise ValueError("experiment price_per_mtok needs input and output")
+            nonnegative(prices["input"], "price_per_mtok.input")
+            nonnegative(prices["output"], "price_per_mtok.output")
         nonnegative(declared_experiment["max_tokens"], "max_tokens", integer=True)
         if declared_experiment["max_tokens"] == 0:
             raise ValueError("experiment max_tokens must be positive")
@@ -219,6 +261,7 @@ def run(
         "request_timeout_s": request_timeout_s,
         "enforce_model_settings": enforce_model_settings,
         "sprint_id": sprint_id,
+        "phase_evidence": phase_evidence,
     }
     comparison_key = hashlib.sha256(
         json.dumps(contract, sort_keys=True).encode()
@@ -304,6 +347,12 @@ def run(
     store.started = started
     if task_prompt:
         env["INFRA_TASK_PROMPT"] = str(frozen / "prompt.txt")
+    if declared_experiment is not None:
+        # v2: owners no longer hard-code the frozen model id (a mismatch is a 409).
+        env["INFRA_MODEL"] = declared_experiment["model"]
+    launch_wall = datetime.now()
+    revisions = []  # v2: host-observed versions of the output artifacts
+    seen = {}
     if filesystem_mode == "enforce":
         from .sandbox import command as guarded_command
 
@@ -333,6 +382,7 @@ def run(
                 samples += 1
                 peak = tree.peak_rss / 2**20
                 sampled_cpu = sample["cpu_time_s"]
+                observe_revisions(output, seen, revisions, elapsed)
                 pid, status, reaped = os.wait4(child.pid, os.WNOHANG)
                 if pid:
                     usage = reaped
@@ -380,6 +430,41 @@ def run(
             child.wait(timeout=5)
         receiver.close()
         store.close()
+    observe_revisions(output, seen, revisions, time.monotonic() - started)
+    write_json(
+        run_dir / "artifact-revisions.json",
+        {
+            "method": "host sampling of output files every sample_interval_s; "
+            "two writes inside one interval appear as one version",
+            "revisions": revisions,
+        },
+    )
+    denied = None
+    if filesystem_mode == "enforce" and tree is not None:
+        from .sandbox import denied_writes
+
+        time.sleep(1)  # let the unified log flush the last denials
+        raw_denied = denied_writes(
+            {p for p, _ in tree.known}, launch_wall, datetime.now()
+        )
+        # Runtimes touch device files on start (Python writes /dev/dtracehelper, and the
+        # log records it only sometimes). Those are not agent file writes: keep them in
+        # the evidence file but do not count them.
+        denied = (
+            None
+            if raw_denied is None
+            else [d for d in raw_denied if not d["path"].startswith("/dev/")]
+        )
+        write_json(
+            run_dir / "denied-writes.json",
+            {
+                "counted": denied,
+                "raw": raw_denied,
+                "rule": "count denied file writes by the agent's processes, excluding /dev/ device files",
+            },
+        )
+    else:
+        write_json(run_dir / "denied-writes.json", {"counted": None, "raw": None})
     after = snapshot(cwd)
     workspace_audit = audit(before, after)
     write_json(
@@ -410,6 +495,12 @@ def run(
         if service_feed is not None
         else "adapter_reported",
         "writes_outside_output": len(workspace_audit["changes_outside_output"]),
+        # v2: blocked attempts were invisible before (the guard denies, nothing changes).
+        "writes_blocked_by_guard": None if denied is None else len(denied),
+        "observed_artifact_versions": {
+            name: len({r["sha256"] for r in revisions if r["file"] == name})
+            for name in ("blog.md", "meta.json")
+        },
         **(
             receiver.search_metrics()
             if service_feed is not None
@@ -461,6 +552,28 @@ def run(
             if (output / name).is_file()
         }
     )
+    blog_versions = metrics["observed_artifact_versions"]["blog.md"]
+    if (
+        phase_evidence == "declared_or_observed"
+        and workflow["status"] == "missing_evidence"
+    ):
+        # v2: one-loop agents have no stage boundaries to declare. The host still sees
+        # each saved version of blog.md; a later version is evidence of a revision,
+        # not proof that a check happened or that it fixed anything.
+        if blog_versions >= 2:
+            workflow = {
+                **workflow,
+                "status": "observed_revisions",
+                "provenance": "host-observed blog.md versions; no declared stage labels",
+                "observed_blog_versions": blog_versions,
+            }
+        elif blog_versions == 1:
+            workflow = {
+                **workflow,
+                "status": "single_version_observed",
+                "provenance": "host saw one blog.md version: no visible draft->fix revision",
+                "observed_blog_versions": 1,
+            }
     metrics.update(
         workflow_phase_count=workflow["count"], workflow_status=workflow["status"]
     )
@@ -497,18 +610,45 @@ def run(
                 },
             }
         )
+    if filesystem_mode == "enforce":
+        infra_checks.append(
+            {
+                "id": "no_blocked_writes",
+                "hard": True,
+                "tag": "file_or_state_error",
+                # A logged denial is certain. No logged denial is not proof of none: in
+                # testing, the unified log missed a denial made by an agent process.
+                "result": "unscored"
+                if denied is None
+                else "fail"
+                if denied
+                else "not_observed",
+                "detail": denied
+                if denied
+                else "guard denials are not observable on this host"
+                if denied is None
+                else "no denial found in the macOS unified log (best effort: absence is not proof)",
+            }
+        )
     if require_phases:
+        observed = workflow["status"] == "observed_revisions"
+        single = workflow["status"] == "single_version_observed"
         infra_checks.append(
             {
                 "id": "draft_check_fix_evidence",
-                "hard": True,
+                # v2: observed-only evidence never counts as a hard failure.
+                "hard": not (observed or single),
                 "tag": "looped_or_quit_early",
                 "result": "pass"
-                if workflow["status"] == "evidenced"
+                if workflow["status"] == "evidenced" or observed
+                else "fail"
+                if single
                 else "unscored"
                 if workflow["status"] == "missing_evidence"
                 else "fail",
-                "detail": workflow["issues"],
+                "detail": workflow["issues"]
+                if not (observed or single)
+                else workflow["provenance"],
             }
         )
     report = {
@@ -531,7 +671,11 @@ def run(
         "usage_source": "provider_usage_via_proxy"
         if service_feed is not None
         else "adapter_reported",
-        "cost_source": "provider_response_usage.cost"
+        "cost_source": (
+            "provider_response_usage.cost, else frozen price table"
+            if declared_experiment and declared_experiment.get("price_per_mtok")
+            else "provider_response_usage.cost"
+        )
         if service_feed is not None
         else "adapter_reported",
         "telemetry_scope": "Requests routed through this run's services only; direct provider/tool bypass is not network-blocked."
@@ -554,6 +698,13 @@ def run(
         "budget_stop_triggers": cap_triggered,
         "metrics": metrics,
         "quality": quality,
+        # Which checker graded this run; is_upstream is False if paths.verifier replaced it.
+        "quality_checker": {
+            "sha256": inputs["verify.py"]["sha256"],
+            "is_upstream": inputs["verify.py"]["sha256"] == sha256(DEFAULT_VERIFIER),
+        }
+        if "verify.py" in inputs
+        else None,
         "infra_checks": infra_checks,
         "workspace_audit": workspace_audit,
         "write_guard": write_guard,
