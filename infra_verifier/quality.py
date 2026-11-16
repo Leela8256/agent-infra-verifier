@@ -9,7 +9,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-UPSTREAM_COMMIT = "6630669c083fcac811b04acdb6df644ff54a490c"
+UPSTREAM_COMMIT = "8724c29a311475a01bcc5d37426ed67a13c8b5c5"  # agent-blog-verifier v3.0.0
 DEFAULT_VERIFIER = (
     Path(__file__).resolve().parents[1] / "vendor/agent_blog_verifier/verify.py"
 )

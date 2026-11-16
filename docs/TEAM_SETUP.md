@@ -71,6 +71,7 @@ The supervisor injects:
 | INFRA_PHASE_URL | Checkpoint transport for observing workflow phases |
 | INFRA_RUN_ID | Trace correlation when adding framework-native spans |
 | INFRA_MODEL | The frozen model id; pass it to the SDK instead of hard-coding one (a different id gets 409) |
+| INFRA_REFERENCE_TIME | The frozen "today" (ISO 8601) the checker grades against; give it to the agent as the current date |
 
 OPENAI_BASE_URL/OPENROUTER_BASE_URL and API-key aliases are also injected, but SDKs may ignore them. Explicitly configure the provider adapter. Supported wire formats are Chat Completions and Responses, including SSE. Native Anthropic messages format is not implemented. An incompatible framework/provider configuration is a setup finding to document, not silently bypass via a direct provider key.
 

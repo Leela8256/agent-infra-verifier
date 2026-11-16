@@ -30,10 +30,7 @@ def write_blog(output, mode):
             + " ".join(f"evidence{j}x{i:03}" for i in range(195))
             + f"\n\n[source]({urls[j]})"
         )
-    sections.append(
-        "## Sources\n\n"
-        + "\n".join(f"- [{topic}]({url})" for topic, url in zip(topics, urls))
-    )
+    # Checker v3: one section per topic, links inline, no Sources section.
     (output / "blog.md").write_text("\n\n".join(sections))
     if mode != "missing-output":
         (output / "meta.json").write_text(

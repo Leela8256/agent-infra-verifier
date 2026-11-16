@@ -330,7 +330,7 @@ def freeze(spec_path, bundle):
     banned = [
         line.strip()
         for line in (bundle / "banned_words.txt").read_text().splitlines()
-        if line.strip()
+        if line.strip() and not line.lstrip().startswith("#")  # comments stay out of the prompt
     ]
     (bundle / "prompt.txt").write_text(
         prompt.replace("{{BANNED_WORDS}}", ", ".join(banned))

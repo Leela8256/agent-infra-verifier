@@ -297,6 +297,35 @@ assert child.returncode != 0
             with self.assertRaises(FileExistsError):
                 run_trial(bundle, "fixture", 1, self.root / "runs", argv)
 
+    def test_freeze_keeps_banned_word_comments_out_of_prompt(self):
+        with MockProvider() as provider, FakeLangfuse() as tracing:
+            spec_path = self.spec(provider, tracing)
+            banned = self.root / "banned_with_comments.txt"
+            banned.write_text("# Frozen with prompt.md\nsynergy\n  # indented note\ndelve\n")
+            data = json.loads(spec_path.read_text())
+            data["paths"]["banned"] = str(banned)
+            spec_path.write_text(json.dumps(data))
+            bundle = self.root / "bundle"
+            freeze(spec_path, bundle)
+            prompt = (bundle / "prompt.txt").read_text()
+            self.assertIn("synergy, delve", prompt)
+            self.assertNotIn("#", prompt.split("these words:")[1].split(".")[0])
+
+    def test_agent_receives_reference_time(self):
+        with (
+            MockProvider() as provider,
+            FakeLangfuse() as tracing,
+            patch.dict(os.environ, tracing.env),
+        ):
+            bundle = self.root / "bundle"
+            freeze(self.spec(provider, tracing), bundle)
+            script = self.root / "print_ref.py"
+            script.write_text("import os; print('REF=' + os.environ.get('INFRA_REFERENCE_TIME', 'missing'))")
+            run_trial(bundle, "fixture", 1, self.root / "runs", [sys.executable, str(script)])
+            logs = list((self.root / "runs").rglob("stdout.log"))
+            self.assertEqual(len(logs), 1)
+            self.assertIn("REF=2026-11-15T00:00:00Z", logs[0].read_text())
+
     def test_tampered_bundle_rejected_before_agent_runs(self):
         with MockProvider() as provider, FakeLangfuse() as tracing:
             bundle = self.root / "bundle"
